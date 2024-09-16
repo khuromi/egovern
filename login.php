@@ -82,7 +82,7 @@ if ($login->isRememberSet()) {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .login-left img {
