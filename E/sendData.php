@@ -94,30 +94,9 @@
                     }
               break;
 
-            case 'getSidebarMessage':
-
-                $message = new Message();
-                $response = $message->getUserAllMessages($_POST['id']);
-
-                break;
-            case 'getAllMessages':
-
-                $message = new Message();
-                $response = $message->getMessage($_POST['receiver'], $_POST['sender']);
-
-                break;
-            case 'sendMessage':
-
-                $message = new Message();
-                $response = $message->sendMessage($_POST['receiver'], $_POST['message']);
-
-                break;
-
-            case 'getChatHeader':
-
-                $message = new Message();
-                $response = $message->getChatHeader($_POST['id']);
-
+            case 'fetchResidentByID':
+                $response = new Resident();
+                $response->fetchResidentByID($_POST['id']);
                 break;
 
             default:

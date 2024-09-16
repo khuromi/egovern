@@ -75,13 +75,13 @@
                                         ?>
                                         <tr>
 
-                                        <td><?= $row['household_id'] ?></td>
+                                        <td><?= $row['resident_id'] ?></td>
                                         <td><?= $row['firstname'] ?> <?= $row['middlename'] ?> <?= $row['lastname'] ?></td>
                                         <td><?= $row['sex'] ?></td>
                                         <td><?= $row['birthdate'] ?></td>
                                         <td>
                                             <div class="flex align-center text-center">
-                                            <a class="btn btn-outline-success btn-sm view" href="#" data-id="<?= $row['household_id'] ?>"><i data-feather="eye"></i></a>
+                                            <a class="btn btn-outline-success btn-sm view" href="#" data-id="<?= $row['resident_id'] ?>"><i data-feather="eye"></i></a>
                                             </div>
                                         </td>
                                         </tr>
@@ -125,11 +125,113 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+              <section>
+                <div class="container">
+                  <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+                      <div class="card h-100 ">
+                        <div class="card-body">
+                          <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                              <h5 class="mb-2 text-danger">Resident Information</h5>
+                            </div>
+
+                            <div class="col-md-8 col-12 mb-3">
+                              <div class="form-group">
+                                <label class="label" for="view-child-name">Resident's Name</label>
+                                <input type="text" class="form-control form-control-sm" name="view-resident-name" id="view-resident-name" readonly>
+                              </div>
+                            </div>
+
+                            <div class="col-md-2 col-12 mb-3">
+                              <div class="form-group">
+                                <label class="label" for="view-child-name">Birthdate</label>
+                                <input type="text" class="form-control form-control-sm" name="view-resident-birthdate" id="view-resident-birthdate" readonly>
+                              </div>
+                            </div>
+
+                            <div class="col-md-2 col-12 mb-3">
+                              <div class="form-group">
+                                <label class="label" for="view-child-name">Sex</label>
+                                <input type="text" class="form-control form-control-sm" name="view-resident-sex" id="view-resident-sex" readonly>
+                              </div>
+                            </div>
+
+                            <div class="col-md-12 col-12 mb-3">
+                              <div class="form-group">
+                                <label class="label" for="view-child-name">Birthplace</label>
+                                <input type="text" class="form-control form-control-sm" name="view-resident-birthplace" id="view-resident-birthplace" readonly>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4 col-4 mb-3">
+                              <div class="form-group">
+                                <label class="label" for="view-child-name">Civil Status</label>
+                                <input type="text" class="form-control form-control-sm" name="view-resident-civil-status" id="view-resident-civil-status" readonly>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4 col-4 mb-3">
+                              <div class="form-group">
+                                <label class="label" for="view-child-name">Citizenship</label>
+                                <input type="text" class="form-control form-control-sm" name="view-resident-citizenship" id="view-resident-citizenship" readonly>
+                              </div>
+                            </div>
+
+                            <div class="col-md-4 col-4 mb-3">
+                              <div class="form-group">
+                                <label class="label" for="view-child-name">Religion</label>
+                                <input type="text" class="form-control form-control-sm" name="view-resident-religion" id="view-resident-religion" readonly>
+                              </div>
+                            </div>
+
+
+                            <div class="col-md-3 col-3 mb-3">
+                              <div class="form-group">
+                                <label class="label" for="view-child-name">Highest Educational Attainment</label>
+                                <input type="text" class="form-control form-control-sm" name="view-resident-education" id="view-resident-education" readonly>
+                              </div>
+                            </div>
+
+
+
+                            <div class="col-md-3 col-4 mb-3">
+                              <div class="form-group">
+                                <label class="label" for="view-child-name">Annual Income</label>
+                                <input type="text" class="form-control form-control-sm" name="view-resident-annual-income" id="view-resident-annual-income" readonly>
+                              </div>
+                            </div>
+
+                            <div class="col-md-3 col-4 mb-3">
+                              <div class="form-group">
+                                <label class="label" for="view-child-name">Occupation</label>
+                                <input type="text" class="form-control form-control-sm" name="view-resident-occupation" id="view-resident-occupation" readonly>
+                              </div>
+                            </div>
+
+
+                            <div class="col-md-3 col-4 mb-3">
+                              <div class="form-group">
+                                <label class="label" for="view-child-name">Household Head Relationship</label>
+                                <input type="text" class="form-control form-control-sm" name="view-resident-head-relationship" id="view-resident-head-relationship" readonly>
+                              </div>
+                            </div>
+
+
+
+
+
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
             </div>
         </div>
@@ -155,8 +257,30 @@
             $(".view").on('click', function(){
 
 
-                const myModal = new bootstrap.Modal(document.getElementById('viewModal'))
-                myModal.show();
+              let id = $(this).data('id')
+
+              $.ajax({
+                url: 'sendData',
+                type: 'POST',
+                data: {
+                  action: 'fetchResidentByID',
+                  id: id
+                },
+                success: function(data) {
+                  var res = JSON.parse(data)
+
+                  $("#view-resident-name").val(res.firstname)
+
+                  const myModal = new bootstrap.Modal(document.getElementById('viewModal'))
+                  myModal.show();
+
+
+
+                }
+              })
+
+
+
 
 
             })
