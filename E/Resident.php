@@ -11,7 +11,7 @@
 
         public function fetchResidents(){
 
-            $sql = "SELECT * FROM household";
+            $sql = "SELECT * FROM resident LIMIT 5";
 
             $stmt = $this->db->query($sql);
             if($stmt->execute()){
@@ -20,6 +20,19 @@
 
             }
 
+        }
+
+        public function fetchResidentByID($id)
+        {
+            $sql = "SELECT * FROM resident WHERE resident_id = :rid";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(":rid", $id, PDO::PARAM_INT);
+            if ($stmt->execute()){
+                if ($stmt->rowCount() > 0){
+                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    echo json_encode($row);
+                }
+            }
         }
 
 
