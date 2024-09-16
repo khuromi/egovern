@@ -118,55 +118,55 @@
             data: [
               {
                 x: 'Household 29',
-                y: 35,000
+                y: 35000
               },
               {
                 x: 'Household 18',
-                y: 32,000
+                y: 32000
               },
               {
                 x: 'Household 35',
-                y: 29,000
+                y: 29000
               },
               {
                 x: 'Household 72',
-                y: 28,000
+                y: 28000
               },
               {
                 x: 'Household 82',
-                y: 26,000
+                y: 26000
               },
               {
                 x: 'Household 45',
-                y: 24,000
+                y: 24000
               },
               {
                 x: 'Household 51',
-                y: 23,000
+                y: 23000
               },
               {
                 x: 'Household 9',
-                y: 21,000
+                y: 21000
               },
               {
                 x: 'Household 7',
-                y: 20,000
+                y: 20000
               },
               {
                 x: 'Household 21',
-                y: 18,000
+                y: 18000
               },
               {
                 x: 'Household 11',
-                y: 17,000
+                y: 17000
               },
               {
                 x: 'Household 33',
-                y: 15,000
+                y: 15000
               },
               {
                 x: 'Household 75',
-                y: 12,000
+                y: 12000
               }
             ]
           }
