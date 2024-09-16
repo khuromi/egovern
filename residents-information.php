@@ -269,7 +269,18 @@
                 success: function(data) {
                   var res = JSON.parse(data)
 
-                  $("#view-resident-name").val(res.firstname)
+                  $("#view-resident-name").val(res.firstname + ' ' + res.middlename + ' ' + res.lastname + ' ' + res.qualifier)
+                  $("#view-resident-birthdate").val(res.birthdate)
+                  $("#view-resident-sex").val(res.sex)
+                  $("#view-resident-birthplace").val(res.birthplace)
+                  $("#view-resident-civil-status").val(res.civil_status)
+                  $("#view-resident-citizenship").val(res.citizenship)
+                  $("#view-resident-religion").val(res.religion)
+                  $("#view-resident-education").val(res.highest_educational_attainment)
+                  $("#view-resident-annual-income").val(res.annual_income)
+                  $("#view-resident-occupation").val(res.occupation)
+                  $("#view-resident-head-relationship").val(res.household_head_relationship)
+
 
                   const myModal = new bootstrap.Modal(document.getElementById('viewModal'))
                   myModal.show();
