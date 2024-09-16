@@ -31,7 +31,7 @@
                 Residents Information
             </a>
             
-            <a class="nav-link" href="residents-information.php">
+            <a class="nav-link" href="manage-residents.php">
                 <div class="nav-link-icon"><i data-feather="users"></i></div>
                 Manage Residents Information
             </a>

@@ -82,6 +82,7 @@
                                         <td>
                                             <div class="flex align-center text-center">
                                             <a class="btn btn-outline-success btn-sm view" href="#" data-id="<?= $row['resident_id'] ?>"><i data-feather="eye"></i></a>
+                                            <a class="btn btn-outline-success btn-sm print" href="#" data-id="<?= $row['resident_id'] ?>"><i data-feather="printer"></i></a>
                                             </div>
                                         </td>
                                         </tr>
