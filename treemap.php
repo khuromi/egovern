@@ -73,7 +73,7 @@
                     
 
                   <div class="card mb-4">
-                            <div class="card-header">treemap</div>
+                            <div class="card-header">Tree map</div>
                             <div class="card-body">
                             <div id="ggfgf"></div>
 
