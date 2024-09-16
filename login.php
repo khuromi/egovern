@@ -33,6 +33,7 @@ if ($login->isRememberSet()) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,119 +43,191 @@ if ($login->isRememberSet()) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/my-login.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
-    <!--    Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"/>
 
+    <style>
+       body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+    font-family: 'Arial', sans-serif;
+}
 
-    
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-wrapper {
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.login-left, .login-right {
+    padding: 50px;
+}
+
+.login-left {
+    width: 60%;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.login-left img {
+    width: 150px;
+    margin-bottom: 20px;
+    align-self: center;
+}
+
+.login-right {
+    width: 40%;
+    background-color: #673ab7;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 30px;
+}
+
+.login-right h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.login-right p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.login-right button {
+    background-color: white;
+    color: #673ab7;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.form-group label {
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #673ab7;
+    border-color: #673ab7;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.custom-control-label {
+    margin-left: 8px;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #673ab7;
+    border-color: #673ab7;
+}
+
+.forgot-link {
+    margin-left: 10px;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #f5f5f5;
+    width: 100%;
+    margin-top: 20px;
+}
+
+input#show-password {
+    border: none;
+    background: none;
+    color: #673ab7;
+    cursor: pointer;
+}
+
+    </style>
 </head>
+<body>
 
+<div class="container">
+    <div class="login-wrapper">
+        <div class="login-left">
+            <div class="brand">
+                <img src="assets/images/logo/logo_salcedo-.png" alt="logo">
+            </div>
+            <h4 class="card-title"> <?= APP_NAME ?> </h4>
+            <form method="POST" id="login_form">
+                <input type="hidden" name="token" id="token" value="<?= htmlentities(CSRF::generate("login_form")) ?>">
 
-
-
-
-<body class="my-login-page">
-<section class="h-100">
-    <div class="container h-100">
-        <div class="row justify-content-md-center h-100">
-            <div class="card-wrapper">
-                <div class="brand">
-                    <img src="assets/images/logo/logo_salcedo-.png" alt="logo">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input id="username" type="text" class="form-control" name="username" value="" autofocus>
                 </div>
-                <div class="card fat">
-                    <div class="card-body">
-                        <?php if (!$login->isRememberSet()): ?>
-                        <h4 class="card-title"> <?= APP_NAME ?> </h4>
-                        <?php else: ?>
-                            <h4 class="card-title">Login as <?= htmlentities(
-                                $row["username"]
-                            ) ?></h4>
-                        <?php endif; ?>
-                        <form method="POST" id="login_form" >
-                            <input type="hidden" name="token" id="token" value="<?= htmlentities(
-                                CSRF::generate("login_form")
-                            ) ?>">
 
-                            <?php if (!$login->isRememberSet()): ?>
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input id="username" type="text" class="form-control" name="username" value="" autofocus>
-                            </div>
-                            <?php else: ?>
-                                <input id="username" type="hidden" class="form-control" name="username" value="<?= $row[
-                                    "username"
-                                ] ?>" autofocus>
-                            <?php endif; ?>
+                <div class="form-group">
+                    <label for="password">Password
+                      
+                    </label>
+                    <input id="password" type="password" class="form-control" name="password" >
+                </div>
 
-                            <div class="form-group">
-                                <label for="password">Password
-                                    <a href="#" data-toggle="modal" data-target="#forgotPasswordModal" class="float-right">
-                                        Forgot Password?
-                                    </a>
-                                </label>
-                                <input id="password" type="password" class="form-control" name="password" data-eye>
-                            </div>
-
-                            <?php if (!$login->isRememberSet()): ?>
-                            <div class="form-group">
-									<div class="custom-checkbox custom-control">
-										<input type="checkbox" name="remember" id="remember" class="custom-control-input">
-										<label for="remember" class="custom-control-label">Remember Me</label>
-									</div>
-								</div>
-                            <?php endif; ?>
-                            <div class="form-group m-0">
-                                <button type="submit" id="login_button" class="btn btn-primary btn-block">
-                                     Log in
-                                </button>
-                            </div>
-                            <div class="mt-4 text-center">
-                            <?php if (!$login->isRememberSet()): ?>
-                                <?php else: ?>
-                                    Not your account? <a href="login.php?ref_">Log in</a>
-                                <?php endif; ?>
-                            </div>
-                        </form>
+                <div class="form-group">
+                    <div class="custom-checkbox custom-control">
+                        <input type="checkbox" name="remember" id="remember" class="custom-control-input">
+                        <label for="remember" class="custom-control-label">Remember Me</label>
                     </div>
                 </div>
-                <div class="footer">
-                    Copyright &copy; <?= date("Y") ?> &mdash; <?= APP_NAME ?>
+
+                <div class="form-group m-0">
+                    <button type="submit" id="login_button" class="btn btn-primary btn-block">
+                        Log in
+                    </button>
                 </div>
-            </div>
+            </form>
+        </div>
+        <div class="login-right">
+            <h2>Welcome!</h2>
+            <p>Log in with your account to use all of the system features.</p>
+            <button>About</button>
         </div>
     </div>
-</section>
-
-
-        <!-- Forgot Password Modal -->
-        <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Forgot my Password</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body m-3">
-                        <p class="mb-1">To continue, please enter your email for recovery.</p>
-                        <div class="form-group">
-                            <label for="forgotPasswordEmail">Email</label>
-                            <input type="email" id="forgotPasswordEmail" class="form-control" placeholder="Enter your email">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="forgotPasswordBtn" data-bs-dismiss="modal" class="btn btn-primary">Reset Password</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/sha512.min.js"></script>
 <script src="assets/js/login.js"></script>
+
 </body>
 </html>
+
+
