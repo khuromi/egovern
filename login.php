@@ -45,7 +45,14 @@ if ($login->isRememberSet()) {
     <!--    Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"/>
+
+
+    
 </head>
+
+
+
+
 
 <body class="my-login-page">
 <section class="h-100">
@@ -53,7 +60,7 @@ if ($login->isRememberSet()) {
         <div class="row justify-content-md-center h-100">
             <div class="card-wrapper">
                 <div class="brand">
-                    <img src="assets/images/logo/logo.png" alt="logo">
+                    <img src="assets/images/logo/logo_salcedo-.png" alt="logo">
                 </div>
                 <div class="card fat">
                     <div class="card-body">
