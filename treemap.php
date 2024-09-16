@@ -117,56 +117,56 @@
           {
             data: [
               {
-                x: 'New Delhi',
-                y: 218
+                x: 'Household 29',
+                y: 35,000
               },
               {
-                x: 'Kolkata',
-                y: 149
+                x: 'Household 18',
+                y: 32,000
               },
               {
-                x: 'Mumbai',
-                y: 184
+                x: 'Household 35',
+                y: 29,000
               },
               {
-                x: 'Ahmedabad',
-                y: 55
+                x: 'Household 72',
+                y: 28,000
               },
               {
-                x: 'Bangaluru',
-                y: 84
+                x: 'Household 82',
+                y: 26,000
               },
               {
-                x: 'Pune',
-                y: 31
+                x: 'Household 45',
+                y: 24,000
               },
               {
-                x: 'Chennai',
-                y: 70
+                x: 'Household 51',
+                y: 23,000
               },
               {
-                x: 'Jaipur',
-                y: 30
+                x: 'Household 9',
+                y: 21,000
               },
               {
-                x: 'Surat',
-                y: 44
+                x: 'Household 7',
+                y: 20,000
               },
               {
-                x: 'Hyderabad',
-                y: 68
+                x: 'Household 21',
+                y: 18,000
               },
               {
-                x: 'Lucknow',
-                y: 28
+                x: 'Household 11',
+                y: 17,000
               },
               {
-                x: 'Indore',
-                y: 19
+                x: 'Household 33',
+                y: 15,000
               },
               {
-                x: 'Kanpur',
-                y: 29
+                x: 'Household 75',
+                y: 12,000
               }
             ]
           }
