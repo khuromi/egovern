@@ -41,24 +41,8 @@
                 Reports
             </a>
 
-            <div class="sidenav-menu-heading">Machine Learning</div>
+           
 
-            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
-                                <div class="nav-link-icon"><i data-feather="hard-drive"></i></div>
-                                Data Visualization
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                    <a class="nav-link" href="heatmap.php">Heat Map</a>
-                                    <a class="nav-link" href="treemap.php">Tree Map</a>
-                                    <a class="nav-link" href="scatter-plot.php">Scatter Plot</a>
-                                </nav>
-                            </div>
-
-            <a class="nav-link" href="program-eligibility-prediction.php">
-                <div class="nav-link-icon"><i data-feather="command"></i></div>
-                Prediction of Program Eligibility            </a>
 
              
             <!-- Sidenav Heading (Addons)-->
@@ -70,10 +54,7 @@
                 Account Settings
             </a>
 
-            <a class="nav-link" href="#">
-                <div class="nav-link-icon"><i data-feather="box"></i></div>
-                Activity Logs
-            </a>
+          
           
         </div>
     </div>
