@@ -99,6 +99,15 @@
                 $response->fetchResidentByID($_POST['id']);
                 break;
 
+            case 'editResident':
+                $response = new Resident();
+                break;
+
+            case 'deleteResident':
+                $response = new Resident();
+                $response->deleteResident($_POST['id']);
+                break;
+
             default:
                 break;
 
