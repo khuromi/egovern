@@ -24,9 +24,9 @@ switch ($type) {
     $timestamp = strtotime(date('Y-m-d h:i:s'));
 
     // Get the day, month, and year
-    $day = date('j', $timestamp); // Day of the month without leading zeros
-    $month = date('F', $timestamp); // Full textual representation of a month
-    $year = date('Y', $timestamp); // Four-digit year
+    $day = date('j', $timestamp); 
+    $month = date('F', $timestamp); 
+    $year = date('Y', $timestamp); 
 
     // Determine the ordinal suffix for the day
     if ($day % 10 == 1 && $day != 11) {
