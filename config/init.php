@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 include_once 'Configuration.php';
 include_once __DIR__ .'/../vendor/autoload.php';
-
+include_once __DIR__ . '/../fpdf/fpdf.php';
 
 spl_autoload_register(function ($class) {
 
