@@ -243,48 +243,51 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <form>
-  <div class="mb-3">
-    <select class="form-control" id="certification_type" onchange="toggleFields()">
-      <option disabled selected>Select</option>
-      <option value="barangay_clearance">Barangay Clearance</option>
-      <option value="business_permit">Business Permit</option>
-      <option value="indigency">Certificate of Indigency</option>
-      <option value="low_income_level">Certificate of Indigency (Low Level Income)</option>
-    </select>
-  </div>
+            <form method="POST" action="print.php">
+                <div class="mb-3">
+                  <select class="form-control" name="certification_type" id="certification_type" onchange="toggleFields()">
+                    <option disabled selected>Select</option>
+                    <option value="barangay_clearance">Barangay Clearance</option>
+                    <option value="business_permit">Business Permit</option>
+                    <option value="indigency">Certificate of Indigency</option>
+                    <option value="low_income_level">Certificate of Indigency (Low Level Income)</option>
+                  </select>
+                </div>
 
-  <div class="mb-3" id="resident_name_div" style="display:none;">
-    <label>Resident Name</label>
-    <input type="text" name="resident_name" id="resident_name" class="form-control"/>
-  </div>
+                <div class="mb-3" id="resident_name_div" style="display:none;">
+                  <label>Resident Name</label>
+                  <input type="text" name="resident_name" id="resident_name" class="form-control"/>
+                </div>
 
-  <div class="mb-3" id="requester_name_div" style="display:none;">
-    <label>Who is requesting the certification?</label>
-    <input type="text" name="requester_name" id="requester_name" class="form-control"/>
-  </div>
+                <div class="mb-3" id="requester_name_div" style="display:none;">
+                  <label>Who is requesting the certification?</label>
+                  <input type="text" name="requester_name" id="requester_name" class="form-control"/>
+                </div>
 
-  <div class="mb-3" id="clearance_purpose_div" style="display:none;">
-    <label>What is the purpose of the clearance?</label>
-    <input type="text" name="clearance_purpose" id="clearance_purpose" class="form-control"/>
-  </div>
+                <div class="mb-3" id="clearance_purpose_div" style="display:none;">
+                  <label>What is the purpose of the clearance?</label>
+                  <input type="text" name="clearance_purpose" id="clearance_purpose" class="form-control"/>
+                </div>
 
-  <div class="mb-3" id="community_tax_cert_div" style="display:none;">
-    <label>Community Tax Certificate Number</label>
-    <input type="text" name="community_tax_cert_number" id="community_tax_cert_number" class="form-control"/>
-  </div>
+                <div class="mb-3" id="community_tax_cert_div" style="display:none;">
+                  <label>Community Tax Certificate Number</label>
+                  <input type="text" name="community_tax_cert_number" id="community_tax_cert_number" class="form-control"/>
+                </div>
 
-  <div class="mb-3" id="community_tax_date_div" style="display:none;">
-    <label>When was the Community Tax Certificate Number issued?</label>
-    <input type="text" name="community_tax_cert_date" id="community_tax_cert_date" class="form-control"/>
-  </div>
-</form>
+                <div class="mb-3" id="community_tax_date_div" style="display:none;">
+                  <label>When was the Community Tax Certificate Number issued?</label>
+                  <input type="date" name="community_tax_cert_date" id="community_tax_cert_date" class="form-control"/>
+                </div>
+
+                <div class="mb-3 d-flex float-end">
+                  <button type="submit" class="btn btn-outline-success" name="print">Print</button>
+                </div>
+              </form>
 
 
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
@@ -374,7 +377,7 @@
     const certType = document.getElementById('certification_type').value;
 
     document.getElementById('resident_name_div').style.display = certType ? 'block' : 'none';
-    document.getElementById('requester_name_div').style.display = certType.includes('indigency') ? 'block' : 'none';
+    document.getElementById('requester_name_div').style.display = certType.includes('low_income_level') ? 'block' : 'none';
     document.getElementById('clearance_purpose_div').style.display = certType === 'barangay_clearance' ? 'block' : 'none';
     document.getElementById('community_tax_cert_div').style.display = certType === 'barangay_clearance' ? 'block' : 'none';
     document.getElementById('community_tax_date_div').style.display = certType === 'barangay_clearance' ? 'block' : 'none';
