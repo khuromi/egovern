@@ -26,6 +26,11 @@
                 Dashboard
             </a>
 
+            <?php
+                $user = new User();
+                if($user->adminAccessOnly()):
+            ?>
+
             <a class="nav-link" href="residents-information.php">
                 <div class="nav-link-icon"><i data-feather="users"></i></div>
                 Residents Information
@@ -41,10 +46,17 @@
                 Reports
             </a>
 
-           
+            <?php endif; ?>
+
+            <a class="nav-link" href="request-documents.php">
+                <div class="nav-link-icon"><i data-feather="file"></i></div>
+                Request Documents
+            </a>
 
 
-             
+
+
+    
             <!-- Sidenav Heading (Addons)-->
             <div class="sidenav-menu-heading">System</div>
             <!-- Sidenav Link (Charts)-->
@@ -53,6 +65,17 @@
                 <div class="nav-link-icon"><i data-feather="user"></i></div>
                 Account Settings
             </a>
+
+            <?php
+                if($user->adminAccessOnly()):
+            ?>
+
+            <a class="nav-link" href="manage-users.php">
+                <div class="nav-link-icon"><i class="fa fa-user-cog"></i></div>
+                Manage Users
+            </a>
+
+            <?php endif; ?>
 
           
           

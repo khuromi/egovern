@@ -1,4 +1,14 @@
+<?php
+include_once 'config/init.php';
 
+if (!$login->isLoggedIn()) {
+    header("Location: login.php");
+    die();
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

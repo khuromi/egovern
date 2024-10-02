@@ -20,13 +20,34 @@ class User
         
     }
 
+    public function adminAccessOnly()
+    {
+        $user = $this->getUserDetails();
+        
+        if($user['user_role'] == 1){
+            return true;
+        }
+        return false;
+
+    }
+
+    public function getAllUser() {
+        
+        $sql = "SELECT * FROM `users` INNER JOIN `user_details` ON user_details.user_id = users.user_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
     /**
      * Get logged in user data
      * @return mixed
      */
     public function getUserDetails(){
 
-        $sql = "SELECT * FROM `users` INNER JOIN `user_details` ON user_details.user_id = users.user_id WHERE users.user_id = :uid";
+        $sql = "SELECT * FROM `users`  WHERE users.user_id = :uid";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam("uid", $this->user, PDO::PARAM_INT);
         $stmt->execute();

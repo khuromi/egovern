@@ -13,13 +13,8 @@
                 
                 break;
             case 'userRegister':
-               $register = new Register();
-                try {
-                    $response = $register->userRegister($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirm_password'], $_POST['captcha'], $_POST['token']);
-                } catch (\PHPMailer\PHPMailer\Exception $e) {
-                    echo json_encode(["success" => false, "message" => "Error: " .$e->getMessage()]);
-                }
-               
+                $register = new Register();
+                $response = $register->userRegister($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirm_password'], $_POST['user_role']);
                 break;
             case 'editProfile':
                 $user = new User();

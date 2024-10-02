@@ -3,13 +3,13 @@
 
 const DB_HOST = "localhost";
 const DB_USER = "root";
-const DB_PASS = "EDscMIJndts4lAo8";
+const DB_PASS = "";
 const DB_NAME = "egovern";
 
 const APP_NAME = "";
 
 const APP_URL = "http://localhost/phploginsystem";
-const EMAIL_CONFIRMATION = true;
+const EMAIL_CONFIRMATION = false;
 const MAX_LOGIN_ATTEMPTS = 12;
 
 const IS_SMTP = true;

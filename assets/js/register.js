@@ -7,7 +7,7 @@ $(function(){
         let email = $("#email").val();
         let password = $("#password").val();
         let confirm_password = $("#confirm_password").val();
-        let captcha = $("#captcha").val();
+        let user_role = $("#user_role").val();
 
         if(username.trim() === "" && password.trim() === "" && email.trim() === "" && confirm_password.trim() === ""){
             notyf.error("All fields are required");
@@ -44,10 +44,6 @@ $(function(){
             return;
         }
 
-        if(captcha.trim() === ""){
-            notyf.error("Please answer the captcha");
-            return;
-        }
 
         password = CryptoJS.SHA512(password).toString();
         confirm_password =  CryptoJS.SHA512(confirm_password).toString();
@@ -61,8 +57,7 @@ $(function(){
                 email: email,
                 password: password,
                 confirm_password: confirm_password,
-                captcha: captcha,
-                token: $("#token").val()
+                user_role: user_role
             },
             beforeSend: function(){
                 //TODO: add before send on register
@@ -82,8 +77,6 @@ $(function(){
 
             }
         })
-
-
     });
 });
 
@@ -92,5 +85,3 @@ const validateEmail = (email) => {
         /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
 };
-
-
