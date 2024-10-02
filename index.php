@@ -63,13 +63,10 @@ if (!$login->isLoggedIn()) {
                                             <div class="page-header-icon"><i data-feather="activity"></i></div>
                                             Dashboard
                                         </h1>
-                                        <div class="page-header-subtitle">Example dashboard overview and content summary</div>
+                                       
                                     </div>
                                     <div class="col-12 col-xl-auto mt-4">
-                                        <div class="input-group input-group-joined border-0" style="width: 16.5rem">
-                                            <span class="input-group-text"><i class="text-primary" data-feather="calendar"></i></span>
-                                            <input class="form-control ps-0 pointer" id="litepickerRangePlugin" placeholder="Select date range..." />
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -124,6 +121,31 @@ if (!$login->isLoggedIn()) {
                                 </a>
                             </div>
                         </div>
+                        <div class="row">
+            <div class="col-xl-6 mb-4">
+                <div class="card card-header-actions">
+                    <div class="card-header bg-primary text-white h-100">
+                         Data Visualization report
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted text-xs m-0"><small>If barangay not shown in graph, it is because there is no child found in that barangay.</small></p>
+                        <div id="myChart"></div>
+                        <!--                        <div class="chart-pie"><canvas id="myChart" width="100%" height="50"></canvas></div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 mb-4">
+                <div class="card card-header-actions h-100">
+                    <div class="card-header bg-warning text-white h-100">
+                        Data Visualization report
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted text-xs m-0"><small>If barangay not shown in graph, it is because there is no child found in that barangay.</small></p>
+                        <div id="unvaccinatedBaragayCharts"></div>
+                    </div>
+                </div>
+            </div>
+
 
                         <!-- Example Colored Cards for Dashboard Demo-->
                          
