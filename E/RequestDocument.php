@@ -17,5 +17,12 @@ class RequestDocument {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function requestDocument($resident_id, $document_type, $clearance_purpose, $community_tax_cert_number, $community_tax_cert_date) 
+    {
+        $sql = "INSERT INTO document_requests (resident_id, document_type)";
+        $stmt = $this->db->prepare($sql);
+        
+    }
+
 
 }
