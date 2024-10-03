@@ -83,9 +83,9 @@ $users = $user_obj->getAllUser();
                                             <td><?php echo $user['email']; ?></td>
                                             <td>
                                             <div class="btn-group">
-                                                <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"><i class="fa-solid fa-pencil"></i></button>
-                                                <button class="btn btn-datatable btn-icon btn-transparent-dark"><i class="fa-regular fa-trash-can"></i></button>
-                                            </div>
+                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark me-2 edit-user-btn" data-user-id="<?php echo $user['id']; ?>"><i class="fa-solid fa-pencil"></i></button>
+                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark delete-user-btn" data-user-id="<?php echo $user['id']; ?>"><i class="fa-regular fa-trash-can"></i></button>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -95,8 +95,8 @@ $users = $user_obj->getAllUser();
                     </div>
                 </div>
 
-                <!-- Add User Modal -->
-                <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+                  <!-- Add User Modal -->
+                  <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -172,11 +172,38 @@ $users = $user_obj->getAllUser();
                                         <label for="editEmail" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="editEmail" name="email" required>
                                     </div>
-                                    <input type="hidden" name="action" value="edit">
+
+                                    <div class="mb-3">
+                                    <label for="user_role">User Role</label>
+                                    <select id="edit_user_role" name="user_role" class="form-control">
+                                        <option selected disabled>Choose User Role</option>
+                                        <option value="1">Administrator</option>
+                                        <option value="2">Staff</option>
+                                    </select>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="edit_password" placeholder="Enter password" name="password" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="confirm_password">Confirm Password</label>
+                                            <input type="password" class="form-control" id="edit_confirm_password" placeholder="Enter password" name="confirm_password" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <button type="button" id="edit_button" name="register" class="btn btn-primary btn-block">Save changes</button>
+                                    </div>
+                                </div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-warning">Save Changes</button>
                                 </div>
                             </form>
                         </div>
@@ -208,9 +235,160 @@ $users = $user_obj->getAllUser();
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script src="assets/js/sha512.min.js"></script>
     <script src="assets/js/register.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        const dataTable = new simpleDatatables.DataTable("#user_accounts_table")
+        const dataTable = new simpleDatatables.DataTable("#user_accounts_table");
+        var notyf = new Notyf({duration: 1000, position: {x: 'right', y: 'top',}});
+
+        // Handle edit button click
+        $(document).on('click', '.edit-user-btn', function () {
+            const userId = $(this).data('user-id');
+
+            $.ajax({
+                type: 'POST',
+                url: 'sendData',
+                data: {
+                    action: 'fetchUser',
+                    user_id: userId
+                },
+                success: function(data){
+                    var res = JSON.parse(data)
+
+                    $("#editUserId").val(res.user_id)
+                    $("#editUsername").val(res.username)
+                    $("#editEmail").val(res.email)
+                    $("#edit_user_role").val(res.user_role);
+
+
+                }
+            })
+
+
+            $('#editUserModal').modal('show');
+        });
+
+
+
+        $('#edit_button').click(function(e) {
+            e.preventDefault();
+
+            // Get form values
+            var userId = $('#editUserId').val();
+            var username = $('#editUsername').val();
+            var email = $('#editEmail').val();
+            var role = $('#edit_user_role').val();
+            var password = $('#edit_password').val();
+            var confirm_password = $('#edit_confirm_password').val();
+
+            if(username.trim() === "" && password.trim() === "" && email.trim() === "" && confirm_password.trim() === ""){
+            notyf.error("All fields are required");
+            return;
+        }
+
+        if (username.trim() === ""){
+            notyf.error("Username is required");
+            return;
+        }
+
+        if (email.trim() === ""){
+            notyf.error("Email is required");
+            return;
+        }
+
+        if (!validateEmail(email)){
+            notyf.error("Email is not valid");
+            return;
+        }
+
+        if(password.trim() === ""){
+            notyf.error("Password is required");
+            return;
+        }
+
+        if(confirm_password.trim() === ""){
+            notyf.error("Confirm Password is required");
+            return;
+        }
+
+        if(password.trim() !== confirm_password.trim()){
+            notyf.error("Password does not match");
+            return;
+        }
+
+            password = CryptoJS.SHA512(password).toString();
+
+            // Ajax request to update user
+            $.ajax({
+                type: 'POST',
+                url: 'sendData',
+                data: {
+                    action: 'editUser',
+                    user_id: userId,
+                    username: username,
+                    email: email,
+                    role: role,
+                    password: password
+                },
+                success: function(response) {
+                    // Handle success response with SweetAlert2
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'User updated successfully.',
+                        confirmButtonText: 'OK'
+                    }).then(function() {
+                        location.reload(); // Reload the page after successful update
+                    });
+                },
+                error: function(xhr, status, error) {
+                    // Handle error response with SweetAlert2
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Error updating user: ' + error
+                    });
+                }
+            });
+        });
+
+        // Handle delete button click with SweetAlert
+        $(document).on('click', '.delete-user-btn', function () {
+            const userId = $(this).data('user-id');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: 'sendData', // Handle the user deletion in your server-side script
+                        method: 'POST',
+                        data: { user_id: userId, action: 'deleteUser' },
+                        success: function (response) {
+                            Swal.fire(
+                                'Deleted!',
+                                'User has been deleted.',
+                                'success'
+                            ).then(() => {
+                                location.reload();
+                            });
+                        },
+                        error: function () {
+                            Swal.fire(
+                                'Error!',
+                                'An error occurred while deleting the user.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

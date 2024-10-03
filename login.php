@@ -37,7 +37,7 @@ if ($login->isRememberSet()) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login | <?= APP_NAME ?></title>
+    <title>Login | EGOVERN</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -48,16 +48,7 @@ if ($login->isRememberSet()) {
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-     body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-size: cover;
-    font-family: 'Arial', sans-serif;
-}
-
+ 
 
 .container {
     display: flex;
@@ -178,7 +169,14 @@ input#show-password {
 </head>
 <body>
 
-
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+  <a class="navbar-brand" href="#">
+      <img src="logo.png" alt="Bootstrap" width="50%" height="20%">
+    </a>    
+   
+  </div>
+</nav>
 
 <div class="container">
 
@@ -187,7 +185,6 @@ input#show-password {
             <div class="brand">
                 <img src="assets/img/logo.jpg" alt="logo">
             </div>
-            <h4 class="card-title"> <?= APP_NAME ?> </h4>
             <form method="POST" id="login_form">
                 <input type="hidden" name="token" id="token" value="<?= htmlentities(CSRF::generate("login_form")) ?>">
 
