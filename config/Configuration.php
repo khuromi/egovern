@@ -9,7 +9,7 @@ const DB_NAME = "egovern";
 const APP_NAME = "";
 
 const APP_URL = "http://localhost/phploginsystem";
-const EMAIL_CONFIRMATION = true;
+const EMAIL_CONFIRMATION = false;
 const MAX_LOGIN_ATTEMPTS = 12;
 
 const IS_SMTP = true;

@@ -31,46 +31,31 @@ class Register
 
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public function userRegister(string $username, string $email, string $password, string $confirm_password, int $captcha, string $token){
+    public function userRegister(string $username, string $email, string $password, string $confirm_password, int $user_role){
 
         $username = trim($username);
         $email = trim($email);
         $password = trim($password);
         $confirm_password = trim($confirm_password);
-        $captcha = trim($captcha);
 
-        $captchaAnswer =  Session::getSession('first_number') + Session::getSession("second_number");
-
-
-        if (!CSRF::check($token, 'register_form')){
-            echo json_encode(["success" => false, "message" => "Unable to process your request."]);
-
-            return false;
-        }
+        
          
-         if($this->login->checkUsername($username)){
+            if($this->login->checkUsername($username)){
+                echo json_encode(["success" => false, "message" => "Username is already exists."]);
+                return;
+            }
 
-             echo json_encode(["success" => false, "message" => "Username is already exists."]);
+            if($this->login->checkEmail($email)){
+                echo json_encode(["success" => false, "message" => "Email is already exists."]);
+                return false;
+            }
 
-             return false;
-         }
+            if ($password !== $confirm_password){
+                echo json_encode(["success" => false, "message" => "Password doesnt match."]);
+                return false;
+            }
 
-         if($this->login->checkEmail($email)){
-
-             echo json_encode(["success" => false, "message" => "Email is already exists."]);
-
-             return false;
-         }
-
-         if ($password !== $confirm_password){
-            echo json_encode(["success" => false, "message" => "Password doesnt match."]);
-            return false;
-        }
-
-        //  if($captchaAnswer !== intval($captcha)){
-        //     echo json_encode(["success" => false, "message" => "Captcha is incorrect."]);
-        //     return false;
-        // }
+    
 
          try {
 
@@ -82,33 +67,24 @@ class Register
 
              $status = (EMAIL_CONFIRMATION)  ? '0' : '1';
 
-             $sql = "INSERT INTO `users` (`username`, `email`, `password`, `status`, `confirmation_key`) VALUES (:username, :email, :password, :status, :confirmation_key)";
+             $sql = "INSERT INTO `users` (`username`, `email`, `password`,  `user_role`, `status`, `confirmation_key`) VALUES (:username, :email, :password, :user_role, :status, :confirmation_key)";
              $stmt = $this->db->prepare($sql);
              $stmt->bindParam(":username", $username, PDO::PARAM_STR);
              $stmt->bindParam(":email", $email, PDO::PARAM_STR);
              $stmt->bindParam(":password", $hashed_password, PDO::PARAM_STR);
+             $stmt->bindParam(":user_role", $user_role);
              $stmt->bindParam(":confirmation_key", $confirmation_code, PDO::PARAM_STR);
              $stmt->bindParam(":status", $status, PDO::PARAM_STR);
              if($stmt->execute()){
 
                  $uid = $this->db->lastInsertId();
 
-               
                 if ($this->setUserData($uid)){
-                    
-                    if (EMAIL_CONFIRMATION){
-                        $this->mailer->sendEmailConfirmation($email, $confirmation_code);
-                        echo json_encode(["success" => true, "message" => "Registered successfully. Please check your email."]);
-
-                        return true;
-                    }
-
                     echo json_encode(["success" => true, "message" => "Registered successfully."]);
-
-
-                return true;
+                    return true;
 
                 }
+                return true;
 
              }
 
@@ -116,6 +92,8 @@ class Register
             echo json_encode(["success" => false, "message" => "Error:  ". $e->getMessage()]);
             return false;
          }
+
+         return false;
 
 
     }

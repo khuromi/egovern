@@ -61,69 +61,103 @@ if (!$login->isLoggedIn()) {
                                     <div class="col-auto mt-4">
                                         <h1 class="page-header-title">
                                             <div class="page-header-icon"><i data-feather="activity"></i></div>
-                                            Dashboard
+                                            Dashboard 
                                         </h1>
-                                        <div class="page-header-subtitle">Example dashboard overview and content summary</div>
+                                       
                                     </div>
                                     <div class="col-12 col-xl-auto mt-4">
-                                        <div class="input-group input-group-joined border-0" style="width: 16.5rem">
-                                            <span class="input-group-text"><i class="text-primary" data-feather="calendar"></i></span>
-                                            <input class="form-control ps-0 pointer" id="litepickerRangePlugin" placeholder="Select date range..." />
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </header>
+
+
+                    
                     <!-- Main page content-->
                     <div class="container-xl px-4 mt-n10">
                         <div class="row">
-                            <div class="col-xl-4 mb-4">
-                                <!-- Dashboard example card 1-->
-                                <a class="card lift h-100" href="#!">
-                                    <div class="card-body d-flex justify-content-center flex-column">
-                                        <div class="d-flex align-items-center justify-content-between">
+
+                        <div class="row">
+                            <div class="col-lg-6 col-xl-3 mb-4">
+                                <div class="card bg-primary text-white h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
                                             <div class="me-3">
-                                                <i class="feather-xl text-primary mb-3" data-feather="package"></i>
-                                                <h5>Powerful Components</h5>
-                                                <div class="text-muted small">To create informative visual elements on your pages</div>
+                                                <div class="text-white-75 small">Heatmap</div>
+                                                
                                             </div>
-                                            <img src="assets/img/illustrations/browser-stats.svg" alt="..." style="width: 8rem" />
+                                            <i class="feather-xl text-white-50" ></i>
                                         </div>
                                     </div>
-                                </a>
+                                    <div class="card-footer d-flex align-items-center justify-content-between small">
+                                        <a class="text-white stretched-link" href="#!">View Report</a>
+                                        <div class="text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-xl-4 mb-4">
-                                <!-- Dashboard example card 2-->
-                                <a class="card lift h-100" href="#!">
-                                    <div class="card-body d-flex justify-content-center flex-column">
-                                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="col-lg-6 col-xl-3 mb-4">
+                                <div class="card bg-warning text-white h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
                                             <div class="me-3">
-                                                <i class="feather-xl text-secondary mb-3" data-feather="book"></i>
-                                                <h5>Documentation</h5>
-                                                <div class="text-muted small">To keep you on track when working with our toolkit</div>
+                                                <div class="text-white-75 small">Scatter plot</div>
+                                                
                                             </div>
-                                            <img src="assets/img/illustrations/processing.svg" alt="..." style="width: 8rem" />
+                                            <i class="feather-xl text-white-50" ></i>
                                         </div>
                                     </div>
-                                </a>
+                                    <div class="card-footer d-flex align-items-center justify-content-between small">
+                                        <a class="text-white stretched-link" href="#!">View Report</a>
+                                        <div class="text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-xl-4 mb-4">
-                                <!-- Dashboard example card 3-->
-                                <a class="card lift h-100" href="#!">
-                                    <div class="card-body d-flex justify-content-center flex-column">
-                                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="col-lg-6 col-xl-3 mb-4">
+                                <div class="card bg-success text-white h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
                                             <div class="me-3">
-                                                <i class="feather-xl text-green mb-3" data-feather="layout"></i>
-                                                <h5>Pages &amp; Layouts</h5>
-                                                <div class="text-muted small">To help get you started when building your new UI</div>
+                                                <div class="text-white-75 small">Treemap</div>
+                                                
                                             </div>
-                                            <img src="assets/img/illustrations/windows.svg" alt="..." style="width: 8rem" />
+                                            <i class="feather-xl text-white-50" ></i>
                                         </div>
                                     </div>
-                                </a>
+                                    <div class="card-footer d-flex align-items-center justify-content-between small">
+                                        <a class="text-white stretched-link" href="#!">View Tasks</a>
+                                        <div class="text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-xl-3 mb-4">
+                                <div class="card bg-danger text-white h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="me-3">
+                                                <div class="text-white-75 small">Pending Requests</div>
+                                                
+                                            </div>
+                                            <i class="feather-xl text-white-50" ></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between small">
+                                        <a class="text-white stretched-link" href="#!">View Requests</a>
+                                        <div class="text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                       </div>
+
+
+
+
+
+
+                            
+                       
 
                         <!-- Example Colored Cards for Dashboard Demo-->
                          
