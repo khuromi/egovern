@@ -69,7 +69,7 @@ if (!$login->isLoggedIn()) {
                                     <label>Resident Name</label>
                                     <select class="form-control select2" name="resident_name" id="resident_name">
                                         <option selected disabled>Select Resident</option>
-                                        <option value="1">Joanna Baylen</option>
+                                        <option value="1"></option>
                                     </select>                        
                                 </div>
 
