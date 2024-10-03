@@ -46,12 +46,20 @@
                 Reports
             </a>
 
-            <?php endif; ?>
-
-            <a class="nav-link" href="request-documents.php">
-                <div class="nav-link-icon"><i data-feather="file"></i></div>
-                Request Documents
+            <a class="nav-link" href="requested-documents.php">
+                <div class="nav-link-icon"><i data-feather="book-open"></i></div>
+                Requested Documents
             </a>
+
+            <?php else: ?>
+
+
+            <a class="nav-link" href="request-document.php">
+                <div class="nav-link-icon"><i data-feather="file"></i></div>
+                Request Document
+            </a>
+
+            <?php endif; ?>
 
 
 
