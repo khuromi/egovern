@@ -7,6 +7,22 @@ if (!$login->isLoggedIn()) {
 }
 
 
+$db = Database::getInstance();
+
+try {
+
+    $query = "
+        SELECT dr.id,                CONCAT(r.lastname, ', ', r.firstname, ' ', r.middlename, ' ', r.qualifier) AS resident_name,  d.document_name, dr.date_requested FROM document_requests dr JOIN resident r ON dr.resident_id = r.resident_id JOIN documents d ON dr.document_type = d.document_id;
+
+    ";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    
+    $document_requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,20 +90,28 @@ if (!$login->isLoggedIn()) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Joanna Baylen</td>
-                                        <td>balls</td>
-                                        <td>balls</td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                                <button class="btn btn-success btn-sm"><i class="fa fa-print"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    
+                                    <?php if (!empty($document_requests)): ?>
+                                        <?php foreach ($document_requests as $request): ?>
+                                            <tr>
+                                                <td><?= htmlspecialchars($request['id']) ?></td>
+                                                <td><?= htmlspecialchars($request['resident_name']) ?></td>
+                                                <td><?= htmlspecialchars($request['document_name']) ?></td>
+                                                <td><?= htmlspecialchars($request['date_requested']) ?></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                        <button class="btn btn-success btn-sm"><i class="fa fa-print"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="5">No requests found.</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
