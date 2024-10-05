@@ -368,13 +368,13 @@ we shall strive to uphold the same We promise date and perform arу рікся o
             </div>
 
             <div class="container">
-                <div class="row">
+                <div class="row justify-content-center">
 
-                    <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="col-xl-3 col-md-6 mb-4 ">
                         <div class="card border-0 shadow">
                             <img src="assets/img/ghenly.jpg" class="card-img-top" alt="">
                             <div class="card-body text-center">
-                                <h5 class="card-title mb-0">MURAO,MARK GHENLY J.</h5>
+                                <h5 class="card-title mb-0">MURAO, MARK GHENLY J.</h5>
                                 <div class="card-text text-black-50 fs-6">
                                     <p class="fs-6"><br>Project Manager <br> System Analyst and Designer <br> Programmer and Developer</div>
                             </div>
@@ -385,12 +385,14 @@ we shall strive to uphold the same We promise date and perform arу рікся o
                         <div class="card border-0 shadow">
                             <img src="assets/img/joana.jpg" class="card-img-top" alt="">
                             <div class="card-body text-center">
-                                <h5 class="card-title mb-0"> BAYLEN JOANA</h5>
+                                <h5 class="card-title mb-0"> BAYLEN, JOANNA</h5>
                                 <div class="card-text text-black-50"><br>System Analyst and Designer <br> Programmer and Developer <br> QA / Tester </div>
                             </div>
                         </div>
                     </div>
 
+
+					
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-0 shadow">
                             <img src="assets/img/angelyn.jpg" class="card-img-top" alt="">
@@ -400,7 +402,8 @@ we shall strive to uphold the same We promise date and perform arу рікся o
                             </div>
                         </div>
                     </div>
-
+					</div>
+					<div class="row justify-content-center">
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-0 shadow">
                             <img src="assets/img/elyza.jpg" class="card-img-top" alt="...">
@@ -420,9 +423,6 @@ we shall strive to uphold the same We promise date and perform arу рікся o
                             </div>
                         </div>
                     </div>
-
-                   
-
             </div>
     </section>
 
