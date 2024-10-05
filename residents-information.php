@@ -9,8 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - eGovern: EXPLORATORY DATA VISUALIZATION FOR ADVANCING 
-        COMMUNITY GOVERNANCE IN BARANGAY CULIONG, SALCEDO,</title>
+        <title>Residents Info: eGovern</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
@@ -37,12 +36,12 @@
               
             <main>
                     <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
-                        <div class="container-xl px-4">
-                            <div class="page-header-content">
-                                <div class="row align-items-center justify-content-between pt-3">
-                                    <div class="col-auto mb-3">
-                                        <h1 class="page-header-title">
-                                            <div class="page-header-icon"><i data-feather="user"></i></div>
+                        <div class="container-xl px-4 bg-gradient-primary-to-secondary">
+                            <div class="page-header-content ">
+                                <div class="row align-items-center  justify-content-between pt-3">
+                                    <div class="col-auto mb-3 ">
+                                        <h1 class="page-header-title text-light">
+                                            <div class="page-header-icon text-light"><i data-feather="user"></i></div>
                                             Resident Information
                                         </h1>
                                     </div>

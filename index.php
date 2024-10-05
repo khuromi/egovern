@@ -61,8 +61,10 @@ if (!$login->isLoggedIn()) {
                                     <div class="col-auto mt-4">
                                         <h1 class="page-header-title">
                                             <div class="page-header-icon"><i data-feather="activity"></i></div>
-                                            Dashboard 
+                                            eGovern
                                         </h1>
+                                        <p>Exploratory Data Analysis for Advancing Community Governance in <br>
+                                         Barangay Culiong, Salcedo, Ilocos Sur</p>
                                        
                                     </div>
                                     <div class="col-12 col-xl-auto mt-4">
