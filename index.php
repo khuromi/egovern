@@ -63,9 +63,6 @@ if (!$login->isLoggedIn()) {
                                             <div class="page-header-icon"><i data-feather="activity"></i></div>
                                             eGovern
                                         </h1>
-                                        <p>Exploratory Data Analysis for Advancing Community Governance in <br>
-                                         Barangay Culiong, Salcedo, Ilocos Sur</p>
-                                       
                                     </div>
                                     <div class="col-12 col-xl-auto mt-4">
                                         

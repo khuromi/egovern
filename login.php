@@ -46,7 +46,8 @@ if ($login->isRememberSet()) {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"/>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
+        
     <style>
  
 
@@ -54,7 +55,8 @@ if ($login->isRememberSet()) {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: fit-content;
+    
 }
 
 .login-wrapper {
@@ -62,6 +64,7 @@ if ($login->isRememberSet()) {
     background-color: white;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    border-radius: 20px;
 }
 
 .login-left, .login-right {
@@ -85,7 +88,7 @@ if ($login->isRememberSet()) {
 
 .login-right {
     width: 40%;
-    background-color: blue;
+    background: linear-gradient(to bottom right, #0d6efd, #5920d2);
     color: white;
     text-align: center;
     display: flex;
@@ -100,6 +103,7 @@ if ($login->isRememberSet()) {
 }
 
 .login-right p {
+    text-align: center;
     font-size: 1.1rem;
     margin-bottom: 30px;
 }
@@ -215,8 +219,8 @@ input#show-password {
             </form>
         </div>
         <div class="login-right">
-          <i><h2>WELCOME</h2> <h6>to</h6></i>
-            <p class="text-justify"> System Management Data Visualization for Advancing Community in Barangay Culliong Salcedo Ilocos Sur</p>
+          <i><h2>WELCOME</h2></i>
+            <p class="text-justify">to Exploratory Data Analysis for Advancing Community Governance in Barangay Culliong, Salcedo, Ilocos Sur</p>
              <a class="btn btn-primary btn-block bg-primary" aria-current="page" href="about.php">About</a> 
         </div>
     </div>
