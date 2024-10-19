@@ -112,6 +112,7 @@
 
             case 'editResident':
                 $response = new Resident();
+                $response->editResident();
                 break;
 
             case 'deleteResident':

@@ -12,7 +12,7 @@ $db = Database::getInstance();
 try {
 
     $query = "
-        SELECT dr.id,                CONCAT(r.lastname, ', ', r.firstname, ' ', r.middlename, ' ', r.qualifier) AS resident_name,  d.document_name, dr.date_requested FROM document_requests dr JOIN resident r ON dr.resident_id = r.resident_id JOIN documents d ON dr.document_type = d.document_id;
+        SELECT dr.id, CONCAT(r.lastname, ', ', r.firstname, ' ', r.middlename, ' ', r.qualifier) AS resident_name,  d.document_name, dr.date_requested FROM document_requests dr JOIN resident r ON dr.resident_id = r.resident_id JOIN documents d ON dr.document_type = d.document_id;
 
     ";
     $stmt = $db->prepare($query);
