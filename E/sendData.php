@@ -115,6 +115,12 @@
                 $response->editResident();
                 break;
 
+            case 'addResident':
+                $response = new Resident();
+                $response->addResident( $_POST);
+
+                break;
+
             case 'deleteResident':
                 $response = new Resident();
                 $response->deleteResident($_POST['id']);
