@@ -3,8 +3,8 @@
 
 const DB_HOST = "localhost";
 const DB_USER = "root";
-const DB_PASS = "EDscMIJndts4lAo8";
-const DB_NAME = "egovern";
+const DB_PASS = "";
+const DB_NAME = "egovern1";
 
 const APP_NAME = "";
 

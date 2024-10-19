@@ -54,6 +54,9 @@ include 'includes/topbar.php';
             <div class="container-fluid px-4">
                 <div class="card">
                     <div class="card-body">
+                    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addResidentModal">Add New Resident</button>
+
+
                         <table id="datatablesSimple" class="table table-striped table-sm">
                             <thead>
                             <tr>
@@ -132,12 +135,14 @@ include 'includes/topbar.php';
                                     <div class="card-body">
                                         <div class="row gutters">
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <h5 class="mb-2 text-danger">Resident Information</h5>
+                                            
                                             </div>
 
                                           <form>
+                                          
 
                                             <div class="col-md-8 col-12 mb-3">
+                                          
                                                 <div class="form-group">
                                                     <label class="label" for="view-child-name">Resident's Name</label>
                                                     <input type="text" class="form-control form-control-sm" name="edit-resident-name" id="edit-resident-name" >
@@ -244,6 +249,128 @@ include 'includes/topbar.php';
     </div>
 </div>
 
+<!-- Add Resident Modal -->
+<div class="modal fade" id="addResidentModal" tabindex="-1" aria-labelledby="addResidentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addResidentModalLabel">Add New Resident</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div>
+            <div class="modal-body">
+                <section>
+                    <div class="container">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+                                <div class="card h-100 ">
+                                    <div class="card-body">
+                                        <div class="row gutters">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            
+                                            </div>
+
+            <form>
+                                          
+
+                                          <div class="col-md-8 col-12 mb-3">
+                                        
+                                              <div class="form-group">
+                                                  <label class="label" for="view-child-name">Resident's Name</label>
+                                                  <input type="text" class="form-control form-control-sm" name="edit-resident-name" id="edit-resident-name" >
+                                              </div>
+                                          </div>
+
+                                          <div class="col-md-2 col-12 mb-3">
+                                              <div class="form-group">
+                                                  <label class="label" for="view-child-name">Birthdate</label>
+                                                  <input type="text" class="form-control form-control-sm" name="edit-resident-birthdate" id="edit-resident-birthdate" >
+                                              </div>
+                                          </div>
+
+                                          <div class="col-md-2 col-12 mb-3">
+                                              <div class="form-group">
+                                                  <label class="label" for="view-child-name">Sex</label>
+                                                  <input type="text" class="form-control form-control-sm" name="edit-resident-sex" id="edit-resident-sex" >
+                                              </div>
+                                          </div>
+
+                                          <div class="col-md-12 col-12 mb-3">
+                                              <div class="form-group">
+                                                  <label class="label" for="view-child-name">Birthplace</label>
+                                                  <input type="text" class="form-control form-control-sm" name="edit-resident-birthplace" id="edit-resident-birthplace" >
+                                              </div>
+                                          </div>
+
+                                          <div class="col-md-4 col-4 mb-3">
+                                              <div class="form-group">
+                                                  <label class="label" for="view-child-name">Civil Status</label>
+                                                  <input type="text" class="form-control form-control-sm" name="edit-resident-civil-status" id="edit-resident-civil-status" >
+                                              </div>
+                                          </div>
+
+                                          <div class="col-md-4 col-4 mb-3">
+                                              <div class="form-group">
+                                                  <label class="label" for="view-child-name">Citizenship</label>
+                                                  <input type="text" class="form-control form-control-sm" name="edit-resident-citizenship" id="edit-resident-citizenship" >
+                                              </div>
+                                          </div>
+
+                                          <div class="col-md-4 col-4 mb-3">
+                                              <div class="form-group">
+                                                  <label class="label" for="view-child-name">Religion</label>
+                                                  <input type="text" class="form-control form-control-sm" name="edit-resident-religion" id="edit-resident-religion" >
+                                              </div>
+                                          </div>
+
+
+                                          <div class="col-md-3 col-3 mb-3">
+                                              <div class="form-group">
+                                                  <label class="label" for="view-child-name">Highest Educational Attainment</label>
+                                                  <input type="text" class="form-control form-control-sm" name="edit-resident-education" id="edit-resident-education" >
+                                              </div>
+                                          </div>
+
+
+
+                                          <div class="col-md-3 col-4 mb-3">
+                                              <div class="form-group">
+                                                  <label class="label" for="view-child-name">Annual Income</label>
+                                                  <input type="text" class="form-control form-control-sm" name="edit-resident-annual-income" id="edit-resident-annual-income" >
+                                              </div>
+                                          </div>
+
+                                          <div class="col-md-3 col-4 mb-3">
+                                              <div class="form-group">
+                                                  <label class="label" for="view-child-name">Occupation</label>
+                                                  <input type="text" class="form-control form-control-sm" name="edit-resident-occupation" id="edit-resident-occupation" >
+                                              </div>
+                                          </div>
+
+
+                                          <div class="col-md-3 col-4 mb-3">
+                                              <div class="form-group">
+                                                  <label class="label" for="view-child-name">Household Head Relationship</label>
+                                                  <input type="text" class="form-control form-control-sm" name="edit-resident-head-relationship" id="edit-resident-head-relationship" >
+                                              </div>
+                                          </div>
+
+                                        
+
+                                        </form>
+                                        
+                
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveResidentBtn">Save Resident</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 
@@ -306,6 +433,33 @@ include 'includes/topbar.php';
 
   })
 </script>
+<script>
+$(document).ready(function() {
+    $('#saveResidentBtn').click(function() {
+        var formData = $('#add-resident-form').serialize();
+        
+        $.ajax({
+            type: 'POST',
+            url: 'add_resident.php', 
+            data: formData,
+            success: function(response) {
+                var res = JSON.parse(response);
+                if (res.status === 'success') {
+                    alert('Resident added successfully!');
+                    location.reload(); 
+                } else {
+                    alert('Error adding resident: ' + res.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('There was an error: ' + error);
+            }
+        });
+    });
+});
+</script>
+
+
 
 </body>
 </html>
