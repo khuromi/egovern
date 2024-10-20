@@ -91,14 +91,11 @@
     </div>
     <!-- Sidenav Footer-->
     <div class="sidenav-footer">
-    <div class="input-group input-group-joined border-0" style="width: 16.5rem">
-                                            <span class="input-group-text"><i class="text-primary" data-feather="calendar"></i></span>
-                                            <input class="form-control ps-0 pointer" id="litepickerRangePlugin" placeholder="Select date range..." />
-                                            
-                                                         
-                                        </div>
-        <div class="sidenav-footer-content">
-       
+            <div class="sidenav-footer-content">
+                <div class="sidenav-footer-subtitle">Logged in as:</div>
+                <div class="sidenav-footer-title">
+                    Admin Admin                </div>
+            </div>
         </div>
-    </div>
+
 </nav>

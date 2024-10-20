@@ -26,6 +26,9 @@ if (!$login->isLoggedIn()) {
         <script data-search-pseudo-elements="" defer="" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     </head>
     
     <body class="nav-fixed">
@@ -62,119 +65,78 @@ if (!$login->isLoggedIn()) {
                     </div>
                 </div>
             </header>
-                    <!-- Main page content-->
-                 <div class="container py-5">
-
-
-
-                       <div class="container">
+            <div class="container mt-5">
     <div class="row gutters">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
-            <div class="card h-100">
+        <div class="col-12 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header  text-white">
+                    <h5 class="mb-0">Residents Data Filters</h5>
+                </div>
                 <div class="card-body">
-                    
-                    <form method="POST" action="">
-                        <div class="form-group mb-3">
-                            <label for="report-type" class="label">Select Report Type</label>
-                            <select name="report-type" id="report-type" class="form-select" onchange="this.form.submit()">
-                                <option value="">Choose a report</option>
-                                <option value="report1">Report Type 1</option>
-                                <option value="report2">Report Type 2</option>
-                                <option value="report3">Report Type 3</option>
+                    <div class="row g-3">
+                        <!-- Sector Filter -->
+                        <div class="col-md-4">
+                            <label for="sectorFilter" class="form-label">Sort By Sector:</label>
+                            <select id="sectorFilter" class="form-select">
+                                <option value="">All</option>
+                                <option value="Senior">Senior</option>
+                                <option value="PWD">PWD</option>
+                                <option value="4Ps">4P's</option>
+                                <option value="Solo Parent">Solo Parent</option>
                             </select>
                         </div>
-                    </form>
+                        
+                        <!-- Employment Status Filter -->
+                        <div class="col-md-4">
+                            <label for="employmentStatusFilter" class="form-label">Sort by Employment Status:</label>
+                            <select id="employmentStatusFilter" class="form-select">
+                                <option value="">All</option>
+                                <option value="Employed">Employed</option>
+                                <option value="Self Employed">Self Employed</option>
+                                <option value="Unemployed">Unemployed</option>
+                                <option value="Student">Student</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Age Filter -->
+                        <div class="col-md-4">
+                            <label for="ageFilter" class="form-label">Sort by Age:</label>
+                            <select id="ageFilter" class="form-select">
+                                <option value="">All</option>
+                                <option value="senior">Senior</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                    <!-- Table to display selected report data -->
+        <!-- Data Table -->
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header  text-white">
+                    <h5 class="mb-0">Residents Data</h5>
+                </div>
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                
-                                    <th>
-                                        Sort By Sector:
-                                        <select class="form-select" onchange="sortTable(0, this.value)">
-                                            <option value="">Senior</option>
-                                            <option value="asc">PWD</option>
-                                            <option value="desc">Ip's</option>
-                                            <option value="">4P's</option>
-                                            <option value="asc">Solo Parent</option>
-                                           
-                                            
-                                        </select>
-                                    </th>
-                                    <th>
-                                        Sort by Employment Status: 
-                                        <select class="form-select" onchange="sortTable(1, this.value)">
-                                            <option value="">Employed</option>
-                                            <option value="asc">Self Employed</option>
-                                            <option value="desc">Unemployed</option>
-                                        </select>
-                                    </th>
-                                    <th>
-                                        Sort by Age:
-                                        <select class="form-select" onchange="sortTable(2, this.value)">
-                                            <option value="">0-12</option>
-                                            <option value="asc">13-19</option>
-                                            <option value="desc">20-30</option>
-                                            <option value="asc">31-59</option>
-                                            <option value="desc">serior</option>
-                                        </select>
-                                    </th>
-                                    
-                                    <th> 
-                                      <button class="btn btn-success" onclick="window.print()">
-                                                     <i class="fas fa-print"></i> Print
-                                                              </button>
-                                                         
-                                                        </th>
-                                  
-                                
+                        <table class="table table-hover table-striped" id="residentsTable">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Resident ID</th>
+                                    <th>Lastname</th>
+                                    <th>Firstname</th>
+                                    <th>Middlename</th>
+                                    <th>Sex</th>
+                                    <th>Address</th>
+                                    <th>Birthdate</th>
+                                    <th>Civil Status</th>
+                                    <th>Occupation</th>
+                                    <th>Employment Status</th>
+                                    <th>Sector Code</th>
                                 </tr>
                             </thead>
                             <tbody id="report-table-body">
-                                <?php
-                                // Example PHP logic to fetch report data based on selection
-                                $data = []; // Assume this array is filled with data based on report type
-                                // Your logic for fetching data goes here...
-
-                                // Example data (replace with your data fetching logic)
-                                if (isset($_POST['report-type'])) {
-                                    $reportType = $_POST['report-type'];
-
-                                    switch ($reportType) {
-                                        case 'report1':
-                                            $data = [
-                                                ['id' => 1, 'name' => 'John Doe', 'details' => 'Detail 1', 'date' => '2024-10-01'],
-                                                // More rows...
-                                            ];
-                                            break;
-                                        case 'report2':
-                                            $data = [
-                                                ['id' => 2, 'name' => 'Jane Smith', 'details' => 'Detail 2', 'date' => '2024-10-02'],
-                                                // More rows...
-                                            ];
-                                            break;
-                                        case 'report3':
-                                            $data = [
-                                                ['id' => 3, 'name' => 'Alice Johnson', 'details' => 'Detail 3', 'date' => '2024-10-03'],
-                                                // More rows...
-                                            ];
-                                            break;
-                                        default:
-                                            break;
-                                    }
-
-                                    // Display the report data in the table
-                                    foreach ($data as $row) {
-                                        echo "<tr>
-                                                <td>{$row['id']}</td>
-                                                <td>{$row['name']}</td>
-                                                <td>{$row['details']}</td>
-                                                <td>{$row['date']}</td>
-                                            </tr>";
-                                    }
-                                }
-                                ?>
+                                <!-- Data will be populated here -->
                             </tbody>
                         </table>
                     </div>
@@ -183,31 +145,6 @@ if (!$login->isLoggedIn()) {
         </div>
     </div>
 </div>
-
-<script>
-function sortTable(columnIndex, order) {
-    const table = document.getElementById('report-table-body');
-    const rows = Array.from(table.rows);
-    
-    rows.sort((a, b) => {
-        const aText = a.cells[columnIndex].innerText;
-        const bText = b.cells[columnIndex].innerText;
-
-        if (order === 'asc') {
-            return aText > bText ? 1 : -1;
-        } else if (order === 'desc') {
-            return aText < bText ? 1 : -1;
-        }
-        return 0;
-    });
-
-    // Clear the table and append the sorted rows
-    table.innerHTML = '';
-    rows.forEach(row => table.appendChild(row));
-}
-</script>
-
-
                       
                 </main>
                 <footer class="footer-admin mt-auto footer-light">
@@ -234,5 +171,40 @@ function sortTable(columnIndex, order) {
         <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
         <script src="js/litepicker.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+        $(document).ready(function() {
+            // Initialize DataTable
+            var table = $('#residentsTable').DataTable({
+                "ajax": {
+                    "url": "fetch_data.php",
+                    "type": "POST",
+                    "data": function(d) {
+                        d.sector = $('#sectorFilter').val();
+                        d.employment_status = $('#employmentStatusFilter').val();
+                        d.age = $('#ageFilter').val();
+                    }
+                },
+                "columns": [
+                    { "data": "resident_id" },
+                    { "data": "lastname" },
+                    { "data": "firstname" },
+                    { "data": "middlename" },
+                    { "data": "sex" },
+                    { "data": "address" },
+                    { "data": "birthdate" },
+                    { "data": "civil_status" },
+                    { "data": "occupation" },
+                    { "data": "employment_status" },
+                    { "data": "sector_code" }
+                ]
+            });
+
+            // Reload table when filters change
+            $('#sectorFilter, #employmentStatusFilter, #ageFilter').on('change', function() {
+                table.ajax.reload();
+            });
+        });
+    </script>
 
 </html>
