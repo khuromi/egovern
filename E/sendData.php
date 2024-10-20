@@ -123,7 +123,7 @@
 
             case 'deleteResident':
                 $response = new Resident();
-                $response->deleteResident($_POST['id']);
+                $response->deleteResident($_POST['resident_id']);
                 break;
 
             default:
