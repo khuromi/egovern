@@ -643,6 +643,68 @@ include 'includes/topbar.php';
             }
         });
     });
+
+    // Event delegation to handle dynamically generated elements
+$(document).on('click', '.delete', function(e) {
+    e.preventDefault();
+
+    // Get resident ID from the data-id attribute of the delete button
+    var residentId = $(this).data('id');
+
+    // Display confirmation using SweetAlert2
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Proceed with the delete request if confirmed
+            $.ajax({
+                url: 'sendData', 
+                type: 'POST',
+                data: {
+                    action: 'deleteResident',
+                    resident_id: residentId
+                },
+                success: function(response) {
+                    var res = JSON.parse(response);
+
+                    if (res.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Deleted!',
+                            text: res.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        }).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: res.message,
+                            showConfirmButton: true
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'An error occurred while processing the request.',
+                        showConfirmButton: true
+                    });
+                }
+            });
+        }
+    });
+});
+
 });
 
     </script>

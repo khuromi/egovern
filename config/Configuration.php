@@ -1,9 +1,9 @@
 <?php
 
 
-const DB_HOST = "139.99.97.250";
-const DB_USER = "egovern";
-const DB_PASS = "SKIC[x/9*o-mmlFA";
+const DB_HOST = "localhost";
+const DB_USER = "root";
+const DB_PASS = "";
 const DB_NAME = "egovern";
 
 const APP_NAME = "";
