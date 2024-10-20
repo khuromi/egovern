@@ -46,100 +46,162 @@ if (!$login->isLoggedIn()) {
 
             <div id="layoutSidenav_content">
                 <main>
-                    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-                        <div class="container-xl px-4">
-                            <div class="page-header-content pt-4">
-                                <div class="row align-items-center justify-content-between">
-                                    <div class="col-auto mt-4">
-                                        <h1 class="page-header-title">
-                                            <div class="page-header-icon"><i data-feather="activity"></i></div>
-                                            Reports
-                                        </h1>
-                                        <div class="page-header-subtitle">........</div>
-                                    </div>
+                <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+                <div class="container-fluid px-4 bg-gradient-primary-to-secondary">
+                    <div class="page-header-content">
+                        <div class="row align-items-center justify-content-between pt-3">
+                            <div class="col-auto mb-3">
+                                <h1 class="page-header-title text-light">
+                                    <div class="page-header-icon"><i class="fa-light fa-monitor-waveform"></i></div>
                                     <div class="col-12 col-xl-auto mt-4">
                                         <div class="input-group input-group-joined border-0" style="width: 16.5rem">
                                             <span class="input-group-text"><i class="text-primary" data-feather="calendar"></i></span>
                                             <input class="form-control ps-0 pointer" id="litepickerRangePlugin" placeholder="Select date range..." />
                                         </div>
-                                    </div>
-                                </div>
+                                </h1>
                             </div>
                         </div>
-                    </header>
+                    </div>
+                </div>
+            </header>
                     <!-- Main page content-->
                  <div class="container py-5">
-<div class="row">
-                            <div class="col-lg-6 col-xl-3 mb-4">
-                                <div class="card bg-primary text-white h-100">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="me-3">
-                                                <div class="text-white-75 small">Earnings (Monthly)</div>
-                                                <div class="text-lg fw-bold">$40,000</div>
-                                            </div>
-                                            <i class="feather-xl text-white-50" data-feather="calendar"></i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between small">
-                                        <a class="text-white stretched-link" href="#!">View Report</a>
-                                        <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-xl-3 mb-4">
-                                <div class="card bg-warning text-white h-100">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="me-3">
-                                                <div class="text-white-75 small">Earnings (Annual)</div>
-                                                <div class="text-lg fw-bold">$215,000</div>
-                                            </div>
-                                            <i class="feather-xl text-white-50" data-feather="dollar-sign"></i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between small">
-                                        <a class="text-white stretched-link" href="#!">View Report</a>
-                                        <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-xl-3 mb-4">
-                                <div class="card bg-success text-white h-100">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="me-3">
-                                                <div class="text-white-75 small">Task Completion</div>
-                                                <div class="text-lg fw-bold">24</div>
-                                            </div>
-                                            <i class="feather-xl text-white-50" data-feather="check-square"></i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between small">
-                                        <a class="text-white stretched-link" href="#!">View Tasks</a>
-                                        <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-xl-3 mb-4">
-                                <div class="card bg-danger text-white h-100">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="me-3">
-                                                <div class="text-white-75 small">Pending Requests</div>
-                                                <div class="text-lg fw-bold">17</div>
-                                            </div>
-                                            <i class="feather-xl text-white-50" data-feather="message-circle"></i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between small">
-                                        <a class="text-white stretched-link" href="#!">View Requests</a>
-                                        <div class="text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
+
+
+
+                       <div class="container">
+    <div class="row gutters">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Reports</h5>
+                    <form method="POST" action="">
+                        <div class="form-group mb-3">
+                            <label for="report-type" class="label">Select Report Type</label>
+                            <select name="report-type" id="report-type" class="form-select" onchange="this.form.submit()">
+                                <option value="">Choose a report</option>
+                                <option value="report1">Report Type 1</option>
+                                <option value="report2">Report Type 2</option>
+                                <option value="report3">Report Type 3</option>
+                            </select>
                         </div>
-                       </div>
+                    </form>
+
+                    <!-- Table to display selected report data -->
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        ID 
+                                        <select class="form-select" onchange="sortTable(0, this.value)">
+                                            <option value="">Sort</option>
+                                            <option value="asc">Ascending</option>
+                                            <option value="desc">Descending</option>
+                                        </select>
+                                    </th>
+                                    <th>
+                                        Name 
+                                        <select class="form-select" onchange="sortTable(1, this.value)">
+                                            <option value="">Sort</option>
+                                            <option value="asc">Ascending</option>
+                                            <option value="desc">Descending</option>
+                                        </select>
+                                    </th>
+                                    <th>
+                                        Details 
+                                        <select class="form-select" onchange="sortTable(2, this.value)">
+                                            <option value="">Sort</option>
+                                            <option value="asc">Ascending</option>
+                                            <option value="desc">Descending</option>
+                                        </select>
+                                    </th>
+                                    <th>
+                                        Date 
+                                        <select class="form-select" onchange="sortTable(3, this.value)">
+                                            <option value="">Sort</option>
+                                            <option value="asc">Ascending</option>
+                                            <option value="desc">Descending</option>
+                                        </select>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="report-table-body">
+                                <?php
+                                // Example PHP logic to fetch report data based on selection
+                                $data = []; // Assume this array is filled with data based on report type
+                                // Your logic for fetching data goes here...
+
+                                // Example data (replace with your data fetching logic)
+                                if (isset($_POST['report-type'])) {
+                                    $reportType = $_POST['report-type'];
+
+                                    switch ($reportType) {
+                                        case 'report1':
+                                            $data = [
+                                                ['id' => 1, 'name' => 'John Doe', 'details' => 'Detail 1', 'date' => '2024-10-01'],
+                                                // More rows...
+                                            ];
+                                            break;
+                                        case 'report2':
+                                            $data = [
+                                                ['id' => 2, 'name' => 'Jane Smith', 'details' => 'Detail 2', 'date' => '2024-10-02'],
+                                                // More rows...
+                                            ];
+                                            break;
+                                        case 'report3':
+                                            $data = [
+                                                ['id' => 3, 'name' => 'Alice Johnson', 'details' => 'Detail 3', 'date' => '2024-10-03'],
+                                                // More rows...
+                                            ];
+                                            break;
+                                        default:
+                                            break;
+                                    }
+
+                                    // Display the report data in the table
+                                    foreach ($data as $row) {
+                                        echo "<tr>
+                                                <td>{$row['id']}</td>
+                                                <td>{$row['name']}</td>
+                                                <td>{$row['details']}</td>
+                                                <td>{$row['date']}</td>
+                                            </tr>";
+                                    }
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function sortTable(columnIndex, order) {
+    const table = document.getElementById('report-table-body');
+    const rows = Array.from(table.rows);
+    
+    rows.sort((a, b) => {
+        const aText = a.cells[columnIndex].innerText;
+        const bText = b.cells[columnIndex].innerText;
+
+        if (order === 'asc') {
+            return aText > bText ? 1 : -1;
+        } else if (order === 'desc') {
+            return aText < bText ? 1 : -1;
+        }
+        return 0;
+    });
+
+    // Clear the table and append the sorted rows
+    table.innerHTML = '';
+    rows.forEach(row => table.appendChild(row));
+}
+</script>
+
 
                       
                 </main>
