@@ -52,12 +52,9 @@ if (!$login->isLoggedIn()) {
                         <div class="row align-items-center justify-content-between pt-3">
                             <div class="col-auto mb-3">
                                 <h1 class="page-header-title text-light">
+                                    Reports
                                     <div class="page-header-icon"><i class="fa-light fa-monitor-waveform"></i></div>
-                                    <div class="col-12 col-xl-auto mt-4">
-                                        <div class="input-group input-group-joined border-0" style="width: 16.5rem">
-                                            <span class="input-group-text"><i class="text-primary" data-feather="calendar"></i></span>
-                                            <input class="form-control ps-0 pointer" id="litepickerRangePlugin" placeholder="Select date range..." />
-                                        </div>
+                                   
                                 </h1>
                             </div>
                         </div>
@@ -74,7 +71,7 @@ if (!$login->isLoggedIn()) {
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
             <div class="card h-100">
                 <div class="card-body">
-                    <h5 class="card-title">Reports</h5>
+                    
                     <form method="POST" action="">
                         <div class="form-group mb-3">
                             <label for="report-type" class="label">Select Report Type</label>
@@ -91,39 +88,46 @@ if (!$login->isLoggedIn()) {
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
-                                <tr>
+                                
                                     <th>
-                                        ID 
+                                        Sort By Sector:
                                         <select class="form-select" onchange="sortTable(0, this.value)">
-                                            <option value="">Sort</option>
-                                            <option value="asc">Ascending</option>
-                                            <option value="desc">Descending</option>
+                                            <option value="">Senior</option>
+                                            <option value="asc">PWD</option>
+                                            <option value="desc">Ip's</option>
+                                            <option value="">4P's</option>
+                                            <option value="asc">Solo Parent</option>
+                                           
+                                            
                                         </select>
                                     </th>
                                     <th>
-                                        Name 
+                                        Sort by Employment Status: 
                                         <select class="form-select" onchange="sortTable(1, this.value)">
-                                            <option value="">Sort</option>
-                                            <option value="asc">Ascending</option>
-                                            <option value="desc">Descending</option>
+                                            <option value="">Employed</option>
+                                            <option value="asc">Self Employed</option>
+                                            <option value="desc">Unemployed</option>
                                         </select>
                                     </th>
                                     <th>
-                                        Details 
+                                        Sort by Age:
                                         <select class="form-select" onchange="sortTable(2, this.value)">
-                                            <option value="">Sort</option>
-                                            <option value="asc">Ascending</option>
-                                            <option value="desc">Descending</option>
+                                            <option value="">0-12</option>
+                                            <option value="asc">13-19</option>
+                                            <option value="desc">20-30</option>
+                                            <option value="asc">31-59</option>
+                                            <option value="desc">serior</option>
                                         </select>
                                     </th>
-                                    <th>
-                                        Date 
-                                        <select class="form-select" onchange="sortTable(3, this.value)">
-                                            <option value="">Sort</option>
-                                            <option value="asc">Ascending</option>
-                                            <option value="desc">Descending</option>
-                                        </select>
-                                    </th>
+                                    
+                                    <th> 
+                                      <button class="btn btn-success" onclick="window.print()">
+                                                     <i class="fas fa-print"></i> Print
+                                                              </button>
+                                                         
+                                                        </th>
+                                  
+                                
                                 </tr>
                             </thead>
                             <tbody id="report-table-body">
@@ -228,5 +232,6 @@ function sortTable(columnIndex, order) {
         <script src="js/datatables/datatables-simple-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
         <script src="js/litepicker.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 </html>
