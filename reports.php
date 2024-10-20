@@ -51,8 +51,9 @@ if (!$login->isLoggedIn()) {
                     <div class="page-header-content">
                         <div class="row align-items-center justify-content-between pt-3">
                             <div class="col-auto mb-3">
-                                <h1 class="page-header-title text-light">
-                                    Reports
+                                <h1 class="page-header-title text-light">  <div class="page-header-icon text-light"><i data-feather="book"></i></div> Reports
+                            </h1>
+                                    
                                     <div class="page-header-icon"><i class="fa-light fa-monitor-waveform"></i></div>
                                    
                                 </h1>

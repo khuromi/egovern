@@ -62,9 +62,19 @@ if (!$login->isLoggedIn()) {
                                         <h1 class="page-header-title">
                                             <div class="page-header-icon"><i data-feather="activity"></i></div>
                                             eGovern
+
+                                            
                                         </h1>
                                     </div>
+                                    
                                     <div class="col-12 col-xl-auto mt-4">
+                                        <div class="input-group input-group-joined border-0" style="width: 16.5rem">
+                                            <span class="input-group-text"><i class="text-primary" data-feather="calendar"></i></span>
+                                            <input class="form-control ps-0 pointer" id="litepickerRangePlugin" placeholder="Select date range..." />
+                                            
+                                                         
+                                        </div>
+                                        
                                         
                                     </div>
                                 </div>
@@ -147,15 +157,18 @@ if (!$login->isLoggedIn()) {
                                             </div>
                                             <div class="ms-2"><i class="fas fa-percentage fa-2x text-gray-200"></i></div>
                                         </div>
+                                       
                                     </div>
+                                   
                                 </div>
+                                <div>
+                              
                             </div>
+                            
                         </div>
                        </div>
 
-                        <!-- Example Colored Cards for Dashboard Demo-->
-                         
-
+                        <!-- Example Colored Cards for Dashboard Demo-->                 
                         <div class="card mb-4">
                             <div class="card-header">Heatmap</div>
                             <div class="card-body">
@@ -224,6 +237,7 @@ if (!$login->isLoggedIn()) {
         <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
         <script src="js/litepicker.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
         <script>
             function generateData(count, yrange) {

@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="row align-items-center justify-content-between pt-3">
                                 <div class="col-auto mb-3">
                                     <h1 class="page-header-title">
-                                        <div class="page-header-icon"><i class="fa-light fa-monitor-waveform"></i></div>
+                                        <div class="page-header-icon"><i class="fa-light fa-monitor-waveform text-light "data-feather="  book-open"></i></div>
                                         Request Document
                                     </h1>
                                 </div>
