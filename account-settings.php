@@ -20,6 +20,9 @@
         <script data-search-pseudo-elements="" defer="" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script>
+            let id = <?= Session::getSession("uid") ?>
+        </script>
         
     </head>
     
@@ -143,6 +146,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+        <script src="assets/js/register.js"></script>
         <script src="assets/js/sha512.min.js"></script>
         <script src="js/scripts.js"></script>
         <script src="assets/js/index.js"></script>

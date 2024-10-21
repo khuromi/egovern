@@ -36,7 +36,7 @@
                 $user = new User();
 
                 $avatar = !empty($_FILES['avatar']) ? $_FILES['avatar'] : '';
-                $response = $user->editProfile($avatar ,$_POST['first_name'], $_POST['last_name'], $_POST['birthdate']);
+                $response = $user->editProfile($avatar ,$_POST['first_name'], $_POST['last_name']);
               
                 break;
             case 'changeEmail':

@@ -96,7 +96,7 @@ class User
      * Change profile function
      * @return boolean TRUE if profile edit is good, FALSE OTHERWISE
      */
-    public function editProfile($avatar, $first_name,  $last_name,  $birthdate)
+    public function editProfile($avatar, $first_name,  $last_name)
     {
 
         if (!$this->login->isLoggedIn()){
@@ -135,14 +135,12 @@ class User
 
         $first_name = trim($first_name);
         $last_name = trim($last_name);
-        $birthdate = trim($birthdate);
 
-        $sql = "UPDATE `user_details` SET `avatar` = :avatar, `first_name` = :first_name, `last_name` = :last_name, `birthdate` = :birthdate WHERE user_id = :uid";
+        $sql = "UPDATE `user_details` SET `avatar` = :avatar, `first_name` = :first_name, `last_name` = :last_name WHERE user_id = :uid";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(":avatar", $avatar, PDO::PARAM_STR);
         $stmt->bindParam(":first_name", $first_name, PDO::PARAM_STR);
         $stmt->bindParam(":last_name", $last_name, PDO::PARAM_STR);
-        $stmt->bindParam(":birthdate", $birthdate, PDO::PARAM_STR);
         $stmt->bindParam(":uid", $this->user, PDO::PARAM_STR);
 
         if($stmt->execute()){

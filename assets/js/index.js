@@ -5,29 +5,19 @@ $(function() {
     $("#changeProfileBtn").on("click", function(event){
 
         let avatar = $('#avatar').prop('files')[0];
-        let email = $("#email-input").val();
         let first_name = $("#firstname-input").val();
         let last_name = $("#lastname-input").val();
-        let birth_day = $("#birth_day").val();
-        let birth_month = $("#birth_month").val();
-        let birth_year = $("#birth_year").val();
 
         let action = "editProfile";
-        let birthdate = birth_year + '-' + birth_month + '-' + birth_day;
 
         let data = new FormData();
         data.append('avatar', avatar);
-        data.append('email', email);
         data.append('first_name', first_name);
         data.append('last_name', last_name);
-        data.append('birthdate',birthdate);
         data.append('action',action);
 
 
-        if (!validateEmail(email)){
-            notyf.error("Email is not valid");
-            return;
-        }
+
 
         $.ajax({
             type: "POST",
