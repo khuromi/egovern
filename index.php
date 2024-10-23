@@ -1,7 +1,8 @@
-
 <?php
 
 include_once 'config/init.php';
+
+$counter = new Counter();
 
 if (!$login->isLoggedIn()) {
         header('Location: login.php' );
@@ -62,15 +63,12 @@ if (!$login->isLoggedIn()) {
                                         <h1 class="page-header-title">
                                             <div class="page-header-icon"><i data-feather="activity"></i></div>
                                             eGovern
-
-                                            
                                         </h1>
                                     </div>
                                     
                                     <div class="col-12 col-xl-auto mt-4">
                                        
-                                        
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -90,13 +88,13 @@ if (!$login->isLoggedIn()) {
                                         <div class="d-flex align-items-center">
                                             <div class="flex-grow-1">
                                                 <div class="small fw-bold text-primary mb-1">Population</div>
-                                                <div class="h5">$4,390</div>
+                                                <div class="h5"><?= $counter->countPopulations() ?></div>
                                                 <div class="text-xs fw-bold text-success d-inline-flex align-items-center">
                                                     <i class="me-1" data-feather="trending-up"></i>
                                                     12%
                                                 </div>
                                             </div>
-                                            <div class="ms-2"><i class="fas fa-dollar-sign fa-2x text-gray-200"></i></div>
+                                            <div class="ms-2"><i class="fas fa-person fa-2x text-gray-200"></i></div>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +106,7 @@ if (!$login->isLoggedIn()) {
                                         <div class="d-flex align-items-center">
                                             <div class="flex-grow-1">
                                                 <div class="small fw-bold text-secondary mb-1">Households                                                                                                                                            </div>
-                                                <div class="h5">$27.00</div>
+                                                <div class="h5"><?= $counter->countHouseholds() ?></div>
                                                 <div class="text-xs fw-bold text-danger d-inline-flex align-items-center">
                                                     <i class="me-1" data-feather="trending-down"></i>
                                                     3%
