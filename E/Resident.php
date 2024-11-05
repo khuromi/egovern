@@ -35,6 +35,52 @@
             }
         }
 
+        public function fetchResidentName() {
+            header('Content-Type: application/json');
+            try {
+                $search = $_POST['search'] ?? '';
+                $page = $_POST['page'] ?? 1;
+                $limit = 20; // Adjust the limit as needed
+                $offset = ($page - 1) * $limit;
+        
+                // Fetch residents based on search query
+                $query = "SELECT resident_id, firstname, middlename, lastname 
+                          FROM residents 
+                          WHERE firstname LIKE :search OR middlename LIKE :search OR lastname LIKE :search
+                          LIMIT :limit OFFSET :offset";
+                $stmt = $this->db->prepare($query);
+                $stmt->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
+                $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
+                $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
+                
+                $stmt->execute();
+        
+                $residents = [];
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $residents[] = [
+                        'id' => $row['resident_id'],
+                        'text' => $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname']
+                    ];
+                }
+        
+                // Check if more data is available
+                $hasMore = count($residents) === $limit;
+        
+                echo json_encode([
+                    'results' => $residents,
+                    'pagination' => ['more' => $hasMore]
+                ]);
+                
+            } catch (Exception $e) {
+                // Handle error, log as needed
+                echo json_encode([
+                    'error' => 'An error occurred while fetching resident data.',
+                    'message' => $e->getMessage()
+                ]);
+            }
+        }
+        
+
         public function editResident()
         {
         

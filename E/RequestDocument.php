@@ -24,5 +24,38 @@ class RequestDocument {
         
     }
 
+    public function fetchRequestById($id) {
+        $sql = "SELECT 
+        documents.document_name, 
+        document_requests.*,
+        CONCAT(residents.firstname, ' ', residents.middlename, ' ', residents.lastname) AS resident_name, 
+        document_requests.date_requested 
+    FROM `document_requests` 
+    INNER JOIN residents ON residents.resident_id = document_requests.resident_id 
+    INNER JOIN documents ON document_requests.document_type = documents.document_id
+    WHERE document_requests.id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+    }
+
+    public function fetchRequests() {
+        $sql = "SELECT 
+        documents.document_name, 
+        document_requests.id,
+        CONCAT(residents.firstname, ' ', residents.middlename, ' ', residents.lastname) AS resident_name, 
+        document_requests.date_requested 
+    FROM `document_requests` 
+    INNER JOIN residents ON residents.resident_id = document_requests.resident_id 
+    INNER JOIN documents ON document_requests.document_type = documents.document_id
+    ORDER BY document_requests.id DESC";
+    $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
 }

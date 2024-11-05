@@ -29,6 +29,9 @@ if (!$login->isLoggedIn()) {
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+
     </head>
     
     <body class="nav-fixed">
@@ -73,11 +76,12 @@ if (!$login->isLoggedIn()) {
                     <h5 class="mb-0">Residents Data Filters</h5>
                 </div>
                 <div class="card-body">
+                <form method="post" action="print_residents.php">
                     <div class="row g-3">
                         <!-- Sector Filter -->
                         <div class="col-md-4">
                             <label for="sectorFilter" class="form-label">Sort By Sector:</label>
-                            <select id="sectorFilter" class="form-select">
+                            <select id="sectorFilter" name="sector" class="form-select">
                                 <option value="">All</option>
                                 <option value="Senior">Senior</option>
                                 <option value="PWD">PWD</option>
@@ -89,7 +93,7 @@ if (!$login->isLoggedIn()) {
                         <!-- Employment Status Filter -->
                         <div class="col-md-4">
                             <label for="employmentStatusFilter" class="form-label">Sort by Employment Status:</label>
-                            <select id="employmentStatusFilter" class="form-select">
+                            <select id="employmentStatusFilter" name="employment_status" class="form-select">
                                 <option value="">All</option>
                                 <option value="Employed">Employed</option>
                                 <option value="Self Employed">Self Employed</option>
@@ -101,12 +105,17 @@ if (!$login->isLoggedIn()) {
                         <!-- Age Filter -->
                         <div class="col-md-4">
                             <label for="ageFilter" class="form-label">Sort by Age:</label>
-                            <select id="ageFilter" class="form-select">
+                            <select id="ageFilter" name="age" class="form-select">
                                 <option value="">All</option>
                                 <option value="senior">Senior</option>
                             </select>
                         </div>
+                        <div class="container mt-3">
+                            <button class="btn btn-primary btn-block" type="submit">Download PDF</button>
+                        </div>
                     </div>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -120,7 +129,7 @@ if (!$login->isLoggedIn()) {
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover table-striped" id="residentsTable">
-                            <thead class="table-dark">
+                            <thead class="table">
                                 <tr>
                                     <th>Resident ID</th>
                                     <th>Lastname</th>
