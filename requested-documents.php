@@ -11,6 +11,7 @@ $db = Database::getInstance();
 $rd = new RequestDocument();
 $document_requests = $rd->fetchRequests();
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,6 +64,7 @@ $document_requests = $rd->fetchRequests();
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Document</th>
+                                        <th>Status</th>
                                         <th>Date Requested</th>
                                         <th>Actions</th>
                                     </tr>
@@ -74,13 +76,38 @@ $document_requests = $rd->fetchRequests();
                                                 <td><?= htmlspecialchars($request['id']) ?></td>
                                                 <td><?= htmlspecialchars($request['resident_name']) ?></td>
                                                 <td><?= htmlspecialchars($request['document_name']) ?></td>
+                                                <td><?= htmlspecialchars($request['status']) ?></td>
+
                                                 <td><?= htmlspecialchars($request['date_requested']) ?></td>
                                                 <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i></button>
-                                                        <button data-id="<?= htmlspecialchars($request['id']) ?>" class="btn btn-success btn-sm" onclick="window.open('request_print.php?id=<?= htmlspecialchars($request['id']) ?>', '_blank')"><i class="fa fa-print"></i></button>
-                                                    </div>
+                                                <td>
+                                                <div class="btn-group btn-sm">
+    <!-- Delete Button with Trash Icon -->
+    <button class="btn btn-outline-danger btn-sm delete">
+        <i class="fas fa-trash"></i>
+    </button>
+
+    <?php if ($request['status'] === 'pending'): ?>
+        <!-- Show Accept and Reject Buttons if Status is Pending -->
+        <button data-id="<?= htmlspecialchars($request['id']) ?>" class="btn btn-outline-success btn-sm accept">
+            <i class="fas fa-square-check"></i> Accept
+        </button>
+        
+        <button data-id="<?= htmlspecialchars($request['id']) ?>" class="btn btn-outline-warning btn-sm reject">
+            <i class="fas fa-square-xmark"></i> Reject
+        </button>
+    <?php elseif ($request['status'] === 'accepted'): ?>
+        <!-- Show Print Button if Status is Accepted -->
+        <button data-id="<?= htmlspecialchars($request['id']) ?>" 
+                class="btn btn-outline-success btn-sm" 
+                onclick="window.open('request_print.php?id=<?= htmlspecialchars($request['id']) ?>', '_blank')">
+            <i class="fas fa-print"></i>
+        </button>
+    <?php endif; ?>
+</div>
+
                                                 </td>
+
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php else: ?>
@@ -119,5 +146,37 @@ $document_requests = $rd->fetchRequests();
         <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
         <script src="js/litepicker.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.accept, .reject').forEach(button => {
+        button.addEventListener('click', function () {
+            const requestId = this.getAttribute('data-id');
+            const action = this.classList.contains('accept') ? 'accept' : 'reject';
+
+            fetch('update_status.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: requestId,
+                    status: action
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`Request ${action}ed successfully!`);
+                    location.reload();
+                } else {
+                    alert('Failed to update the status.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+});
+
+        </script>
     </body>
 </html>

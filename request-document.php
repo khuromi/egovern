@@ -8,7 +8,14 @@ if (!$login->isLoggedIn()) {
 
 $db = Database::getInstance();
 
+$rd = new RequestDocument();
+$id = Session::getSession('uid');
+$document_requests = $rd->fetchRequestsById($id);
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $user_id = Session::getSession("uid");
 
     $resident_id = $_POST['resident_name'];
     $document_type = $_POST['certification_type'];
@@ -18,17 +25,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $community_tax_cert_date = !empty($_POST['community_tax_cert_date']) ? $_POST['community_tax_cert_date'] : null;
 
     $date_requested = date('Y-m-d H:i:s');
-  
 
     try {
-
-    $query = "INSERT INTO document_requests 
-                    (resident_id, document_type, requester, clearance_purpose, community_tax_cert_number, community_tax_cert_date, date_requested) 
+        $query = "INSERT INTO document_requests 
+                    (resident_id, user_id, document_type, requester, clearance_purpose, community_tax_cert_number, community_tax_cert_date, date_requested) 
                   VALUES 
-                    (:resident_id, :document_type, :requester, :clearance_purpose, :community_tax_cert_number, :community_tax_cert_date, :date_requested)";
+                    (:resident_id, :uid, :document_type, :requester, :clearance_purpose, :community_tax_cert_number, :community_tax_cert_date, :date_requested)";
 
         $stmt = $db->prepare($query);
 
+        $stmt->bindParam(':uid', $user_id);
         $stmt->bindParam(':resident_id', $resident_id);
         $stmt->bindParam(':document_type', $document_type);
         $stmt->bindParam(':requester', $requester);
@@ -37,15 +43,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':community_tax_cert_date', $community_tax_cert_date);
         $stmt->bindParam(':date_requested', $date_requested);
 
-        // Execute the statement
         $stmt->execute();
 
-        echo "Record successfully inserted!";
+        // Send success response
+        echo json_encode(['status' => 'success', 'message' => 'Record successfully inserted!']);
     } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+        // Send error response
+        echo json_encode(['status' => 'error', 'message' => 'Error: ' . $e->getMessage()]);
     }
+
+    // Stop further script execution
+    exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,6 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous">
     </script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
 </head>
 
 <body class="nav-fixed">
@@ -148,6 +161,75 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </form>
                         </div>
                     </div>
+
+                    <div class="card mt-4">
+                        <div class="card-body">
+                        <table class="table">
+                        <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Document</th>
+                                        <th>Date Requested</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                            </thead>
+                            <tbody>
+                            <?php if (!empty($document_requests)):  ?>
+                                        <?php foreach ($document_requests as $request):  ?>
+                                            <tr>
+                                                <td><?= htmlspecialchars($request['id']) ?></td>
+                                                <td><?= htmlspecialchars($request['resident_name']) ?></td>
+                                                <td><?= htmlspecialchars($request['document_name']) ?></td>
+                                                <td>
+                                                    <?php 
+                                                        $status = htmlspecialchars($request['status']); 
+                                                        $badgeClass = '';
+
+                                                        // Determine the Bootstrap badge class based on status
+                                                        switch ($status) {
+                                                            case 'pending':
+                                                                $badgeClass = 'text-bg-warning';
+                                                                break;
+                                                            case 'rejected':
+                                                                $badgeClass = 'text-bg-danger';
+                                                                break;
+                                                            case 'accepted':
+                                                                $badgeClass = 'text-bg-success';
+                                                                break;
+                                                            default:
+                                                                $badgeClass = 'text-bg-secondary'; // Default badge if status is unknown
+                                                                break;
+                                                        }
+                                                    ?>
+                                                    <span class="badge <?= $badgeClass; ?>"><?= ucfirst($status); ?></span>
+                                                </td>
+                                                <td><?= htmlspecialchars($request['date_requested']) ?></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i></button>
+                                                        <?php if ($status === 'accepted') : ?>
+                                                        <button data-id="<?= htmlspecialchars($request['id']) ?>" 
+                                                                class="btn btn-success btn-sm" 
+                                                                onclick="window.open('request_print.php?id=<?= htmlspecialchars($request['id']) ?>', '_blank')">
+                                                            <i class="fa fa-print"></i>
+                                                        </button>
+                                                    <?php endif; ?>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="5">No requests found.</td>
+                                        </tr>
+                                    <?php endif; ?>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </main>
 
@@ -177,8 +259,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
     <script src="js/litepicker.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+           document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+
+        fetch('request-document.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: data.message,
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Optionally, clear the form
+                    this.reset();
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: data.message,
+                    confirmButtonText: 'OK'
+                });
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'An unexpected error occurred',
+                text: 'Please try again later.',
+                confirmButtonText: 'OK'
+            });
+            console.error('Error:', error);
+        });
+    });
+
+
     $(document).ready(function() {
         $('#resident_name').select2({
             placeholder: 'Select Resident',
