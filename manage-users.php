@@ -77,14 +77,14 @@ $users = $user_obj->getAllUser();
                                 </thead>
                                 <tbody>
                                     <?php foreach ($users as $user): ?>
-                                        <tr data-user-id="<?php echo $user['id']; ?>">
-                                            <td><?php echo $user['id']; ?></td>
+                                        <tr data-user-id="<?php echo $user['user_id']; ?>">
+                                            <td><?php echo $user['user_id']; ?></td>
                                             <td><?php echo $user['username']; ?></td>
                                             <td><?php echo $user['email']; ?></td>
                                             <td>
                                             <div class="btn-group">
-                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark me-2 edit-user-btn" data-user-id="<?php echo $user['id']; ?>"><i class="fa-solid fa-pencil"></i></button>
-                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark delete-user-btn" data-user-id="<?php echo $user['id']; ?>"><i class="fa-regular fa-trash-can"></i></button>
+                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark me-2 edit-user-btn" data-user-id="<?php echo $user['user_id']; ?>"><i class="fa-solid fa-pencil"></i></button>
+                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark delete-user-btn" data-user-id="<?php echo $user['user_id']; ?>"><i class="fa-regular fa-trash-can"></i></button>
                                                 </div>
                                             </td>
                                         </tr>

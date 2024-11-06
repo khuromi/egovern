@@ -8,43 +8,9 @@ if (!$login->isLoggedIn()) {
 
 $db = Database::getInstance();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$rd = new RequestDocument();
+$document_requests = $rd->fetchRequests();
 
-    $resident_id = $_POST['resident_name'];
-    $document_type = $_POST['certification_type'];
-    $requester = isset($_POST['requester_name']) ? $_POST['requester_name'] : null;
-    $clearance_purpose = isset($_POST['clearance_purpose']) ? $_POST['clearance_purpose'] : null;
-    $community_tax_cert_number = isset($_POST['community_tax_cert_number']) ? $_POST['community_tax_cert_number'] : null;
-    $community_tax_cert_date = !empty($_POST['community_tax_cert_date']) ? $_POST['community_tax_cert_date'] : null;
-
-    $date_requested = date('Y-m-d H:i:s');
-  
-
-    try {
-
-    $query = "INSERT INTO document_requests 
-                    (resident_id, document_type, requester, clearance_purpose, community_tax_cert_number, community_tax_cert_date, date_requested) 
-                  VALUES 
-                    (:resident_id, :document_type, :requester, :clearance_purpose, :community_tax_cert_number, :community_tax_cert_date, :date_requested)";
-
-        $stmt = $db->prepare($query);
-
-        $stmt->bindParam(':resident_id', $resident_id);
-        $stmt->bindParam(':document_type', $document_type);
-        $stmt->bindParam(':requester', $requester);
-        $stmt->bindParam(':clearance_purpose', $clearance_purpose);
-        $stmt->bindParam(':community_tax_cert_number', $community_tax_cert_number);
-        $stmt->bindParam(':community_tax_cert_date', $community_tax_cert_date);
-        $stmt->bindParam(':date_requested', $date_requested);
-
-        // Execute the statement
-        $stmt->execute();
-
-        echo "Record successfully inserted!";
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,8 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 <td><?= htmlspecialchars($request['date_requested']) ?></td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                                        <button class="btn btn-success btn-sm"><i class="fa fa-print"></i></button>
+                                                        <button class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i></button>
+                                                        <button data-id="<?= htmlspecialchars($request['id']) ?>" class="btn btn-success btn-sm print"><i class="fa fa-print"></i></button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -153,7 +119,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
         <script src="js/litepicker.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+          $(document).on('click', '.print', function() {
+                let id = $(this).data('id');
+                window.location.href = 'request_print.php?id=' + id;
+            });
 
-      
+        </script>
     </body>
 </html>

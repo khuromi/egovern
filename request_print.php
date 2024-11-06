@@ -3,6 +3,21 @@ use setasign\Fpdi\Fpdi;
 
 // setup the autoload function
 require_once('vendor/autoload.php');
+include 'config/init.php';
+
+if (isset($_GET['id'])) {
+    $rd = new RequestDocument();
+    $data = $rd->fetchRequestById($_GET['id']);
+
+    if (empty($data)) {
+        header("Location: index.php");
+        exit(); 
+    }
+} else {
+    header("Location: index.php");
+    exit(); 
+}
+
 
 // initiate FPDI
 // Initialize the FPDI object
@@ -10,13 +25,22 @@ $pdf = new Fpdi();
 $pdf->AddPage('P', 'A4');
 
 
-$type = $_POST['certification_type'];
+if ($data['document_type'] == '1') {
+    $type = 'barangay_clearance';
+} else if ($data['document_type'] == '3') {
+    $type = 'indigency';
+} else if ($data['document_type'] == '4') {
+    $type = 'low_income_level';
+} else {
+    $type = 'unknown_type'; // Optional: handle cases where the document_type is not recognized
+}
 
-$resident_name = isset($_POST['resident_name']) ? $_POST['resident_name'] : null;
-$requester_name = isset($_POST['requester_name']) ? $_POST['requester_name'] : null;
-$clearance_purpose = isset($_POST['clearance_purpose']) ? $_POST['clearance_purpose'] : null;
-$community_tax_cert_number = isset($_POST['community_tax_cert_number']) ? $_POST['community_tax_cert_number'] : null;
-$community_tax_cert_date = isset($_POST['community_tax_cert_date']) ? $_POST['community_tax_cert_date'] : null;
+
+$resident_name = isset($data['resident_name']) ? $data['resident_name'] : null;
+$requester_name = isset($data['requester']) ? $data['requester'] : null;
+$clearance_purpose = isset($data['clearance_purpose']) ? $data['clearance_purpose'] : null;
+$community_tax_cert_number = isset($data['community_tax_cert_number']) ? $data['community_tax_cert_number'] : null;
+$community_tax_cert_date = isset($data['community_tax_cert_date']) ? $data['community_tax_cert_date'] : null;
 
 
 switch ($type) {

@@ -110,6 +110,11 @@
                 $response->fetchResidentByID($_POST['id']);
                 break;
 
+            case 'fetchResidentsName':
+                $res = new Resident();
+                $res->fetchResidentName();
+                break;
+
             case 'editResident':
                 $response = new Resident();
                 $response->editResident();

@@ -247,7 +247,6 @@
                   <select class="form-control" name="certification_type" id="certification_type" onchange="toggleFields()">
                     <option disabled selected>Select</option>
                     <option value="barangay_clearance">Barangay Clearance</option>
-                    <option value="business_permit">Business Permit</option>
                     <option value="indigency">Certificate of Indigency</option>
                     <option value="low_income_level">Certificate of Indigency (Low Level Income)</option>
                   </select>
