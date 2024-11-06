@@ -78,7 +78,7 @@ $document_requests = $rd->fetchRequests();
                                                 <td>
                                                     <div class="btn-group">
                                                         <button class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i></button>
-                                                        <button data-id="<?= htmlspecialchars($request['id']) ?>" class="btn btn-success btn-sm print"><i class="fa fa-print"></i></button>
+                                                        <button data-id="<?= htmlspecialchars($request['id']) ?>" class="btn btn-success btn-sm" onclick="window.open('request_print.php?id=<?= htmlspecialchars($request['id']) ?>', '_blank')"><i class="fa fa-print"></i></button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -119,12 +119,5 @@ $document_requests = $rd->fetchRequests();
         <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
         <script src="js/litepicker.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-        <script>
-          $(document).on('click', '.print', function() {
-                let id = $(this).data('id');
-                window.location.href = 'request_print.php?id=' + id;
-            });
-
-        </script>
     </body>
 </html>
