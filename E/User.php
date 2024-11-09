@@ -47,7 +47,7 @@ class User
      */
     public function getUserDetails(){
 
-        $sql = "SELECT * FROM `users`  WHERE users.user_id = :uid";
+        $sql = "SELECT * FROM `users` LEFT JOIN `user_details` ON user_details.user_id = users.user_id WHERE users.user_id = :uid";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam("uid", $this->user, PDO::PARAM_INT);
         $stmt->execute();

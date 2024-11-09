@@ -114,15 +114,7 @@ class Register
             $stmt->bindParam(":uid", $uid, PDO::PARAM_INT);
             if($stmt->execute()){
 
-                $sql = "INSERT INTO `user_activity` (`user_id`, `last_activity`) VALUES (:uid, :la)";
-                $stmt = $this->db->prepare($sql);
-                $stmt->bindParam(":uid", $uid, PDO::PARAM_INT);
-                $stmt->bindParam(":la", $date_time);
-
-                if ($stmt->execute()){
-                    return true;
-                }
-
+              return true;
             }
 
         } catch (Exception $e){

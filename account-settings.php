@@ -76,12 +76,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="firstname-input">First Name</label>
-                                <input type="text" class="form-control" value="<?= !empty($userDetail['first_name']) ? htmlentities($userDetail['first_name']) : '' ?>" id="firstname-input">
+                                <input type="text" class="form-control" value="<?= !empty($user['first_name']) ? htmlentities($user['first_name']) : '' ?>" id="firstname-input">
                             </div>
 
                             <div class="mb-3">
                                 <label for="lastname-input">Last Name</label>
-                                <input type="text" class="form-control" value="<?= !empty($userDetail['last_name']) ? htmlentities($userDetail['last_name']) : '' ?>" id="lastname-input">
+                                <input type="text" class="form-control" value="<?= !empty($user['last_name']) ? htmlentities($user['last_name']) : '' ?>" id="lastname-input">
                             </div>
 
                             <div class="mb-3">

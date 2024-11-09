@@ -125,14 +125,14 @@ $(function() {
                 var res = JSON.parse(response);
 
 
-                if(res.success){
-                    notyf.success(res.message)
-                    $('#changePasswordBtn').html('&nbsp; Save Changes');
-                } else {
-                    notyf.error(res.message)
-                    $('#changePasswordBtn').html('&nbsp; Save Changes');
-
+                if (res.success) {
+                    notyf.success(res.message);  
+                    $('#changePasswordBtn').html('&nbsp; Save Changes');  
+                    setTimeout(function () { 
+                        window.location.href = 'logout.php'; 
+                    }, 3000);
                 }
+                
             }
 
         });

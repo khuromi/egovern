@@ -1,0 +1,8 @@
+2024-11-09 11:15:26,227 - ERROR - Database connection error: Access denied for user 'egovern_user'@'localhost' (using password: YES)
+2024-11-09 11:15:51,728 - INFO - MariaDB connection pool created successfully.
+2024-11-09 11:15:51,734 - INFO - Data fetched successfully from the database.
+2024-11-09 11:17:20,859 - ERROR - Database connection error: Access denied for user 'egovern_user'@'localhost' (using password: YES)
+2024-11-09 11:17:26,829 - ERROR - Database connection error: Access denied for user 'egovern_user'@'localhost' (using password: YES)
+2024-11-09 11:17:40,155 - INFO - MariaDB connection pool created successfully.
+2024-11-09 11:17:40,160 - INFO - Data fetched successfully from the database.
+2024-11-09 11:22:05,963 - ERROR - Database connection error: Access denied for user 'egovern_user'@'localhost' (using password: YES)
