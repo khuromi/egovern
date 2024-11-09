@@ -6,3 +6,5 @@
 2024-11-09 11:17:40,155 - INFO - MariaDB connection pool created successfully.
 2024-11-09 11:17:40,160 - INFO - Data fetched successfully from the database.
 2024-11-09 11:22:05,963 - ERROR - Database connection error: Access denied for user 'egovern_user'@'localhost' (using password: YES)
+2024-11-09 11:22:24,610 - INFO - MariaDB connection pool created successfully.
+2024-11-09 11:22:24,614 - INFO - Data fetched successfully from the database.
