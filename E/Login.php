@@ -93,6 +93,7 @@ class Login {
                         if ($this->checkSessionFingerprint($user_id)) {
                             // Log in the user without TFA if session fingerprint exists
                             Session::setSession("uid", $user_id);
+                            Session::setSession("username", $row['username']);
                             Session::setSession("isLoggedIn", true);
                             Session::setSession('tfaChallenge', false);
                             Session::setSession("login_fingerprint", Others::generateLoginString());

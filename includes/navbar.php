@@ -27,8 +27,7 @@
             </a>
 
             <?php
-                $user = new User();
-                if($user->adminAccessOnly()):
+                if($user_obj->adminAccessOnly()):
             ?>
 
             <a class="nav-link" href="residents-information.php">
@@ -76,7 +75,7 @@
             </a>
 
             <?php
-                if($user->adminAccessOnly()):
+                if($user_obj->adminAccessOnly()):
             ?>
 
             <a class="nav-link" href="manage-users.php">
@@ -95,7 +94,7 @@
             <div class="sidenav-footer-content">
                 <div class="sidenav-footer-subtitle">Logged in as:</div>
                 <div class="sidenav-footer-title">
-                    Admin Admin                </div>
+                    <?= Session::getSession('username') ?>                </div>
             </div>
         </div>
 

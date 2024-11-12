@@ -34,5 +34,10 @@ $db = Database::getInstance();
 
 $login = new Login();
 
+if($login->isLoggedIn()){
+    $user_obj = new User;
+    $user = $user_obj->getUserDetails();
+}
+
 $auto_logout = new AutoLogout();
 $auto_logout->checkActivity();
