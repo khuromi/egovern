@@ -6,7 +6,17 @@ if (!$login->isLoggedIn()) {
     die();
 }
 
+$query = "SELECT DISTINCT TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) AS age FROM residents";
+$stmt = $db->prepare($query);
+$stmt->execute();
 
+$ages = [];
+while ($row = $stmt->fetch()) {
+    $ages[] = $row['age'];
+}
+
+$ages = array_unique($ages);
+sort($ages);
 
 ?>
 <!DOCTYPE html>
@@ -79,7 +89,7 @@ if (!$login->isLoggedIn()) {
                 <form method="post" action="print_residents.php">
                     <div class="row g-3">
                         <!-- Sector Filter -->
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="sectorFilter" class="form-label">Sort By Sector:</label>
                             <select id="sectorFilter" name="sector" class="form-select">
                                 <option value="">All</option>
@@ -91,7 +101,7 @@ if (!$login->isLoggedIn()) {
                         </div>
                         
                         <!-- Employment Status Filter -->
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="employmentStatusFilter" class="form-label">Sort by Employment Status:</label>
                             <select id="employmentStatusFilter" name="employment_status" class="form-select">
                                 <option value="">All</option>
@@ -103,11 +113,28 @@ if (!$login->isLoggedIn()) {
                         </div>
                         
                         <!-- Age Filter -->
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="ageFilter" class="form-label">Sort by Age:</label>
                             <select id="ageFilter" name="age" class="form-select">
                                 <option value="">All</option>
                                 <option value="senior">Senior</option>
+                                <?php foreach ($ages as $age): ?>
+                                    <option value="<?= $age ?>"><?= $age ?> years</option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+
+
+                        <div class="col-md-3">
+                            <label for="ethnicityFilter" class="form-label">Sort by Ethnicity:</label>
+                            <select id="ethnicityFilter" name="ethnicity" class="form-select">
+                                <option value="">All</option>
+                                <option value="kankana-ey">Kankana-ey</option>
+                                <option value="cabahug">Cabahug</option>
+                                <option value="ibanag">Ibanag</option>
+                                <option value="igorot">Igorot</option>
+                                <option value="itneg">Itneg</option>
                             </select>
                         </div>
                         <div class="container mt-3">
@@ -192,6 +219,7 @@ if (!$login->isLoggedIn()) {
                         d.sector = $('#sectorFilter').val();
                         d.employment_status = $('#employmentStatusFilter').val();
                         d.age = $('#ageFilter').val();
+                        d.ethnicity = $('#ethnicityFilter').val();
                     }
                 },
                 "columns": [
@@ -210,7 +238,7 @@ if (!$login->isLoggedIn()) {
             });
 
             // Reload table when filters change
-            $('#sectorFilter, #employmentStatusFilter, #ageFilter').on('change', function() {
+            $('#sectorFilter, #employmentStatusFilter, #ageFilter, #ethnicityFilter').on('change', function() {
                 table.ajax.reload();
             });
         });

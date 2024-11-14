@@ -73,5 +73,39 @@ class RequestDocument {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function deactivateRequest($id) {
+        $sql = "UPDATE document_requests SET active = 0 WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":id", $id);
+        if($stmt->execute()) {
+            return true;
+        }
+    }
+
+    public function deleteRequest($id) {
+        $sql = "DELETE FROM document_requests WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":id", $id);
+        if($stmt->execute()) {
+            return true;
+        }
+    }
+
+    public function checkIfActive($id) {
+        $sql = "SELECT active FROM document_requests WHERE id = :id LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($result) {
+            return (bool) $result['active'];
+        }
+    
+        return false; 
+    }
+    
+
 
 }

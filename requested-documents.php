@@ -29,6 +29,8 @@ $document_requests = $rd->fetchRequests();
         <script data-search-pseudo-elements="" defer="" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     </head>
     <body class="nav-fixed">
         <?php include 'includes/topbar.php'; ?>
@@ -76,16 +78,35 @@ $document_requests = $rd->fetchRequests();
                                                 <td><?= htmlspecialchars($request['id']) ?></td>
                                                 <td><?= htmlspecialchars($request['resident_name']) ?></td>
                                                 <td><?= htmlspecialchars($request['document_name']) ?></td>
-                                                <td><?= htmlspecialchars($request['status']) ?></td>
+                                                <td>
+                                                    <?php 
+                                                        $status = htmlspecialchars($request['status']); 
+                                                        $badgeClass = '';
 
+                                                        // Determine the Bootstrap badge class based on status
+                                                        switch ($status) {
+                                                            case 'pending':
+                                                                $badgeClass = 'text-bg-warning';
+                                                                break;
+                                                            case 'rejected':
+                                                                $badgeClass = 'text-bg-danger';
+                                                                break;
+                                                            case 'accepted':
+                                                                $badgeClass = 'text-bg-success';
+                                                                break;
+                                                            default:
+                                                                $badgeClass = 'text-bg-secondary'; // Default badge if status is unknown
+                                                                break;
+                                                        }
+                                                    ?>
+                                                    <span class="badge <?= $badgeClass; ?>"><?= ucfirst($status); ?></span>
+                                                </td>
                                                 <td><?= htmlspecialchars($request['date_requested']) ?></td>
                                                 <td>
                                                 <td>
                                                 <div class="btn-group btn-sm">
     <!-- Delete Button with Trash Icon -->
-    <button class="btn btn-outline-danger btn-sm delete">
-        <i class="fas fa-trash"></i>
-    </button>
+    <button class="btn btn-danger btn-sm delete-request" data-id="<?= htmlspecialchars($request['id']) ?>"><i class="fa fa-trash"></i></button>
 
     <?php if ($request['status'] === 'pending'): ?>
         <!-- Show Accept and Reject Buttons if Status is Pending -->
@@ -96,7 +117,8 @@ $document_requests = $rd->fetchRequests();
         <button data-id="<?= htmlspecialchars($request['id']) ?>" class="btn btn-outline-warning btn-sm reject">
             <i class="fas fa-square-xmark"></i> Reject
         </button>
-    <?php elseif ($request['status'] === 'accepted'): ?>
+    <?php elseif ($request['status'] === 'accepted' && $request['active'] === 1): ?>
+
         <!-- Show Print Button if Status is Accepted -->
         <button data-id="<?= htmlspecialchars($request['id']) ?>" 
                 class="btn btn-outline-success btn-sm" 
@@ -146,7 +168,59 @@ $document_requests = $rd->fetchRequests();
         <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
         <script src="js/litepicker.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <script>
+                 $(document).on('click', '.delete-request', function () {
+            let id = $(this).data("id"); 
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to undo this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: "sendData", 
+                        data: {
+                            action: 'deleteRequest',
+                            id: id
+                        },
+                        success: function (response) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your request has been deleted.',
+                                'success'
+                            );
+
+                            setTimeout(function(){
+                                location.reload()
+                            }, 2000)
+                          
+                        },
+                        error: function (xhr, status, error) {
+                            Swal.fire(
+                                'Error!',
+                                'An error occurred while deleting the request.',
+                                'error'
+                            );
+                        }
+                    });
+                } else {
+                    Swal.fire(
+                        'Cancelled',
+                        'Your request is safe!',
+                        'info'
+                    );
+                }
+            });
+        });
+
             document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.accept, .reject').forEach(button => {
         button.addEventListener('click', function () {

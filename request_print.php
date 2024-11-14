@@ -7,9 +7,16 @@ include 'config/init.php';
 
 if (isset($_GET['id'])) {
     $rd = new RequestDocument();
-    $data = $rd->fetchRequestById($_GET['id']);
+    $id = $_GET['id'];
+    $data = $rd->fetchRequestById($id);
+
 
     if (empty($data)) {
+        header("Location: index.php");
+        exit(); 
+    }
+
+    if(!$rd->checkIfActive($id)) {
         header("Location: index.php");
         exit(); 
     }
@@ -18,6 +25,7 @@ if (isset($_GET['id'])) {
     exit(); 
 }
 
+$rd->deactivateRequest($id);
 
 // initiate FPDI
 // Initialize the FPDI object

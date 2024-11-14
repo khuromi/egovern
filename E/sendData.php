@@ -130,6 +130,11 @@
                 $response = new Resident();
                 $response->deleteResident($_POST['resident_id']);
                 break;
+            
+            case 'deleteRequest':
+                $res = new RequestDocument;
+                $res->deleteRequest($_POST['id']);
+                break;
 
             default:
                 break;
