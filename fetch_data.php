@@ -12,31 +12,47 @@ if (!empty($_POST['sector'])) {
     $query .= " AND sector_code = :sector";
 }
 
+if (!empty($_POST['ethnicity'])) {
+    $ethnicity = $_POST['ethnicity'];
+    $query .= " AND ethnicity = :ethnicity";
+}
+
 if (!empty($_POST['employment_status'])) {
     $employment_status = $_POST['employment_status'];
     $query .= " AND employment_status = :employment_status";
 }
-
 if (!empty($_POST['age'])) {
     $age = $_POST['age'];
     
-    // Calculate age based on birthdate
     if ($age == 'senior') {
         $query .= " AND TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) >= 60";
     }
-    // Add other age groups if necessary
+
+    elseif (is_numeric($age)) {
+        $query .= " AND TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) = :age";
+    }
+
+   
 }
 
 $stmt = $db->prepare($query);
 
-// Bind parameters if they exist
 if (!empty($sector)) {
     $stmt->bindParam(':sector', $sector, PDO::PARAM_STR);
+}
+
+if (!empty($ethnicity)) {
+    $stmt->bindParam(':ethnicity', $ethnicity, PDO::PARAM_STR);
 }
 
 if (!empty($employment_status)) {
     $stmt->bindParam(':employment_status', $employment_status, PDO::PARAM_STR);
 }
+
+if (!empty($age)) {
+    $stmt->bindParam(':age', $age, PDO::PARAM_STR);
+}
+
 
 $stmt->execute();
 

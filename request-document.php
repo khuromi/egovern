@@ -209,14 +209,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 <td><?= htmlspecialchars($request['date_requested']) ?></td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <button class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i></button>
-                                                        <?php if ($status === 'accepted') : ?>
-                                                        <button data-id="<?= htmlspecialchars($request['id']) ?>" 
-                                                                class="btn btn-success btn-sm" 
-                                                                onclick="window.open('request_print.php?id=<?= htmlspecialchars($request['id']) ?>', '_blank')">
-                                                            <i class="fa fa-print"></i>
-                                                        </button>
-                                                    <?php endif; ?>
+                                                        <button class="btn btn-danger btn-sm delete-request" data-id="<?= htmlspecialchars($request['id']) ?>"><i class="fa fa-trash"></i></button>
+                                                       
                                                     </div>
                                                 </td>
                                             </tr>
@@ -262,7 +256,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-           document.querySelector('form').addEventListener('submit', function(event) {
+     $(document).on('click', '.delete-request', function () {
+            let id = $(this).data("id"); 
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to undo this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: "sendData", 
+                        data: {
+                            action: 'deleteRequest',
+                            id: id
+                        },
+                        success: function (response) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your request has been deleted.',
+                                'success'
+                            );
+
+                            setTimeout(function(){
+                                location.reload()
+                            }, 2000)
+                          
+                        },
+                        error: function (xhr, status, error) {
+                            Swal.fire(
+                                'Error!',
+                                'An error occurred while deleting the request.',
+                                'error'
+                            );
+                        }
+                    });
+                } else {
+                    Swal.fire(
+                        'Cancelled',
+                        'Your request is safe!',
+                        'info'
+                    );
+                }
+            });
+        });
+
+
+        document.querySelector('form').addEventListener('submit', function(event) {
         event.preventDefault();
 
         const formData = new FormData(this);
