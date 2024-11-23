@@ -175,7 +175,9 @@
 
                 $stmt->bindParam(":rid",$residentID);
             if ($stmt->execute()){
-                return true;
+                echo json_encode(
+                    ['status'=>"success"]
+                );
             }
 
         }
