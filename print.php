@@ -153,7 +153,7 @@ switch ($type) {
 
         $pdf->SetFont('Arial', '', 14);
         $pdf->setXY(115, 155);
-        $pdf->SetFontSize('10');
+        $pdf->SetFontSize('9');
         $pdf->Write(0, $resident_name);
 
         $pdf->SetFont('Arial', '', 14);
@@ -209,7 +209,7 @@ switch ($type) {
 
         $pdf->SetFont('Arial', '', 14);
         $pdf->setXY(65, 99);
-        $pdf->SetFontSize('9');
+        $pdf->SetFontSize('11');
         $pdf->Write(0, $resident_name);
 
 
