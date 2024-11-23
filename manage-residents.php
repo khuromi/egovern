@@ -680,9 +680,11 @@ $(document).on('click', '.delete', function(e) {
                             text: res.message,
                             showConfirmButton: false,
                             timer: 2000
-                        }).then(() => {
-                            location.reload();
                         });
+
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
                     } else {
                         Swal.fire({
                             icon: 'error',

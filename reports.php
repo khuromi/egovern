@@ -114,15 +114,18 @@ sort($ages);
                         
                         <!-- Age Filter -->
                         <div class="col-md-3">
-                            <label for="ageFilter" class="form-label">Sort by Age:</label>
-                            <select id="ageFilter" name="age" class="form-select">
-                                <option value="">All</option>
-                                <option value="senior">Senior</option>
-                                <?php foreach ($ages as $age): ?>
-                                    <option value="<?= $age ?>"><?= $age ?> years</option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
+                             <label for="ageFilter" class="form-label">Sort by Age:</label>
+                               <select id="ageFilter" name="age" class="form-select">
+                                    <option value="">All</option>
+                                <option value="infants_toddlers">Infants/Toddlers (0-3)</option>
+                                 <option value="children">Children (4-12)</option>
+                                 <option value="teens">Teens (13-18)</option>
+                               <option value="youth">Youth (18-30)</option>
+                             <option value="middle_age">Middle Age (31-45)</option>
+                                <option value="adults">Adults (46-59)</option>
+                             <option value="seniors">Seniors (60+)</option>
+                        </select>
+                            </div>
 
 
 
