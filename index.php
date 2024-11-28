@@ -41,8 +41,6 @@ if (!$login->isLoggedIn()) {
 
         <?php
 
-
-
             include 'includes/topbar.php';
         ?>
       
