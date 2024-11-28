@@ -29,6 +29,12 @@
             <?php
                 if($user_obj->adminAccessOnly()):
             ?>
+            
+
+            <a class="nav-link" href="streamlit-visualization.php">
+                <div class="nav-link-icon"><i data-feather="bar-chart-2"></i></div>
+                Exploratory Data Visualization
+                </a>
 
             <a class="nav-link" href="residents-information.php">
                 <div class="nav-link-icon"><i data-feather="users"></i></div>
@@ -50,13 +56,13 @@
                 Requested Documents
             </a>
 
-            <a class="nav-link" href="request-document.php">
+        
+            <?php else: ?>
+
+                <a class="nav-link" href="request-document.php">
                 <div class="nav-link-icon"><i data-feather="file"></i></div>
                 Request Document
             </a>
-            <?php else: ?>
-
-
           
 
             <?php endif; ?>
