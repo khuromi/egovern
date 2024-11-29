@@ -5,7 +5,7 @@ import numpy as np
 import seaborn as sns
 import scipy.stats as stats
 import plotly.express as px
-
+import os
 # Data Cleaning and Validation
 def clean_data(data: pd.DataFrame) -> pd.DataFrame:
     """
@@ -718,34 +718,57 @@ def display_ethnicity(data: pd.DataFrame) -> None:
             )
 
 
-# Streamlit App Layout
+
+# Path for the default CSV file in the current directory
+csv_file_path = 'culiongStreamlitTrial.csv'
+
+# Page configuration
 st.set_page_config(page_title="eGovern", layout="wide")
-st.title("eGovern:Residents Data Dashboard")
+st.title("eGovern: Residents Data Dashboard")
 st.markdown("""
 Welcome to the eGovern Residents Data Dashboard. Use the sidebar to filter the data based on various criteria and explore different aspects of the residents' demographics and socioeconomic status.
 """)
 
+# Sidebar for uploading a new CSV file or using the existing one
 st.sidebar.header("Upload CSV File")
+
+# If the file exists in the current directory, display it
+if os.path.exists(csv_file_path):
+    st.sidebar.write(f"Using existing file: {csv_file_path}")
+else:
+    st.sidebar.write("No existing file found in the directory.")
+
+# Upload CSV file (overwrite the existing file if needed)
 uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
 
+# Option to overwrite the current file with new data
 if uploaded_file is not None:
+    # Save the uploaded file to the current directory
+    with open(csv_file_path, "wb") as f:
+        f.write(uploaded_file.getbuffer())
+    st.write(f"File uploaded successfully and saved as `{csv_file_path}`.")
+    
+# Check if the file exists (either pre-loaded or newly uploaded)
+if os.path.exists(csv_file_path):
+    # Load the CSV file
     @st.cache_data
     def load_csv(file):
         try:
-            csv = pd.read_csv(file, encoding="utf-8")  # Read using UTF-8 encoding
+            return pd.read_csv(file, encoding="utf-8")
         except UnicodeDecodeError:
-            csv = pd.read_csv(file, encoding="ISO-8859-1")  # Fallback encoding
-        return csv
+            return pd.read_csv(file, encoding="ISO-8859-1")  # Fallback encoding
 
-    data = load_csv(uploaded_file)
+    data = load_csv(csv_file_path)
     st.write("**Uploaded Data:**")
     st.write(data)
 else:
     st.info("Awaiting CSV file to be uploaded.")
 
+# Check if the data is not empty
 if not data.empty:
-    # Clean and validate data
+    # Clean and validate data (make sure `clean_data()` function is defined)
     data = clean_data(data)
+    
     # Sidebar Filters
     st.sidebar.header("Filter Residents Data")
     sex = st.sidebar.selectbox(
@@ -769,13 +792,18 @@ if not data.empty:
         default=sorted(data['educationalAttainment'].dropna().unique().tolist()),
         help="Filter residents by educational attainment."
     )
-    age_range = st.sidebar.slider(
-        "Age Range",
-        min_value=int(data['age'].min()),
-        max_value=int(data['age'].max()),
-        value=(int(data['age'].min()), int(data['age'].max())),
-        help="Filter residents by age range."
-    )
+    
+    # Age Range filter only if 'age' column exists
+    if 'age' in data.columns:
+        age_range = st.sidebar.slider(
+            "Age Range",
+            min_value=int(data['age'].min()),
+            max_value=int(data['age'].max()),
+            value=(int(data['age'].min()), int(data['age'].max())),
+            help="Filter residents by age range."
+        )
+    else:
+        age_range = (0, 100)  # Default to a wide range if 'age' is missing
 
     # Apply filters
     if sex != "All":
@@ -786,11 +814,11 @@ if not data.empty:
         data = data[data['employmentStatus'] == employment_status]
     if education:
         data = data[data['educationalAttainment'].isin(education)]
-    data = data[(data['age'] >= age_range[0]) & (data['age'] <= age_range[1])]
+    if 'age' in data.columns:
+        data = data[(data['age'] >= age_range[0]) & (data['age'] <= age_range[1])]
 
-   
-
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+    # Tabs for different views
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
         "Demographics",
         "Socioeconomic Status",
         "Educational Attainment",
@@ -799,24 +827,28 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
         "Ethnicity Distribution"
     ])
 
-
-with tab1:
+    # Tab Content
+    with tab1:
         display_treemap(data)
         display_parallel_coordinates(data)
         display_bubble_chart(data)
         display_population_pyramid(data)
-with tab2:
+
+    with tab2:
         display_correlation_heatmap(data)
         display_demographics(data)
-with tab3:
+
+    with tab3:
         display_education(data)
-with tab4:
+
+    with tab4:
         display_household_info(data)
-with tab5:
+
+    with tab5:
         display_sector_representation(data)
-with tab6:
+
+    with tab6:
         display_ethnicity(data)
 
-
-
-        
+else:
+    st.write("No data to display. Please upload a valid CSV file.")
