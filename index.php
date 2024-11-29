@@ -115,93 +115,15 @@ if (!$login->isLoggedIn()) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <!-- Dashboard info widget 3-->
-                                <div class="card border-start-lg border-start-success h-100">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-grow-1">
-                                                <div class="small fw-bold text-success mb-1">Clicks</div>
-                                                <div class="h5">11,291</div>
-                                                <div class="text-xs fw-bold text-success d-inline-flex align-items-center">
-                                                    <i class="me-1" data-feather="trending-up"></i>
-                                                    12%
-                                                </div>
-                                            </div>
-                                            <div class="ms-2"><i class="fas fa-mouse-pointer fa-2x text-gray-200"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <!-- Dashboard info widget 4-->
-                                <div class="card border-start-lg border-start-info h-100">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex-grow-1">
-                                                <div class="small fw-bold text-info mb-1">Conversion rate</div>
-                                                <div class="h5">1.23%</div>
-                                                <div class="text-xs fw-bold text-danger d-inline-flex align-items-center">
-                                                    <i class="me-1" data-feather="trending-down"></i>
-                                                    1%
-                                                </div>
-                                            </div>
-                                            <div class="ms-2"><i class="fas fa-percentage fa-2x text-gray-200"></i></div>
-                                        </div>
-                                       
-                                    </div>
-                                   
-                                </div>
-                                <div>
-                              
-                            </div>
-                            
-                        </div>
                        </div>
 
                         <!-- Example Colored Cards for Dashboard Demo-->                 
-                        <div class="card mb-4">
-                            <div class="card-header">Heatmap</div>
-                            <div class="card-body">
-                            <div class="col-12 col-xl-auto mt-4">
-                                        <!-- Dropdown for selecting datasets -->
-                                        <select id="datasetDropdown" class="form-select">
-                                            <option value="dataset1">Dataset 1</option>
-                                            <option value="dataset2">Dataset 2</option>
-                                            <option value="dataset3">Dataset 3</option>
-                                        </select>
-                                    </div>
-                                <div id="chart"></div>
+                        <div class="container-fluid px-4">
+                    <div class="ratio ratio-16x9">
+      <iframe src="https://egovern.streamlit.app?embed=true" frameborder="0" allowfullscreen></iframe>
+    </div>
 
-                            </div>
-                            </div>
-
-                            <div class="container py-3">
-                            <div class="col-12 col-xl-auto mt-4">
-                   <div class="card mb-4 col-12 col-xl-auto mt-4">
-                             <div class="card-header">Scatter plot</div>
-                             <div class="card-body">
-                             <div id="scatter"></div>
- 
-                             </div>
-                             </div>
-                             </div>
-
-                             <div class="container py-3">
-                    
-                    
-                             <div class="col-12 col-xl-auto mt-4">
-                    <div class="card mb-4 col-12 col-xl-auto mt-4">
-                              <div class="card-header">treemap</div>
-                              <div class="card-body">
-                              <div id="ggfgf"></div>
-  
-                              </div>
-                              </div>
-                              </div>
-                                     
-
-                        <!-- Example DataTable for Dashboard Demo-->
+                    </div>
                       
                 </main>
                 <footer class="footer-admin mt-auto footer-light">

@@ -30,11 +30,11 @@
                 if($user_obj->adminAccessOnly()):
             ?>
             
-
+<!-- 
             <a class="nav-link" href="streamlit-visualization.php">
                 <div class="nav-link-icon"><i data-feather="bar-chart-2"></i></div>
                 Exploratory Data Visualization
-                </a>
+                </a> -->
 
             <a class="nav-link" href="residents-information.php">
                 <div class="nav-link-icon"><i data-feather="users"></i></div>
