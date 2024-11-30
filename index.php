@@ -120,7 +120,7 @@ if (!$login->isLoggedIn()) {
                         <!-- Example Colored Cards for Dashboard Demo-->                 
                         <div class="container-fluid px-4">
                     <div class="ratio ratio-16x9">
-      <iframe src="https://egovern.streamlit.app?embed=true" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://egovernexploratorydatavisualization.streamlit.app/?embed=true" frameborder="0" allowfullscreen></iframe>
     </div>
 
                     </div>
