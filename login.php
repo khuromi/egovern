@@ -176,7 +176,7 @@ input#show-password {
 
     </style>
 </head>
-<body class=" jumbotron">
+<body class=" nah">
 
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
@@ -190,9 +190,9 @@ input#show-password {
 <div class="container">
 
     <div class="login-wrapper">
-        <div class="login-left nah">
+        <div class="login-left jumbotron">
             <div class="brand">
-                <img src="assets/img/logo.png" alt="logo">
+                <img src="assets/img/logo2.png" alt="logo">
             </div>
             <form method="POST" id="login_form">
                 <input type="hidden" name="token" id="token" value="<?= htmlentities(CSRF::generate("login_form")) ?>">

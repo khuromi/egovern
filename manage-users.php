@@ -83,9 +83,9 @@ $users = $user_obj->getAllUser();
                                             <td><?php echo $user['email']; ?></td>
                                             <td>
                                             <div class="btn-group">
-                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark me-2 edit-user-btn" data-user-id="<?php echo $user['user_id']; ?>"><i class="fa-solid fa-pencil"></i></button>
-                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark delete-user-btn" data-user-id="<?php echo $user['user_id']; ?>"><i class="fa-regular fa-trash-can"></i></button>
-                                                </div>
+                                                    <button class="btn btn-datatable btn-icon btn-outline-primary me-2 edit-user-btn" data-user-id="<?php echo $user['user_id']; ?>"><i class="fa-solid fa-pencil"></i></button>
+                                                    <button class="btn btn-datatable btn-icon btn-outline-danger delete-user-btn" data-user-id="<?php echo $user['user_id']; ?>"><i class="fa-regular fa-trash-can"></i></button>
+                                                </div>   
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

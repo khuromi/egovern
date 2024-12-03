@@ -45,7 +45,7 @@ if (!$login->isLoggedIn()) {
 </style>
 
     
-    <body class="nav-fixed">
+    <body class="nav-fixed jumbotron">
 
         <?php
 
