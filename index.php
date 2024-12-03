@@ -88,33 +88,103 @@ if (!$login->isLoggedIn()) {
                                                 <div class="small fw-bold text-primary mb-1">Population</div>
                                                 <div class="h5"><?= $counter->countPopulations() ?></div>
                                                 <div class="text-xs fw-bold text-success d-inline-flex align-items-center">
-                                                    <i class="me-1" data-feather="trending-up"></i>
-                                                    12%
+                                                   
                                                 </div>
                                             </div>
-                                            <div class="ms-2"><i class="fas fa-person fa-2x text-gray-200"></i></div>
+                                            <div class="ms-2"><i class="fas fa-users fa-2x text-gray-200"></i></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                                        
                             <div class="col-xl-3 col-md-6 mb-4">
                                 <!-- Dashboard info widget 2-->
-                                <div class="card border-start-lg border-start-secondary h-100">
+                                <div class="card border-start-lg border-start-success h-100">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center">
                                             <div class="flex-grow-1">
                                                 <div class="small fw-bold text-secondary mb-1">Households                                                                                                                                            </div>
                                                 <div class="h5"><?= $counter->countHouseholds() ?></div>
                                                 <div class="text-xs fw-bold text-danger d-inline-flex align-items-center">
-                                                    <i class="me-1" data-feather="trending-down"></i>
-                                                    3%
+                                                    
+                                                  
                                                 </div>
                                             </div>
-                                            <div class="ms-2"><i class="fas fa-tag fa-2x text-gray-200"></i></div>
+                                            <div class="ms-2"><i class="fas  fa-header fa-2x text-gray-200"></i></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                           <div class="col-xl-3 col-md-6 mb-4">
+    <!-- Dashboard info widget 2-->
+    <div class="card border-start-lg border-start-secondary h-100">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
+                    <div class="small fw-bold text-secondary mb-1">Ethnicity</div>
+                    <div class="h5">
+                        <?php 
+                            // Get the total number of unique ethnicities
+                            $totalEthnicities = $counter->countEthnicity();
+                            
+                            // Get the total number of residents
+                            $totalResidents = $counter->countResidents(); // Assuming this method exists and returns the total number of residents
+                            
+                            // Display the total number of ethnicities
+                            echo $totalEthnicities;
+                        ?>
+                    </div>
+                    <div class="text-xs fw-bold text-danger d-inline-flex align-items-center">
+                       
+                        <?php 
+                            // Calculate the overall percentage of ethnicities relative to the total number of residents
+                            if ($totalResidents > 0) {
+                                $ethnicityPercentage = round(($totalEthnicities / $totalResidents) * 100, 1);
+                                echo $ethnicityPercentage . '%';
+                            } else {
+                                echo '0%'; // Display 0% if there are no residents
+                            }
+                        ?>
+                    </div>
+                </div>
+                <div class="ms-2"><i class="fas fa-person fa-2x text-gray-200"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <!-- Dashboard info widget 2-->
+                                <div class="card border-start-lg border-start-warning h-100">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <div class="flex-grow-1">
+                <div class="small fw-bold text-secondary mb-1">Employment Rate</div>
+                <div class="h5">
+                    <?php 
+                        $employmentStats = $counter->countEmploymentRate();
+                        $totalEmployed = $employmentStats['total_employed'];
+                        $totalSelfEmployed = $employmentStats['total_self_employed'];
+                        // Calculate the total employment rate if needed
+                        $totalCount = $totalEmployed + $totalSelfEmployed;
+                        echo $totalCount > 0 ? $totalCount : 'No data';
+                    ?>
+                </div>
+                <div class="text-xs fw-bold text-danger d-inline-flex align-items-center">
+                    
+                    <!-- Display a dynamic percentage based on employment statistics -->
+                    <?php 
+                        // Assuming you have a way to calculate the percentage of employment
+                        $employmentRate = $totalCount > 0 ? round(($totalEmployed / $totalCount) * 100, 1) : 0;
+                        echo $employmentRate . '%';
+                    ?>
+                </div>
+            </div>
+            <div class="ms-2"><i class="fa fa-briefcase fa-2x text-gray-200"></i></div>
+        </div>
+    </div>
+</div>
+
                        </div>
 
                         <!-- Example Colored Cards for Dashboard Demo-->                 
