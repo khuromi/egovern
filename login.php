@@ -220,7 +220,7 @@ input#show-password {
         </div>
         <div class="login-right">
           <i><h2>WELCOME</h2></i>
-            <p class="text-justify">to Exploratory Data Analysis for Advancing Community Governance in Barangay Culliong, Salcedo, Ilocos Sur</p>
+            <p class="text-justify">to Exploratory Data Visualization for Advancing Community Governance in Barangay Culliong, Salcedo, Ilocos Sur</p>
              <a class="btn btn-primary btn-block bg-primary" aria-current="page" href="about.php">About</a> 
         </div>
     </div>

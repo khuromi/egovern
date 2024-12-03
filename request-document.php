@@ -92,12 +92,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div id="layoutSidenav_content">
             <main>
                 <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
-                    <div class="container-fluid px-4">
-                        <div class="page-header-content">
+                    <div class="container-fluid px-4 bg-gradient-primary-to-secondary ">
+                        <div class="page-header-content ">
                             <div class="row align-items-center justify-content-between pt-3">
                                 <div class="col-auto mb-3">
-                                    <h1 class="page-header-title">
-                                        <div class="page-header-icon"><i
+                                    <h1 class="page-header-title text-light">
+                                        <div class="page-header-icon "><i
                                                 class="fa-light fa-monitor-waveform text-light "
                                                 data-feather="  book-open"></i></div>
                                         Request Document
