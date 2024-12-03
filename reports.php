@@ -142,7 +142,7 @@ sort($ages);
                         </div>
                         <div class="container mt-3">
                             <button class="btn btn-primary btn-block" type="submit">Download PDF</button>
-                            <button id="downloadCSV" class="btn btn-success" style="margin-left: 10px;">Download CSV</button>
+                            <button type="button" id="downloadCSV" class="btn btn-success" style="margin-left: 10px;">Download CSV</button>
                         </div>
                     </div>
                     </form>
@@ -213,60 +213,105 @@ sort($ages);
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
         <script>
-        $(document).ready(function() {
-            // Initialize DataTable
-            var table = $('#residentsTable').DataTable({
-                "ajax": {
-                    "url": "fetch_data.php",
-                    "type": "POST",
-                    "data": function(d) {
-                        d.sector = $('#sectorFilter').val();
-                        d.employment_status = $('#employmentStatusFilter').val();
-                        d.age = $('#ageFilter').val();
-                        d.ethnicity = $('#ethnicityFilter').val();
+    $(document).ready(function() {
+        // Initialize DataTable
+        var table = $('#residentsTable').DataTable({
+            "ajax": {
+                "url": "fetch_data.php",
+                "type": "POST",
+                "data": function(d) {
+                    d.sector = $('#sectorFilter').val();
+                    d.employment_status = $('#employmentStatusFilter').val();
+                    d.age = $('#ageFilter').val();
+                    d.ethnicity = $('#ethnicityFilter').val();
+                }
+            },
+            "columns": [
+                { "data": "resident_id" },
+                { "data": "lastname" },
+                { "data": "firstname" },
+                { "data": "middlename" },
+                { "data": "sex" },
+                { "data": "address" },
+                { "data": "birthdate" },
+                { "data": "civil_status" },
+                { "data": "occupation" },
+                { "data": "employment_status" },
+                { "data": "sector_code" }
+            ]
+        });
+
+        // Reload table when filters change
+        $('#sectorFilter, #employmentStatusFilter, #ageFilter, #ethnicityFilter').on('change', function() {
+            table.ajax.reload();
+        });
+
+        // Download CSV Button Click Handler
+        $('#downloadCSV').on('click', function() {
+            // Gather current filter values
+            var sector = $('#sectorFilter').val();
+            var employmentStatus = $('#employmentStatusFilter').val();
+            var age = $('#ageFilter').val();
+            var ethnicity = $('#ethnicityFilter').val();
+
+            // Perform AJAX request to fetch all data based on current filters
+            $.ajax({
+                url: 'fetch_data.php',
+                type: 'POST',
+                data: {
+                    sector: sector,
+                    employment_status: employmentStatus,
+                    age: age,
+                    ethnicity: ethnicity,
+                    export: true // Custom parameter to indicate CSV export
+                },
+                dataType: 'json',
+                success: function(response) {
+                    // Assuming the response has a 'data' field containing the array of records
+                    if(response.data && response.data.length > 0) {
+                        var csvContent = "data:text/csv;charset=utf-8,";
+                        
+                        // Add CSV headers
+                        var headers = Object.keys(response.data[0]);
+                        csvContent += headers.join(",") + "\n";
+                        
+                        // Add rows
+                        response.data.forEach(function(row) {
+                            var rowArray = headers.map(header => {
+                                // Escape double quotes by replacing " with ""
+                                var cell = row[header] ? row[header].toString().replace(/"/g, '""') : '';
+                                // Wrap fields containing commas or quotes in double quotes
+                                if(cell.search(/("|,|\n)/g) >= 0){
+                                    cell = '"' + cell + '"';
+                                }
+                                return cell;
+                            });
+                            csvContent += rowArray.join(",") + "\n";
+                        });
+
+                        // Encode URI
+                        var encodedUri = encodeURI(csvContent);
+
+                        // Create a temporary link to trigger download
+                        var downloadLink = document.createElement('a');
+                        downloadLink.setAttribute('href', encodedUri);
+                        downloadLink.setAttribute('download', 'residents_data.csv');
+                        document.body.appendChild(downloadLink); // Required for FF
+
+                        downloadLink.click();
+                        document.body.removeChild(downloadLink);
+                    } else {
+                        alert('No data available to export.');
                     }
                 },
-                "columns": [
-                    { "data": "resident_id" },
-                    { "data": "lastname" },
-                    { "data": "firstname" },
-                    { "data": "middlename" },
-                    { "data": "sex" },
-                    { "data": "address" },
-                    { "data": "birthdate" },
-                    { "data": "civil_status" },
-                    { "data": "occupation" },
-                    { "data": "employment_status" },
-                    { "data": "sector_code" }
-                ]
-            });
-
-            // Reload table when filters change
-            $('#sectorFilter, #employmentStatusFilter, #ageFilter, #ethnicityFilter').on('change', function() {
-                table.ajax.reload();
+                error: function(xhr, status, error) {
+                    console.error('Error fetching data for CSV:', error);
+                    alert('An error occurred while generating the CSV file.');
+                }
             });
         });
-    </script>
-
-<script>
-document.getElementById('downloadCSV').addEventListener('click', function() {
-    const table = document.querySelector('table'); // Assuming you have a table element with resident data
-    let csvContent = "data:text/csv;charset=utf-8,";
-    const rows = table.querySelectorAll('tr');
-
-    rows.forEach(row => {
-        const cells = row.querySelectorAll('td, th');
-        const rowArray = Array.from(cells).map(cell => cell.textContent.trim());
-        csvContent += rowArray.join(',') + '\n';
     });
-
-    // Create a link to download the CSV
-    const encodedUri = encodeURI(csvContent);
-    const downloadLink = document.createElement('a');
-    downloadLink.setAttribute('href', encodedUri);
-    downloadLink.setAttribute('download', 'residents_data.csv');
-    downloadLink.click();
-});
 </script>
+
 
 </html>

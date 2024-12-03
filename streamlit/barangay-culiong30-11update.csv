@@ -1,0 +1,300 @@
+Resident_ID,Household_Number,Lastname,Firstname,Middlename,Qualifier,Gender,Address,Birthdate,Birthplace,Mothers_Maiden_Name,Fathers_Name,Civil_Status,Occupation,Educational_Attainment,Employment_Status,Avg_Monthly_Income,Sector_Code,Relation_To_Head,Ethnicity
+1,1,Garayan,Rodrigo,Daluyen,,Male,"Culiong, Salcedo Ilocos Sur",02/12/1952,"Culiong, Salcedo I.S",Unknown,Unknown,Married,Farmer,Elementary Undergrad,Self-employed,10000,Senior,Head,kankana-ey
+2,1,Garayan,Amparo,Pasot,,Female,"Culiong, Salcedo Ilocos Sur",07/12/1985,"Libang, Cervantes I.S",Beatriz Ingkad,Dominador Pasot,Married,Housewife,Elementary Undergrad,Unemployed,0,Senior,Husband,kankana-ey
+3,1,Cabuslay,Charlie,Garayan,,Male,"Culiong, Salcedo Ilocos Sur",02/08/2005,Santa Cruz I.S,Chelly-ann Cabuslay,Airlee Cabuslay,Single,Student,College,Student,0,none,Grandfather,kankana-ey
+4,1,Cabuslay,Reshelle Ann,Garayan,,Female,"Culiong, Salcedo Ilocos Sur",25/11/2007,"Culiong, Salcedo Ilocos Sur",Chelly-ann Cabuslay,Airlee Cabuslay,Single,Student,High School,Student,0,4P's,Grandfather,kankana-ey
+5,1,Cabuslay,Rainiel,Garayan,,Male,"Culiong, Salcedo Ilocos Sur",29/05/2012,Salcedo I.S,Chelly-ann Cabuslay,Airlee Cabuslay,Single,Student,High School,Student,0,4P's,Grandfather,kankana-ey
+6,1,Cabuslay,Jenny Lee,Garayan,,Female,"Culiong, Salcedo Ilocos Sur",01/08/2014,Salcedo I.S,Chelly-ann Cabuslay,Airlee Cabuslay,Single,Student,Elementary,Student,0,4P's,Grandfather,kankana-ey
+7,2,Tudayan,Onofre,Apusen,,Female,"Culiong, Salcedo Ilocos Sur",17/01/1960,"Culiong, Salcedo I.S",Lolita Apusen,Rafael Tudayan,Married,Farmer,College,Self-employed,5000,Senior,Head,kankana-ey
+8,2,Tudayan,Irene,Omaoeng,,Female,"Culiong, Salcedo Ilocos Sur",20/12/1965,"Sison, Pangasinan",Marina Gat-eb,Vinaro Omaeng,Married,Housewife,High School Undergrad,Unemployed,0,None,Husband,kankana-ey
+9,2,Tudayan,Lydia,Apusen,,Female,"Culiong, Salcedo Ilocos Sur",25/11/1963,"Culiong, Salcedo I.S",Lolita Apusen,Rafael Tudayan,Single,None,High School,Unemployed,0,None,Sibling,kankana-ey
+10,2,Tudayan,Ralph Jeson,Cayme,,Male,"Culiong, Salcedo Ilocos Sur",28/05/2003,"Sampaloc, Manila",Maria Jesusa Cayme,Ian Vincent Tudayan,Single,Student,College,Student,0,None,Granfather,kankana-ey
+11,2,Tudayan,Ryan Jeffrey,Cayme,,Male,"Culiong, Salcedo Ilocos Sur",17/09/2004,Tagudin I.S,Maria Jesusa Cayme,Ian Vincent Tudayan,Single,Student,College,Student,0,None,Granfather,kankana-ey
+12,3,Bernales,Josie,Camanga,,Female,"Culiong, Salcedo Ilocos Sur",05/06/1957,"Culiong, Salcedo I.S",Lourdes Lupato,Manuel Camanga,Married,Housewife,College Undergrad,Unemployed,0,Senior with Disability,Husband,kankana-ey
+13,3,Bernales,Roberto,Baguioen,,Male,"Culiong, Salcedo Ilocos Sur",07/05/1957,"Culiong, Salcedo I.S",Maria Baguioen,Amante Bernales,Married,Farmer,High School,Self-employed,3000,Senior,Head,kankana-ey
+14,4,Bernales,Jojo,Camanga,,Male,"Culiong, Salcedo Ilocos Sur",28/05/1978,Salcedo I.S,Josie Lupato Camanga,Roberto Bernales,Married,Farmer,High School Undergrad,Self-employed,4000,None,Head,kankana-ey
+15,4,Bernales,Mary Grace,Tulyao,,Female,"Culiong, Salcedo Ilocos Sur",22/11/1978,"San Tiburcio, Salcedo I.S",Ayelina Foronda Tuliao,Roberto Tuliao,Married,Brgy. Secretary,College Undergrad,Employed,"4,440",None,hUsband,kankana-ey
+16,4,Bernales,Nike,Tulyao,,Male,"Culiong, Salcedo Ilocos Sur",09/09/2001,Sta Lucia District Hospital,Mary Grace Tulyao,Jojo Bernales,Single,Construction,OSY,Employed,4000,4P's,Father,kankana-ey
+17,4,Bernales,Rain,Tuliao,,Male,"Culiong, Salcedo Ilocos Sur",21/11/2005,"San Tiburcio, Salcedo I.S",Mary Grace Tulyao,Jojo Bernales,Single,Student,College,Student,0,4P's,Father,kankana-ey
+18,4,Bernales,Kim Nicole,Tulyao,,Female,"Culiong, Salcedo Ilocos Sur",08/08/2007,"San Tiburcio, Salcedo I.S",Mary Grace Tulyao,Jojo Bernales,Single,Student,High School,Student,0,4P's,Granfather,kankana-ey
+19,5,Daluyen,Rogelio,Marquez,,Male,"Culiong, Salcedo Ilocos Sur",03/07/1976,"Culiong, Salcedo I.S",Canaona Marquez,Jose Daluyen,Married,"Sangguniang 
+Bayan Member",High School,Employed,"4,440",None,Head,kankana-ey
+20,5,Daluyen,Ruby,Altura,,Female,"Culiong, Salcedo Ilocos Sur",16/01/1980,"Amarao, Sta Cruz I.S",Constancia Saldevar,Rogelio Altura,Married,Maid,High School,Employed,10000,None,Husband,kankana-ey
+21,5,Daluyen,Kime Joshua,Altura,,Male,"Culiong, Salcedo Ilocos Sur",25/11/2001,"Culiong, Salcedo I.S",Ruby Altura,Rogelio Daluyen,Single,Laborer ,Elementary Undergrad,Employed,20000,None,Father,kankana-ey
+22,5,Daluyen,Kathlyn Joy,Altura,,Female,"Culiong, Salcedo Ilocos Sur",03/12/2002,"Baluarte, Salcedo I.S",Ruby Altura,Rogelio Daluyen,Single,Student,College,Student,0,None,Father,kankana-ey
+23,5,Daluyen,Sarah Mae,Altura,,Female,"Culiong, Salcedo Ilocos Sur",25/03/2005,"Culiong, Salcedo I.S",Ruby Altura,Rogelio Daluyen,Single,Student,College,Student,0,4P's,Father,kankana-ey
+24,6,Natividad,Donald,Habon,,Male,"Culiong, Salcedo Ilocos Sur",09/12/1982,"Culiong, Salcedo I.S",Nelia Encarnacion,Necanor Natividad,Married,Farmer,High School,Employed,3000,None,Head,kankana-ey
+25,6,Natividad,Daisyre,Encarnacion,,Female,"Culiong, Salcedo Ilocos Sur",09/12/1986,Benguet,Junia Soliva,Gabriel Adiwang,Married,Housewife,College,Unemployed,0,None,Husband,igorot
+26,6,Natividad,Nelia,Habon,,Female,"Culiong, Salcedo Ilocos Sur",18/08/1953,Salcedo I.S,Flora Encarnacion,Maximo Habon,Widowed,None,Elementary Undergrad,Unemployed,0,Senior,Mother,kankana-ey
+27,6,Natividad,Zoey Adriely,Adiwang,,Female,"Culiong, Salcedo Ilocos Sur",25/03/2014,Benguet,Daisyre Adiwang,Donald Natividad,Single,Student,Elementary,Student,0,None,Father,igorot
+28,8,Bestiquen,Leonida,Foronda,,Female,"Culiong, Salcedo Ilocos Sur",06/06/1950,Nagtablaan Sta. Lucia I.S,Lumen Padsing,Andres Foronda,Widowed,None,Elementary Undergrad,Unemployed,0,Senior,Head,kankana-ey
+29,8,Darisay,Jeric,Bestique,,Male,"Culiong, Salcedo Ilocos Sur",01/11/2007,"Culiong, Salcedo I.S",Maelmarie Bestique,Benjamin Darisay,Single,Student,High School,Student,0,None,Grandmother,Non_IP
+30,8,Darisay,Via,Bestique,,Female,"Culiong, Salcedo Ilocos Sur",18/11/2004,"Culiong, Salcedo I.S",Maelmarie Bestique,Benjamin Darisay,Single,Student,College,Student,0,None,Grandmother,Non_IP
+31,8,Darisay,Jiemar,Bestique,,Male,"Culiong, Salcedo Ilocos Sur",01/03/2002,"Culiong, Salcedo I.S",Maelmarie Bestique,Benjamin Darisay,Single,None,College,Unemployed,0,None,Grandmother,Non_IP
+32,8,Darisay,Melmarie,Bestique,,Female,"Culiong, Salcedo Ilocos Sur",06/03/1983,"Culiong, Salcedo I.S",Leonida Foronda,Emmanuel Bestique,Married,OFW,High School,Employed,10000,OFW,Mother,Non_IP
+33,9,Bernales,Danilo,Baguioan,,Male,"Culiong, Salcedo Ilocos Sur",09/03/1959,Nagtablaan Sta. Lucia I.S,Marica Bernales,Amante Bernales,Married,Farmer,Elementary,Self-employed,4000,Senior,Head,kankana-ey
+34,9,Bernales,Minda,Pascua,,Female,"Culiong, Salcedo Ilocos Sur",12/12/1961,"Culiong, Salcedo I.S",Casimera Sagay,Silvestre Pascua,Married,Farmer,High School Undergrad,Self-employed,4000,Senior,Husband,kankana-ey
+35,9,Bernales,Mitchelle,Pascua,,Male,"Culiong, Salcedo Ilocos Sur",10/02/1980,"Culiong, Salcedo I.S",Minda Bernales,Danilo Bernales,Married,None,College Undergrad,Unemployed,0,None,Father,kankana-ey
+36,9,Bernales,Danica,Dizon,,Female,"Culiong, Salcedo Ilocos Sur",02/01/2003,Tagudin I.S,Boniliza Bautista,Mitchelle Bernales,Single,Student,College,Student,0,None,Granfather,kankana-ey
+37,9,Bernales,Trisha,Dizon,,Female,"Culiong, Salcedo Ilocos Sur",08/11/2008,Tagudin I.S,Boniliza Bautista,Mitchelle Bernales,Single,Student,High School,Student,0,None,Granfather,kankana-ey
+38,10,Alfaro,Emma,Natividad,,Female,"Culiong, Salcedo Ilocos Sur",16/09/1947,"Culiong, Salcedo I.S",Olsora Marquez,Nicanor Natividad,Widowed,None,Elementary,Unemployed,0,Senior,Head,kankana-ey
+39,10,Alfaro,Saydee,Natividad,,Female,"Culiong, Salcedo Ilocos Sur",19/01/1978,"Culiong, Salcedo I.S",Emma Natividad,Marino Alfaro,Single,None,High School Undergrad,Unemployed,0,PWD,Mother,kankana-ey
+40,12,Sidayen,Nelie,Caleng,,Female,"Culiong, Salcedo Ilocos Sur",14/08/1978,"Culiong, Salcedo I.S",Maria Caleng,Emelio Sidayen,Single,None,High School Undergrad,Unemployed,0,Senior,Head,kankana-ey
+41,14,Valdez,Jojo,Camanga,,Male,"Culiong, Salcedo Ilocos Sur",24/10/1976,"San Andres, Candon City I.S",Benita Camanga,Gomersindo Valdez,Married,"Warehouse
+ Clerk",College,Employed,20000,None,Head,kankana-ey
+42,14,Valdez,Florence,Sagay,,Female,"Culiong, Salcedo Ilocos Sur",02/04/1977,"Culiong, Salcedo I.S",Delia Garayan,Simeon Sagay,Married,Housewife,College,Unemployed,0,None,Husband,kankana-ey
+43,14,Valdez,Joence,Sagay,,Male,"Culiong, Salcedo Ilocos Sur",27/03/2004,"Culiong, Salcedo I.S",Florence Sagay,Jojo Valdez,Single,Student,College,Student,0,None,Father,kankana-ey
+44,14,Cabaya,Axel Edward,Valdez,,Male,"Culiong, Salcedo Ilocos Sur",13/11/2020,Candon City I.s,Jonaflor Sagay,Edward Cabaya,Single,Student,Elementary,Student,0,None,Granfather,kankana-ey
+45,17,Afroilan,Christie Ezra,Bello,,Male,"Culiong, Salcedo Ilocos Sur",28/12/1975,Salcedo I.S,Genoviva Bello,Galio Afroilan,Married,Road Cleaner & Maintainance (DPWH),Elementary Undergrad,Employed,10000,None,Head,kankana-ey
+46,17,Afroilan,Presey,Baguioen,,Female,"Culiong, Salcedo Ilocos Sur",13/12/1980,"Culiong, Salcedo I.S",Jovita Bal-iyang,Jerry Baguioen,Married,Laborer,College Undergrad,Employed,3000,None,Husband,kankana-ey
+47,17,Afroilan,Christie Ann,Baguioen,,Female,"Culiong, Salcedo Ilocos Sur",02/08/2015,Salcedo I.S,Presey Baguioen,Christie Ezra Afroilan,Single,Student,Elementary,Student,0,4P's,Father,kankana-ey
+48,17,Afroilan,Jose Cecilio,Baguioen,,Male,"Culiong, Salcedo Ilocos Sur",04/10/2019,Salcedo I.S,Presey Baguioen,Christie Ezra Afroilan,Single,Student,Elementary,Student,0,None,Father,kankana-ey
+49,17,Baturi,Spencer,Ambatang,,Male,"Culiong, Salcedo Ilocos Sur",11/11/1997,"San Tiburcio, Salcedo I.S",Virgie Ambatang,Jessie Baturi,Live In,Farmer,College Undergrad,Employed,3000,None,FatherInLaw,kankana-ey
+50,17,Afroilan,Michelle Kate,Baguioen,,Female,"Culiong, Salcedo Ilocos Sur",22/09/2003,"Culiong, Salcedo I.S",Presey Baguioen,Christie Ezra Afroilan,Live In,Housewife,College Undergrad,Unemployed,0,None,Father,kankana-ey
+51,17,Baturi,Azariah,Baguioen,,Male,"Culiong, Salcedo Ilocos Sur",17/11/2023,"ISM Center, Candon City I.S",Michelle Kate Baguioen,Spencer Baturi,Single,None,Elementary Undergrad,Unemployed,0,None,GrandSon,kankana-ey
+52,18,Suyat,Salvador,Malong,,Male,"Culiong, Salcedo Ilocos Sur",09/02/1974,"Culiong, Salcedo I.S",Beneta Malong,Marlano Suyat,Single,STL Solicitor,High School,Employed,3000,PWD,Head,kankana-ey
+53,19,Baguioen,Florante,Javillonar,,Male,"Culiong, Salcedo Ilocos Sur",18/06/1985,Sta Cruz I.S,Unknown,Florencio Baguioen,Married,None,College,Unemployed,0,None,Head,kankana-ey
+54,19,Baguioen,August Cesar,Javillonar,,Male,"Culiong, Salcedo Ilocos Sur",15/08/1991,"Villa Garcia, Sta. Cruz I.S",Unknown,Florencio Baguioen,Single,Installer PLDT,College,Employed,5000,None,Brother,kankana-ey
+55,21,Sapguian,Evangelista,Crisostomo,,Male,"Culiong, Salcedo Ilocos Sur",28/12/1933,Pangasinan,Osmonda Lacamora,Catalino Crisostomo,Widowed,None,High School Undergrad,Unemployed,0,None,Head,kankana-ey
+56,21,Sapguian,Fely,Crisostomo,,Female,"Culiong, Salcedo Ilocos Sur",02/08/1965,"Culiong, Salcedo I.S",Evangelista Crisostomo,Policarpio Sapguian,Single,Housewife,College,Self-employed,1000,None,Mother,kankana-ey
+57,23,Micua,Angel,Bernales,,Male,"Culiong, Salcedo Ilocos Sur",24/01/1933,Nagtablaan Sta. Lucia I.S,Modesta Bernales,Maximo Micua,Married,Farmer,High School,Self-employed,7000,Senior,Head,kankana-ey
+58,23,Micua,Trifina,Gabano,,Female,"Culiong, Salcedo Ilocos Sur",10/06/1934,"Culiong, Salcedo I.S",Cornelia Asuit,Pablo Gabano,Married,Housewife,High School,Unemployed,0,None,Spouse,kankana-ey
+59,23,Caplis,Estrella,Gabano,,Male,"Culiong, Salcedo Ilocos Sur",23/08/1959,"Culiong, Salcedo I.S",Estor Gabano,Mariano Caplis,Married,None,College,Unemployed,0,Senior,Father,kankana-ey
+60,23,Siriban,Psalm David,Caplis,,Male,"Culiong, Salcedo Ilocos Sur",10/09/1990,"San Fernando City, L.U",Estrella Caplis,Leopoldo Siriban,Single,None,Elementary Undergrad,Unemployed,0,PWD,Granfather,kankana-ey
+61,25,Leal,Letecia,Garayan,,Female,"Culiong, Salcedo Ilocos Sur",03/01/1955,"Culiong, Salcedo I.S",Alarica Daluyen,Rofeno Garayan,Widowed,Farmer,Elementary Undergrad,Employed,5000,Solo Parent,Head,kankana-ey
+62,25,Leal,Alvin,Garayan,,Male,"Culiong, Salcedo Ilocos Sur",09/08/1994,Salcedo I.S,Letecia Garayan,Rofeno Garayan,Single,Farmer,College,Self-employed,5000,None,Mother,kankana-ey
+63,26,Bernales,Liwliwa,Baguioen,,Female,"Culiong, Salcedo Ilocos Sur",30/01/1966,"Culiong, Salcedo I.S",Maria Bano,Amante Bernales,Single,Farmer,College Undergrad,Self-employed,5000,None,Head,kankana-ey
+64,26,Tudayan,Ephraim Cross,Bernales,,Male,"Culiong, Salcedo Ilocos Sur",17/09/1997,"Culiong, Salcedo I.S",Nora Bernales,Ephraim Tudayan,Single,Farm Laborer,High School Undergrad,Employed,1000,None,Aunt,kankana-ey
+65,27,Baguioen,Jessie,Sapguian,,Male,"Culiong, Salcedo Ilocos Sur",05/08/1962,San Fernando,Falomia Sapguian,Busobio Baguioen,Single,None,Elementary Undergrad,Unemployed,0,Senior,Head,kankana-ey
+66,27,Baguioen,Lorna Fe,Sapuian,,Female,"Culiong, Salcedo Ilocos Sur",17/07/1969,"Lorma, San Fernando, I.S",Falomia Sapguian,Busobio Baguioen,Single,HouseKeeping,College Undergrad,Employed,3000,None,Brother,kankana-ey
+67,27,Afroilan,Lucky Angelo,Baguioen,,Male,"Culiong, Salcedo Ilocos Sur",17/05/2001,Sta. Lucia District Hospital,Presy Bal-iyang,Christie Ezra Bilyo,Single,SK Chairman,College Undergrad,Employed,3000,None,Granfather,kankana-ey
+68,27,Afroilan,Christie Faye,Baguioen,,Female,"Culiong, Salcedo Ilocos Sur",01/09/2006,"Culiong, Salcedo I.S",Presy Bal-iyang,Christie Ezra Bilyo,Single,OSY,OSY,Unemployed,0,None,Granfather,kankana-ey
+69,27,Afroilan,April Rose,Baguioen,,Female,"Culiong, Salcedo Ilocos Sur",08/04/2009,"Culiong, Salcedo I.S",Presy Bal-iyang,Christie Ezra Bilyo,Single,OSY,OSY,Unemployed,0,None,Granfather,kankana-ey
+70,28,Sapguian,Catalino,Pacling,,Male,"Culiong, Salcedo Ilocos Sur",30/04/1970,Lepanto Mankayan Hospital,Carmen Pacling,Federico Sapguian,Married,Farmer,Elementary,Self-employed,3000,None,Head,kankana-ey
+71,28,Sapguian,Soledad,Bastingo,,Female,"Culiong, Salcedo Ilocos Sur",11/11/1966,Bontoc Hospital,Julia Marcos,Florencio Bastingo,Married,HouseWife,College,Unemployed,0,None,Husband,kankana-ey
+72,28,Sapguian,Aleya,Desiree,,Female,"Culiong, Salcedo Ilocos Sur",18/12/2002,Salcedo District Hospital,Soledad Bastingo,Catalino Sapguian,Single,OSY,OSY,Unemployed,0,None,Father,kankana-ey
+73,28,Sapguian,Lino,Bastingo,,Male,"Culiong, Salcedo Ilocos Sur",06/12/2007,Sta. Lucia District Hospital,Soledad Bastingo,Catalino Sapguian,Single,Student,High School,Student,0,4P's,Father,kankana-ey
+74,28,Locquiao,Aleya Louis,Sapguian,,Female,"Culiong, Salcedo Ilocos Sur",05/09/2024,"ISM Center, Candon City I.S",Aleya Desiree Sapguian,John Louie Locquiao,Single,None,None,Unemployed,0,None,Granfather,kankana-ey
+75,29,Mangay-ayam,Feliciano,Habon,,Male,"Culiong, Salcedo Ilocos Sur",13/09/1957,Nagtablaan Sta. Lucia I.S,Valetina Mangay-ayam,Quintina Mangay-ayam,Married,Farmer,Elementary,Self-employed,3000,Senior,Head,kankana-ey
+76,29,Mangay-ayam,Teresita,Dela Cruz,,Female,"Culiong, Salcedo Ilocos Sur",12/10/1964,"Urdaneta, Pangasinan",Benita Suyat,Unknown,Married,Housewife,Elementary,Unemployed,0,None,Husband,kankana-ey
+77,29,Mangay-ayam,Joseph,Dela Cruz,,Male,"Culiong, Salcedo Ilocos Sur",28/08/1982,"Culiong, Salcedo I.S",Teresita Dela Cruz,Feliciano Mangay-ayam,Single,Cashier,College,Employed,9000,None,Father,kankana-ey
+78,30,Sidayen,Royalito,Caleng,,Male,"Culiong, Salcedo Ilocos Sur",27/11/1962,"Culiong, Salcedo I.S",Maria Caleng,Emilio Sidayen,Married,Farmer,High School,Self-employed,4000,None,Head,kankana-ey
+79,30,Sidayen,Marilyn,Sagay,,Female,"Culiong, Salcedo Ilocos Sur",24/05/1970,"Mawab, Davao Del Norte",Monica Daluyen,Elias Sagay,Married,Housewife,High School,Employed,0,None,Husband,kankana-ey
+80,30,Sidayen,Romar,Sagay,,Male,"Culiong, Salcedo Ilocos Sur",13/03/1995,"Culiong, Salcedo I.S",Marilyn Sagay,Royalito Sidayen,Single,"Construction 
+Worker",College Undergrad,Employed,4000,None,Son,kankana-ey
+81,30,Sidayen,Verniel,Sagay,,Male,"Culiong, Salcedo Ilocos Sur",10/10/2007,"Bio, Tagudin I.S",Marilyn Sagay,Royalito Sidayen,Single,Student,High School,Student,0,4P's,Son,kankana-ey
+82,30,Lazo,Marvie,Sidayen,,Female,"Culiong, Salcedo Ilocos Sur",23/04/1999,"Culiong, Salcedo I.S",Marilyn Sagay,Royalito Sidayen,Married,Book Keeper,College,Employed,2000,None,Daugther,kankana-ey
+83,30,Lazo,Adonis,Abalos,,Male,"Culiong, Salcedo Ilocos Sur",30/04/1999,San Fernando,Donica Abalos,Antonio Lazo,Married,Hog Dealer,College Undergrad,Employed,5000,None,FatherInLaw,kankana-ey
+84,30,Lazo,Liam Jovan,Sidayen,,Male,"Culiong, Salcedo Ilocos Sur",21/02/2024,"Culiong, Salcedo I.S",Marvie Sidayen,Adonis Lazo,Single,None,Elementary Undergrad,Unemployed,0,None,GrandSon,kankana-ey
+85,32,Pascua,Jesus,Sagay,,Male,"Culiong, Salcedo Ilocos Sur",24/12/1957,"Culiong, Salcedo I.S",Casimera Sagay,Silvestre Pascua,Married,Farmer,High School,Self-employed,3000,Senior,Head,kankana-ey
+86,32,Pascua,Julita,Natividad,,Female,"Culiong, Salcedo Ilocos Sur",09/06/1964,"Culiong, Salcedo I.S",Olsora Marquez,Nicanor Natividad,Married,Housewife,Elementary,Unemployed,0,Senior,Husband,kankana-ey
+87,32,Salundaguit,Jovelyn,Pascua,,Female,"Culiong, Salcedo Ilocos Sur",16/06/1987,"Culiong, Salcedo I.S",Natividad Julita,Jesus Pascua,Married,Housewife,College,Unemployed,0,None,Father,kankana-ey
+88,32,Salundaguit,Melvin,Tangliben,,Male,"Culiong, Salcedo Ilocos Sur",14/12/1984,"Ala-lingoun 1st, Candon City",Luz Maspilan,Guillermo Salundauit,Married,Electrician,College,Self-employed,3000,None,FatherInLaw,kankana-ey
+89,33,Baturi,Jaime,Cadongonan,,Male,"Culiong, Salcedo Ilocos Sur",08/05/1944,"Santiburcio, Salcedo I.S.",Leonarda Cadongonan,Vicente Baturi,Married,None,High School,Unemployed,0,Senior,Head,kankana-ey
+90,33,Baturi,Miriam,Sapguian,,Female,"Culiong, Salcedo Ilocos Sur",10/09/1946,"Culiong, Salcedo I.S",Juana Asuit,Alvaro Sapguian,Married,Housewife,Elementary,Unemployed,0,Senior,Husband,kankana-ey
+91,33,Baturi,Romnick,Flores,,Male,"Culiong, Salcedo Ilocos Sur",03/07/2004,"Culiong, Salcedo I.S",Romena Flores,Eric Baturi,Single,Student,College,Student,0,None,Grandson,kankana-ey
+92,33,Baturi,Carljem Amon,Flores,,Male,"Culiong, Salcedo Ilocos Sur",26/06/2008,"Culiong, Salcedo I.S",Romena Flores,Eric Baturi,Single,Student,High School,Student,0,None,Grandson,kankana-ey
+93,33,Bulaag,Marvin,Aguinaldo,,Male,"Culiong, Salcedo Ilocos Sur",28/12/1975,"Kabugao, Apayao",Julia Aguinaldo,Romulo Bulaag,Married,Carpenter,College Undergrad,Employed,10000,None,Head,itneg
+94,33,Bulaag,Arlene,Baturi,,Female,"Culiong, Salcedo Ilocos Sur",03/08/1976,Salcedo I.S,Meriam Sapguian,Jaime Baturi,Married,"Child Care Y
+Development Worker",College Undergrad,Employed,4000,None,Husband,kankana-ey
+95,33,Bulaag,Mia Nova,Baturi,,Female,"Culiong, Salcedo Ilocos Sur",10/01/2011,Tagudin I.S,Arlene Baturi,Marvin Bulaag,Single,Student,High School,Student,0,4P's,Father,itneg
+96,33,Bulaag,Elaine,Baturi,,Female,"Culiong, Salcedo Ilocos Sur",13/10/2014,"San Fernando City, L.U",Arlene Baturi,Marvin Bulaag,Single,Student,Elementary,Student,0,4P's,Father,itneg
+97,35,Gat-eb,Genesis,Alfaro,,Male,"Culiong, Salcedo Ilocos Sur",27/07/1994,"Culiong, Salcedo I.S",Alicia Alfaro,Modesto Gat-eb,Married,"Construction 
+Worker/ Farmer",College,Employed,10000,None,Head,kankana-ey
+98,35,Gat-eb,Lana Kristine,Javines,,Female,"Culiong, Salcedo Ilocos Sur",29/10/1995,"Suyo, Sta Cruz I.S",Milanny Marquez,Alfredo Javines Jr.,Married,Housewife,College Undergrad,Unemployed,0,None,Husband,kankana-ey
+99,35,Gat-eb,Frances Gheneiya,Javines,,Female,"Culiong, Salcedo Ilocos Sur",29/01/2015,Sta Lucia District Hospital,Lana Kristine Javines,Genesis Gat-eb,Single,Student,Elementary,Student,0,4P's,Father,kankana-ey
+100,40,Vilog,Crispina,Viloria,,Female,"Culiong, Salcedo Ilocos Sur",20/09/1964,Salcedo I.S,Noemi Viloria,Bernardo Vilog Sr.,Single,Housewife,College,Unemployed,0,Senior,Head,kankana-ey
+101,40,Vilog,Ruth,Viloria,,Female,"Culiong, Salcedo Ilocos Sur",23/11/1959,Salcedo I.S,Noemi Viloria,Bernardo Vilog Sr.,Single,Housekeeper,High School Undergrad,Employed,6000,Senior,Sister,kankana-ey
+102,40,Jose,Jerwin,Vilog,,Male,"Culiong, Salcedo Ilocos Sur",20/07/1996,Quezon City,Crispina Viloria,Unknown,Single,Graphic Artist,College,Employed,18000,None,Mother,kankana-ey
+103,40,Haduca,Ella May,Lazada,,Female,"Culiong, Salcedo Ilocos Sur",03/05/2001,"San Pedro, Sta Lucia I.S",Cristy Lazada,Rogelio Haduca,Single,Sales Assitant,College,Employed,13000,None,MotherInLaw,kankana-ey
+104,40,Jose,Sabrina Faith,Haduca,,Female,"Culiong, Salcedo Ilocos Sur",10/12/2020,Candon City I.s,Ella May Haduca,Jerwin Jose,Single,None,Elementary Undergrad,Unemployed,0,None,Grandmother,kankana-ey
+105,51,Mejos,Aurelio,Ligsay,Jr.,Male,"Culiong, Salcedo Ilocos Sur",08/06/1983,Cotabato City,Unknown,Aurelio Mejos Sr.,Married,Businessman,College,Self-employed,10000,None,Head,Non_IP
+106,51,Mejos,Cristel,Halabaso,,Female,"Culiong, Salcedo Ilocos Sur",21/12/1986,"Paratong, Sta Lucia I.S",Unknown,Unknown,Married,Housewife,High School,Unemployed,0,None,Husband,Non_IP
+107,51,Mejos,Princes Ashlei,Halabaso,,Female,"Culiong, Salcedo Ilocos Sur",27/06/2013,"Culiong, Salcedo I.S",Cristel Halabaso,Aurelio Mejos Jr.,Single,Student,Elementary,Student,0,None,Father,Non_IP
+108,51,Mejos,Caiden Josh,Halabaso,,Male,"Culiong, Salcedo Ilocos Sur",16/08/2018,"Culiong, Salcedo I.S",Cristel Halabaso,Aurelio Mejos Jr.,Single,Student,Elementary,Student,0,None,Father,Non_IP
+109,53,Balio-an,Elisio,Foronda,,Male,"Culiong, Salcedo Ilocos Sur",29/06/1956,"Gregorio Del Pilar, I.S",Veronica Foronda,Gregorio Baliw-oan,Married,Farmer,Elementary Undergrad,Self-employed,20000,Senior,Head,kankana-ey
+110,53,Balio-an,Imelda,Garayan,,Female,"Culiong, Salcedo Ilocos Sur",25/10/1996,"Culiong, Salcedo I.S",Alarica Daluyen,Rufino Garayan,Married,Farmer,High School Undergrad,Self-employed,20000,None,Husband,kankana-ey
+111,53,Balio-an,Roselyn,Garayan,,Female,"Culiong, Salcedo Ilocos Sur",29/07/1996,"Culiong, Salcedo I.S",Imelda Garayan,Elisio Bali-oan,Single,Online Seller,College,Self-employed,16000,None,Father,kankana-ey
+112,53,Balio-an,Elmer,Garayan,,Male,"Culiong, Salcedo Ilocos Sur",22/09/1998,"Culiong, Salcedo I.S",Imelda Garayan,Elisio Bali-oan,Single,"Government 
+Employee",College Undergrad,Employed,30000,None,Father,kankana-ey
+113,57,Garayan,Nelson,Marquez,,Male,"Culiong, Salcedo Ilocos Sur",15/10/1980,"Culiong, Salcedo I.S",Rose Marquez,Alfonso Garayan,Single,Driver,High School,Self-employed,3000,None,Head,kankana-ey
+114,57,Garayan,Rose,Marquez,,Female,"Culiong, Salcedo Ilocos Sur",04/10/1952,"Culiong, Salcedo I.S",Juliana Ponce,Calixto Marquez,Widowed,None,Elementary Undergrad,Unemployed,0,Senior,Mother,kankana-ey
+115,57,Garayan,Elma,Marquez,,Female,"Culiong, Salcedo Ilocos Sur",28/09/1978,"Culiong, Salcedo I.S",Rose Marquez,Alfonso Garayan,Single,OFW,College Undergrad,Employed,10000,OFW,Sibling,kankana-ey
+116,57,Garayan,Blessie,Domaoal,,Female,"Culiong, Salcedo Ilocos Sur",09/03/2011,"San Antonio, Candon City",Eden Domaoal,Nelson Garayan,Single,Student,High School,Student,0,None,Father,kankana-ey
+117,58,Alipda,Margie,Garayan, ,Female,"Culiong, Salcedo Ilocos Sur",28/06/1974,"Culiong, Salcedo I.S",Rose Marquez,Alfonso Garayan,Widowed,Farmer,High School,Employed,3000,Solo Parent,Head,kankana-ey
+118,58,Alipda,Marvin,Garayan,,Male,"Culiong, Salcedo Ilocos Sur",17/01/2003,"Culiong, Salcedo I.S",Margie Garayan,Unknown,Single,Student,College,Student,0,None,Mother,kankana-ey
+119,58,Alipda,Abegail,Garayan,,Female,"Culiong, Salcedo Ilocos Sur",06/04/2005,"Culiong, Salcedo I.S",Margie Garayan,Unknown,Single,Student,College,Student,0,None,Mother,kankana-ey
+120,60,Garayan,Marlon,Pasot,,Male,"Culiong, Salcedo Ilocos Sur",01/03/1978,"Libang, Cervantes I.S",Amparo Pasot,Rodrigo Garayan,Married,Construction Worker,College Undergrad,Employed,10000,None,Head,kankana-ey
+121,60,Garayan,Jobelyn,Dela Cruz,,Male,"Culiong, Salcedo Ilocos Sur",14/09/1983,Ambucao Santiago I.S,Marilyn Sabado,Romulo Dela Cruz,Married,Housewife,College Undergrad,Unemployed,0,None,Husband,kankana-ey
+122,60,Garayan,Ranielyn,Dela Cruz,,Female,"Culiong, Salcedo Ilocos Sur",28/05/2005,Ambucao Santiago I.S,Jobelyn Dela Cruz,Marlon Garayan,Single,Student,College,Student,0,4P's,Father,kankana-ey
+123,60,Garayan,Marianne Jobel,Dela Cruz,,Female,"Culiong, Salcedo Ilocos Sur",24/10/2013,Salcedo I.S,Jobelyn Dela Cruz,Marlon Garayan,Single,Student,Elementary,Student,0,4P's,Father,kankana-ey
+124,60,Garayan,Marjory,Dela Cruz,,Female,"Culiong, Salcedo Ilocos Sur",15/08/2017,Candon City I.s,Jobelyn Dela Cruz,Marlon Garayan,Single,Student,Elementary,Student,0,4P's,Father,kankana-ey
+125,63,Garayan,Jose,Daluyen,,Male,"Culiong, Salcedo Ilocos Sur",21/09/1959,"Culiong, Salcedo I.S",Alarica Daluyen,Rofeno Garayan,Single,Farmer,High School Undergrad,Self-employed,5000,Senior,Head,kankana-ey
+126,1,Valdez,Edwin,Dumalanta,,Male,"Culiong, Salcedo Ilocos Sur",28/11/1979,"Culiong, Salcedo I.S",Unknown,Unknown,Married,Driver,College,Employed,7000,None,Head,kankana-ey
+127,1,Valdez,Edelyn,Delos Santos,,Female,"Culiong, Salcedo Ilocos Sur",20/03/1979,Negros Occidental,Teresita Salibio,Eduardo Delos Santos,Married,Housewife,High School,Unemployed,0,None,Husband,Non_IP
+128,1,Valdez,Angelyn,Delos Santos,,Female,"Culiong, Salcedo Ilocos Sur",07/11/2005,Valenzuela City,Edelyn Delos Santos,Edwin Valdez,Single,Student,College,Student,0,None,Father,kankana-ey
+129,1,Valdez,Anthony James,Delos Santos,,Male,"Culiong, Salcedo Ilocos Sur",09/01/2008,Caloocan City,Edelyn Delos Santos,Edwin Valdez,Single,OSY,High School Undergrad,Unemployed,0,None,Father,kankana-ey
+130,1,Valdez,Andrei,Delos Santos,,Male,"Culiong, Salcedo Ilocos Sur",21/10/2010,Caloocan City,Edelyn Delos Santos,Edwin Valdez,Single,Student,High School,Student,0,None,Father,kankana-ey
+131,1,Valdez,Anika,Delos Santos,,Female,"Culiong, Salcedo Ilocos Sur", 21/02/2012,"Culiong,Salcedo I.S",Edelyn Delos Santos,Edwin Valdez,Single,Student,High School,Student,0,None,Father,kankana-ey
+132,7,Daluyen,Candida,Marquez,,Female,"Culiong, Salcedo Ilocos Sur",11/10/1951,Salcedo I.S, Perpetua Alay-ay,Calixto Marquez,Widowed,HousesWife,Elementary,Unemployed,0,Senior,Head,kankana-ey
+133,7,Daluyen,Robert,Marquez,,Male,"Culiong, Salcedo Ilocos Sur",27/09/1981,Culiong Salcedo I.S,Unknown,Candida Marquez,Single,None,High School,Unemployed,0,PWD,Mother,kankana-ey
+134,7,Daluyen,Franklin,Marquez,,Male,"Culiong, Salcedo Ilocos Sur",25/02/1979,Culiong Salcedo I.S,Unknown,Candida Marquez,Single,Farmer,High School,Self-employed,4000,None,Mother,kankana-ey
+135,13,Quero,Melanie,Baguioen,,Female,"Culiong, Salcedo Ilocos Sur",08/07/1993,Culiong Salcedo I.S,Meriam Sagay,Larry Baguioen,Married,Dental Assistant,College Undergrad,Employed,4000,None,Father,kankana-ey
+136,13,Quero,Hannah Jihyo,Baguioen,,Female,"Culiong, Salcedo Ilocos Sur",14/12/2017,Reasonable Candon City,Melanie Baguioen,Mark Jordan Quero,Single,Student,Elementary,Student,0,None,Grandfather,igorot
+137,13,Quero,Mark Johan,Baguioen,,Male,"Culiong, Salcedo Ilocos Sur",25/10/2018,BGH Baguio City,Melanie Baguioen,Mark Jordan Quero,Single,Student,Elementary,Student,0,None,Grandfather,igorot
+138,13,Baguioen,Larry,Sapguian,,Male,"Culiong, Salcedo Ilocos Sur",17/03/1964,"Lorma, San Fernando, I.S",Felomina Sapguian,Eusebio Baguioen,Married,Farmer,High School,Self-employed,4400,None,Head,kankana-ey
+139,13,Baguioen,Meriam,Sagay,,Female,"Culiong, Salcedo Ilocos Sur",05/04/1965,"Culiong, Salcedo I.S",Monica Daluyen,Elias Sagay,Married,Housewife,High School Undergrad,Unemployed,0,None,Husband,kankana-ey
+140,13,Baguioen,Emily,Sagay,,Female,"Culiong, Salcedo Ilocos Sur",24/02/1997,"Culiong, Salcedo I.S",Meriam Sagay,Larry Baguioen,Single,None,High School,Unemployed,0,None,Father,kankana-ey
+141,15,Sagay,Delia,Garayan,,Female,"Culiong, Salcedo Ilocos Sur",05/07/1949,"Culiong, Salcedo I.S ",Alarica Daluyen,Robeno Garayan,Widowed,Farmer,Elementary,Self-employed,"2,200",Senior,Head,kankana-ey
+142,15,Sagay,Godofredo,Garayan,,Male,"Culiong, Salcedo Ilocos Sur",07/01/1979,"Culiong,Salcedo I.S",Delia Garayan,Unknown,Married,Executive Secretary,College,Employed,10000,None,Mother,kankana-ey
+143,20,Gabano,Wilmer,Bagni,,Male,"Culiong, Salcedo Ilocos Sur",17/07/1983,Cotabato City,Unknown,Unknown,Single,Farmer,College,Self-employed,10000,None,Head,Non_IP
+144,22,Tudayan,Ephraim Will,Bernales,,Male,"Culiong, Salcedo Ilocos Sur",20/09/1994,Culiong Salcedo I.S,Nora Bernales,Ephraim Tudayan,Single,None,College Undergrad,Unemployed,0,None,Head,kankana-ey
+145,22,Tudayan,Noreen Gail,Bernales,,Female,"Culiong, Salcedo Ilocos Sur",09/10/1995,"Culiong,Salcedo I.S",Nora Bernales,Ephraim Tudayan,Single,None,College,Unemployed,0,None,Brother,kankana-ey
+146,22,Tudayan,Ephraim,Bernales,,Male,"Culiong, Salcedo Ilocos Sur",09/04/1956,"Culiong,Salcedo I.S",Unknown,Unknown,Married,None,College,Unemployed,0,Senior,Son,kankana-ey
+147,22,Tudayan,Nora,Baguioen,,Female,"Culiong, Salcedo Ilocos Sur",30/10/1962,"Culiong,Salcedo I.S",Unknown,Unknown,Married,OFW,College,Employed,"20,000",OFW,Son,kankana-ey
+148,24,Sapguian,Alvaro,Assuit,,Male,"Culiong, Salcedo Ilocos Sur",14/04/1952,"Culiong,Salcedo I.S",Unknown,Unknown,Married,Farmer,High School,Self-employed,15000,Senior,Head,kankana-ey
+149,24,Sapguian,Marilyn,Bernales,,Female,"Culiong, Salcedo Ilocos Sur",24/07/1955,Nagtablaan Sta. Lucia I.S,Unknown,Unknown,Married,None,High School Undergrad,Unemployed,0,Senior,Husband,kankana-ey
+150,24,Sapguian,Erwin,Bernales,,Male,"Culiong, Salcedo Ilocos Sur",08/07/1980,"Culiong,Salcedo I.S",Marilyn Bernales,Alvaro Sapguian,Single,None,College,Unemployed,0,none,Father,kankana-ey
+151,28,Valdez,Rolando,Dumalanta,,Male,"Culiong, Salcedo Ilocos Sur",06/03/1976,"Culiong,Salcedo I.S",Feleciana Dumalanta,George Valdez,Married,Farmer,High School,Employed,2000,None,Head,kankana-ey
+152,28,Valdez,Victoria,Alip,,Female,"Culiong, Salcedo Ilocos Sur",06/03/1977,Santa Ilocos Sur,Alta Garcia Baget,Expezito Alip,Married,Housewife,College Undergrad,Unemployed,0,None,Husband,kankana-ey
+153,28,Valdez,Arvin Dane,Alip,,Male,"Culiong, Salcedo Ilocos Sur",03/01/1999,Santa Ilocos Sur,Victoria Alip,Rolando Valdez,Single,Insurance,College,Employed,5000,None,Father,kankana-ey
+154,28,Valdez,Carls Valentine,Alip,,Male,"Culiong, Salcedo Ilocos Sur",14/02/2009,Candon City I.S,Victoria Alip,Rolando Valdez,Single,Student,High School,Student,0,None,Father,kankana-ey
+155,31,Marquez,Marina,Vilog,,Female,"Culiong, Salcedo Ilocos Sur",24/01/1947,Sta. Lucia District Hospital,Francisca Marquez,Agusto Vilog,Widowed,None,Elementary Undergrad,Unemployed,0,Senior,Head,kankana-ey
+156,31,Gamboa,Gina,Marquez,,Female,"Culiong, Salcedo Ilocos Sur",11/07/1986,Sta. Lucia District Hospital,Marina Marquez,Unknown,Sep,None,Elementary Undergrad,Unemployed,0,None,Mother,kankana-ey
+157,31,Col-long ,Geraldson,Agrisola,,Male,"Culiong, Salcedo Ilocos Sur",14/04/1981,Salcedo I.S,Benilda Agrisola,Arnold Col-long,Live In,Online Seller,High School Undergrad,Self-employed,10000,None,Mother In Law,kankana-ey
+158,31,Col-long ,Gieson Arshman,Marquez,,Male,"Culiong, Salcedo Ilocos Sur",28/05/2023,"San Fernando City, L.U",Gina Marquez,Geraldson Col-long,Single,None,none,Unemployed,0,None,Grandmother,kankana-ey
+159,34,Isidro,Michael Jay,Nabutil,,Male,"Culiong, Salcedo Ilocos Sur",04/09/1997,Tagudin I.S,Unknown,Edmundo Isidro,Single,Laborer,College Undergrad,Employed,5000,None,Head,kankana-ey
+160,34,Isidro,Emma,Banno,,Female,"Culiong, Salcedo Ilocos Sur",19/07/1996,Culiong Salcedo I.S,Unknown,Unknown,Widowed,None,High School,Unemployed,0,Senior,Grandmother,kankana-ey
+161,34,Isidro,Edmundo,Banno,,Male,"Culiong, Salcedo Ilocos Sur",02/01/1967,Culiong Salcedo I.S,Emma Banno,Unknown,Widowed,OFW,College,Employed,10000,OFW,Son,kankana-ey
+162,34,Isidro,Edmalyn,Nabutil,,Female,"Culiong, Salcedo Ilocos Sur",26/08/1992,Tagudin I.S,Unknown,Edmundo Isidro,Single,Dental Assistant,College,Employed,10000,None,Brother,kankana-ey
+163,35,Gat-eb,Modesto ,Bernales,,Male,"Culiong, Salcedo Ilocos Sur",02/05/1972,Nagtablaan Sta. Lucia I.S,Lourdes Bernales,Jeremias Gat-eb,Married,Farmer,High School,Self-employed,5000,None,Head,kankana-ey
+164,35,Gat-eb,Alicia,Alfaro,,Female,"Culiong, Salcedo Ilocos Sur",24/04/1973,Culiong Salcedo I.S,Emma Marquez,Marino Alfaro,Married,Housewife,High School,Unemployed,0,None,Husband,kankana-ey
+165,35,Gat-eb,Janelle,Alfaro,,Female,"Culiong, Salcedo Ilocos Sur",03/07/2005,Culiong Salcedo I.S,Alicia Alfaro,Modesto Gat-eb,Single,Student,College,Student,0,None,Father,kankana-ey
+166,37,Cunanan,Rebecca,Vilog,,Female,"Culiong, Salcedo Ilocos Sur",03/08/1967,Culiong Salcedo I.S,Unknown,Unknown,Single,Housekeeper,High School Undergrad,Employed,6000,Solo Parent,Head,kankana-ey
+167,37,Vilog,Lolita,Viloria,,Female,"Culiong, Salcedo Ilocos Sur",01/10/1960,Culiong Salcedo I.S,Unknown,Unknown,Single,None,High School Undergrad,Unemployed,0,Senior,Sister,kankana-ey
+168,37,Cunanan,Ellyza ,Vilog,,Female,"Culiong, Salcedo Ilocos Sur",21/05/2003,Culiong Salcedo I.S,Rebecca Vilog,Alvin Cunanan,Single,Student,College,Student,0,None,Mother,kankana-ey
+169,37,Cunanan,James,Vilog,,Female,"Culiong, Salcedo Ilocos Sur",09/12/2007,Culiong Salcedo I.S,Rebecca Vilog,Alvin Cunanan,Single,Student,High School,Student,0,None,Mother,kankana-ey
+170,37,Cunanan,Erica,Vilog,,Female,"Culiong, Salcedo Ilocos Sur",03/04/2000,Culiong Salcedo I.S,Rebecca Vilog,Alvin Cunanan,Live In,Promo Diser,College,Employed,10000,None,Mother,kankana-ey
+171,37,Dasig,Pablo,Deocampo,Jr.,Male,"Culiong, Salcedo Ilocos Sur",28/10/2000,Siabong Samar,Rosalinda Deocampo,Pablo Dasig Sr.,Live In,Sales Man,High School,Employed,10000,None,Mother In Law,Non_IP
+172,38,Escritor,Lorna,Isidro,,Female,"Culiong, Salcedo Ilocos Sur",03/04/1978,Culiong Salcedo I.S,Leticia Vilog,Unknown,Live In,Barangay Official,College Undergrad,Employed,4400,None,Head,kankana-ey
+173,38,Isidro,Leticia,Vilog,,Female,"Culiong, Salcedo Ilocos Sur",15/06/1954,Culiong Salcedo I.S,Unknown,Unknown,Widowed,None,Elementary Undergrad,Unemployed,0,Senior,Daugther,kankana-ey
+174,38,Escritor,Michael ,Isidro,,Male,"Culiong, Salcedo Ilocos Sur",19/12/2011,Culiong Salcedo I.S,Lorna Isidro,Roderick Iscritor,Single,Student,High School,Student,0,None,Mother,kankana-ey
+175,38,Tamayo,Henry,Buis,,Male,"Culiong, Salcedo Ilocos Sur",17/11/1977,Burgos I. S,Meriam Buis,Unknown,Live In,Poultry Boy,High School Undergrad,Employed,5000,None,Live In,kankana-ey
+176,39,Vilog,Crisanta,Borlagdan,,Female,"Culiong, Salcedo Ilocos Sur",16/04/1976,"Oson, Tabaco Albay",Trinidad Borlagdan,Unknown,Widowed,Farmer,Elementary,Self-employed,5000,Solo Parent,Head,cabahug
+177,39,Vilog,Levi,Borlagdan,,Male,"Culiong, Salcedo Ilocos Sur",23/01/1999,"Oson, Tabaco Albay",Crisanta Borlagdan,Unknown,Single,Baker,High School,Employed,7000,None,Mother,cabahug
+178,39,Vilog,Chrisber,Borlagdan,,Male,"Culiong, Salcedo Ilocos Sur",19/03/2004,Culiong Salcedo I.S,Crisanta Borlagdan,Unknown,Single,Student,College,Student,0,None,Mother,cabahug
+179,41,Mangay-ayam,Lanie,Fayofay,,Female,"Culiong, Salcedo Ilocos Sur",27/12/1959,"Lipanto, Mankayan Benguet",Unknown,Unknown,Widowed,None,College Undergrad,Unemployed,0,Senior,Head,kankana-ey
+180,43,Garabilez,Imelda,Mangay-ayam,,Female,"Culiong, Salcedo Ilocos Sur",16/02/1969,"Lipanto, Mankayan Benguet",Unknown,Unknown,Married,None,College,Unemployed,0,None,Head,kankana-ey
+181,43,Garabilez,John Roland,Mangay-ayam,,Male,"Culiong, Salcedo Ilocos Sur",04/01/2001,Culiong Salcedo I.S,Imelda Mangay-ayam,Rolando Garabilez,Single,Engr. Office,College,Employed,10000,None,Mother,kankana-ey
+182,44,Mangay-ayam,Mauricio,Habon,,Male,"Culiong, Salcedo Ilocos Sur",24/07/1959,Sta. Lucia District Hospital,Quintina Valdez,Unknown,Married,Farmer,Elementary Undergrad,Self-employed,3000,Senior,Head,kankana-ey
+183,44,Mangay-ayam,Estela,Bistoyong,,Female,"Culiong, Salcedo Ilocos Sur",28/12/1960,Suyo I.S,Lolita Jamon,Bernabe Bistoyong,Married,BHW,High School,Employed,1000,Senior,Husband,kankana-ey
+184,44,Mangay-ayam,Kyla,Bistoyong,,Female,"Culiong, Salcedo Ilocos Sur",09/02/2005,Tagudin I.S,Estela Habon,Mauricio Mangay-ayam,Single,Student,College,Student,0,None,Father,kankana-ey
+185,46,Mangay-ayam,Romeo,Banno,,Male,"Culiong, Salcedo Ilocos Sur",03/09/1963,Nagtablaan Sta. Lucia I.S,Milagros Banno,Marcelino Mangay-ayam,Single,Farmer,College,Employed,1000,Senior,Head,kankana-ey
+186,46,Mangay-ayam,Milagros,Banno,,Female,"Culiong, Salcedo Ilocos Sur",10/11/1942,Culiong Salcedo I.S,Unknown,Unknown,Married,None,Elementary,Unemployed,0,Senior,Son,kankana-ey
+187,46,Mangay-ayam,Marcelino ,Habon,,Male,"Culiong, Salcedo Ilocos Sur",10/08/1943,Nagtablaan Sta. Lucia I.S,Unknown,Unknown,Married,None,Elementary Undergrad,Unemployed,0,Senior,Son,kankana-ey
+188,47,Mangay-ayam,Romel,Vilog,,Male,"Culiong, Salcedo Ilocos Sur",12/05/1976,Culiong Salcedo I.S,Unknown,Unknown,Single,Farmer,Elementary Undergrad,Employed,2000,None,Head,kankana-ey
+189,47,Mangay-ayam,Sheila,None,,Female,"Culiong, Salcedo Ilocos Sur",05/06/2003,Culiong Salcedo I.S,Shirley Vilog,Unknown,Single,Housekeeper,College Undergrad,Employed,6000,None,Uncle,kankana-ey
+190,48,Castillo ,Loreto ,Destur,Jr.,Male,"Culiong, Salcedo Ilocos Sur",11/12/1983,Manila,Elvera Destur,Loreto Castillo Sr.,Live In,Construction Worker,High School,Employed,15000,None,Head,
+191,48,Mangay-ayam,Shirley,Vilog,,Female,"Culiong, Salcedo Ilocos Sur",30/08/1997,Culiong Salcedo I.S,Unknown,Unknown,Live In,Housewife,High School,Unemployed,0,None,Live In,kankana-ey
+192,48,Castillo ,Lore Justine,Destur,,Male,"Culiong, Salcedo Ilocos Sur",24/11/2005,Visayas,Cristy Verdejo,Loreto Castillo Jr.,Single,Vendor,High School Undergrad,Employed,10000,None,Father,
+193,48,Castillo ,Joshua ,Destur,,Male,"Culiong, Salcedo Ilocos Sur",07/08/2007,Sta. Lucia District Hospital,Cristy Verdejo,Loreto Castillo Jr.,Single,Poultry Boy,Elementary Undergrad,Employed,5000,None,Father,
+194,48,Castillo ,james,Destur,,Male,"Culiong, Salcedo Ilocos Sur",09/08/2009,Sta. Lucia District Hospital,Cristy Verdejo,Loreto Castillo Jr.,Single,Student,High School,Student,0,4P's,Father,
+195,49,Baguioen,Jerry ,Sapguian,,Male,"Culiong, Salcedo Ilocos Sur",10/07/1962,Culiong Salcedo I.S,Unknown,Unknown,Married,Farmer,High School,Self-employed,7000,Senior,Head,kankana-ey
+196,49,Baguioen,Jovita,Bal-iyang,,Female,"Culiong, Salcedo Ilocos Sur",04/01/1963,Poblacion Quirino I.S,Unknown,Unknown,Married,Farmer,High School,Employed,5000,Senior,Husband,kankana-ey
+197,49,Baguioen,Jerielyn May,Bal-iyang,,Female,"Culiong, Salcedo Ilocos Sur",21/12/2001,Sta. Lucia District Hospital,Jovita Bal-iyang,Jerry Baguioen,Single,Office Staff,College,Employed,10000,None,Father,kankana-ey
+198,50,Caranto,Camilo,Papa,,Male,"Culiong, Salcedo Ilocos Sur",07/04/1981,"Tumauni, Isabela",Jesusa Acorda,Jaime Caranto,Married,Farmer,College,Self-employed,4000,None,Head,
+199,50,Caranto,Raniebel,Tumapon,,Female,"Culiong, Salcedo Ilocos Sur",09/08/1982,"San Fernando City, L.U",Avelina Gat-eb,Unknown,Married,Housewife,College,Unemployed,0,None,Husband,kankana-ey
+200,50,Caranto,Arcee Brian,Tumapon,,Male,"Culiong, Salcedo Ilocos Sur",19/12/2008,"San Fernando City, L.U",Raniebel Pelayan,Camilo Caranto,Single,Student,High School,Student,0,None,Father,kankana-ey
+201,50,Caranto,Kianne Divine,Tumapon,,Female,"Culiong, Salcedo Ilocos Sur",14/02/2012,"San Fernando City, L.U",Raniebel Pelayan,Camilo Caranto,Single,Student,High School,Student,0,None,Father,kankana-ey
+202,50,Caranto,Clark Aron ,Tumapon,,Male,"Culiong, Salcedo Ilocos Sur",05/07/2020,Tagudin I.S,Raniebel Pelayan,Camilo Caranto,Single,None,None,Unemployed,0,None,Father,kankana-ey
+203,50,Tumapon,Avelina,Pelayan,,Female,"Culiong, Salcedo Ilocos Sur",28/11/1953,Culiong Salcedo I.S,Unknown,Unknown,Widowed,None,College Undergrad,Unemployed,0,Senior,Mother In Law,kankana-ey
+204,52,Tudayan,Rafael,Apusen,Jr.,Male,"Culiong, Salcedo Ilocos Sur",04/02/1956,"Pias, Salcedo I.S",Unknown,Unknown,Married,Farmer,College Undergrad,Self-employed,5000,Senior,Head,kankana-ey
+205,52,Tudayan,Remedios,Pasot,,Female,"Culiong, Salcedo Ilocos Sur",21/05/1969,Cervantes I.S,Unknown,Unknown,Married,Housewife,Elementary Undergrad,Unemployed,0,None,Husband,kankana-ey
+206,52,Tudayan,Lea Myrr,Pasot,,Female,"Culiong, Salcedo Ilocos Sur",07/08/2009,Tagudin I.S,Remedios Pasot,RafaeL Tudayan Jr.,Single,Student,High School,Student,0,None,Father,kankana-ey
+207,54,Garayan,Almario,Marquez,,Male,"Culiong, Salcedo Ilocos Sur",02/12/1972,Culiong Salcedo I.S,Rose Marquez,Unknown,Married,Construction worker,High School,Employed,8000,None,Head,kankana-ey
+208,54,Garayan,Susana,Duli,,Female,"Culiong, Salcedo Ilocos Sur",28/03/1967,Dapdappig Gregorio Del Pilar,Apolonia Dal-iwen,Jaciento Duli,Married,Housewife,Elementary,Unemployed,0,None,Husband,kankana-ey
+209,59,Pasot,Josephine ,Ingkad,,Female,"Culiong, Salcedo Ilocos Sur",03/04/1967,Cervantes I.S,Unknown,Unknown,Widowed,Farmer labourer,High School Undergrad,Employed,3000,None,Head,kankana-ey
+210,59,Valdez,Jing-Jing,Pasot,,Female,"Culiong, Salcedo Ilocos Sur",02/12/1992,Quezon City,Josephine Ingkad,Unknown,Single,None,Elementary Undergrad,Unemployed,0,PWD,Mother,kankana-ey
+211,56,Cortez,Jayson,Raguindin ,,Male,"Culiong, Salcedo Ilocos Sur",16/02/1993,Villa Hermosa Sta. Cruz I.S,Teresita Dalang,Edison Cortez,Married,Laborer,High School Undergrad,Employed,7000,None,Head,kankana-ey
+212,56,Cortez,Gladys,Garayan,,Female,"Culiong, Salcedo Ilocos Sur",14/09/1993,Dapdappig Gregorio Del Pilar,Susana Duli,Almario Garayan,Married,Dishwasher,College,Employed,6000,None,Husband,kankana-ey
+213,56,Cortez,Princess Kylee,Garayan,,Female,"Culiong, Salcedo Ilocos Sur",09/12/2016,"San Fernando City, L.U",Gladys Garayan,Jayson Cortez,Single,Student,Elementary,Student,0,None,Father,kankana-ey
+214,61,Trondillo,Frediemar ,Macalingay,,Male,"Culiong, Salcedo Ilocos Sur",23/12/1978,Baggao Cagayan,Jalita Macalingay,Demetro Trondillo,Married,Shoe Maker,High School Undergrad,Self-employed,6000,None,Father,ibanag
+215,61,Trondillo,Gemma,Garayan,,Female,"Culiong, Salcedo Ilocos Sur",24/05/1976,Culiong Salcedo I.S,Rose Marquez,Unknown,Married,Sales Lady,High School,Employed,9000,None,Husband,kankana-ey
+216,61,Trondillo,Angel Fredielyn,Garayan,,Female,"Culiong, Salcedo Ilocos Sur",15/08/2005,Tagudin I.S,Gemma Garayan,Frediemar Trondillo,Single,Student,College,Student,0,None,Father,ibanag
+217,61,Trondillo,Angelyn,Garayan,,Female,"Culiong, Salcedo Ilocos Sur",27/10/2007,Sta. Lucia District Hospital,Gemma Garayan,Frediemar Trondillo,Single,Student,High School,Student,0,None,Father,ibanag
+218,61,Trondillo,Roosmarijn,Garayan,,Female,"Culiong, Salcedo Ilocos Sur",25/06/2009,"San Antonio, Candon City",Gemma Garayan,Frediemar Trondillo,Single,Student,High School,Student,0,None,Father,ibanag
+219,62,Dalmacio,Margarita,Balio-an,,Female,"Culiong, Salcedo Ilocos Sur",14/01/1962,Del Pilar Gregorio Del Pilar,Unknown,Unknown,Widowed,Vendor,Elementary,Self-employed,1000,Senior,Head,kankana-ey
+220,62,Alusen,Evner,Balio-an,,Male,"Culiong, Salcedo Ilocos Sur",18/10/1985,Salcedo I.S,Margarita Balio-an,Unknown,Single,Research Assistant,College,Employed,2000,None,Mother,kankana-ey
+221,62,Alusen,Hoven,Balio-an,,Male,"Culiong, Salcedo Ilocos Sur",25/10/1992,Culiong Salcedo I.S,Margarita Balio-an,Unknown,Single,None,College,Unemployed,0,None,Mother,kankana-ey
+222,62,Allagay,Corie,Consulacion,,Female,"Culiong, Salcedo Ilocos Sur",14/04/1987,"Gregorio Del Pilar, I.S",Emelita Consulacion,Mario Allagay,Single,Housekeeper,High School Undergrad,Employed,5000,PWD,Aunt,kankana-ey
+223,63,Garayan,Roger ,Daluyen,,Male,"Culiong, Salcedo Ilocos Sur",17/09/1970,Culiong Salcedo I.S,Unknown,Unknown,Seperated,Farmer,High School Undergrad,Self-employed,5000,None,Head,kankana-ey
+224,64,Vilog,Dante,Viloria,,Male,"Culiong, Salcedo Ilocos Sur",16/12/1969,Culiong Salcedo I.S,Unknown,Unknown,Live In,Farmer,High School,Self-employed,3000,None,Head,kankana-ey
+225,64,Gacayan,Elvie,Casison,,Female,"Culiong, Salcedo Ilocos Sur",05/08/1969,"San Fernando City, L.U",Bonifacia Casison,Marcos Gacayan,Live In,Housewife,High School,Unemployed,0,None,Live In,kankana-ey
+226,64,Valdez,Axel Edward,Talosa,,Male,"Culiong, Salcedo Ilocos Sur",08/09/2022,"Lorma, San Fernando, I.S",Jonalyn Talosa,Wilbert Valdez,Single,none,None,Unemployed,0,None,Grandfather,kankana-ey
+227,67,Ellasos,Gerby,Ruizo,,Male,"Culiong, Salcedo Ilocos Sur",10/03/1988,"Sapang Palay, Bulacan",Rosalinda Ruizo,Florante Ellasos,Married,Laborer,College,Self-employed,8000,None,Head,kankana-ey
+228,67,Ellasos,Prima Kimberly,Dora,,Female,"Culiong, Salcedo Ilocos Sur",01/01/1989,Sta. Lucia District Hospital,Crispina River,Wilfredo Dura,Married,Manicurist,High School,Self-employed,4000,None,Husband,kankana-ey
+229,67,Ellasos,Mark Kerby,Dura,,Male,"Culiong, Salcedo Ilocos Sur",16/09/2005,Sta. Lucia District Hospital,Prima Dora,Gerby Ellasos,Single,Student,College,Student,0,4P's,Father,kankana-ey
+230,67,Ellasos,Allyna Mae,Dura,,Female,"Culiong, Salcedo Ilocos Sur",20/11/2010,Tatay Rizal,Prima Dora,Gerby Ellasos,Single,Student,High School,Student,0,4P's,Father,kankana-ey
+231,67,Luz,Angel,Dura,,Female,"Culiong, Salcedo Ilocos Sur",13/09/2006,Sta. Lucia District Hospital,Prima Dora,Gerby Ellasos,Single,Student,College,Student,0,4P's,Father,kankana-ey
+232,71,Habon,Alfonso,Foronda,,Male,"Culiong, Salcedo Ilocos Sur",19/08/1972,Culiong Salcedo I.S,Unknown,Unknown,Married,Farmer,High School,Self-employed,2000,None,Head,kankana-ey
+233,71,Habon,Lourdes,Puaso,,Female,"Culiong, Salcedo Ilocos Sur",10/08/1969,Samar Leyte,Unknown,Unknown,Married,Housewife,Elementary Undergrad,Unemployed,0,None,Husband,kankana-ey
+234,71,Habon,John Paul,Puaso,,Male,"Culiong, Salcedo Ilocos Sur",20/05/1997,Culiong Salcedo I.S,Lourdes Puaso,Alfonso Habon,Single,Delivery Boy,High School,Employed,8000,None,Father,kankana-ey
+235,71,Del Rosario,Lexenne Mira,Habon,,Female,"Culiong, Salcedo Ilocos Sur",25/08/2020,Candon City I.S,Abegail Habon,Rodrigo Del Rosario,Single,None,None,Unemployed,0,None,Grandfather,kankana-ey
+236,68,Valdez,Agapito,Dumalanta,,Male,"Culiong, Salcedo Ilocos Sur",06/09/1960,Culiong Salcedo I.S,Feleciana Dumalanta,George Valdez,Married,Farmer,Elementary,Employed,3000,Senior,Head,kankana-ey
+237,68,Valdez,Milagros,Suyat,,Female,"Culiong, Salcedo Ilocos Sur",25/03/1961,"Pias, Salcedo I.S",Pelomina Encarnacion,Solomon Suyat,Married,Housewife,Elementary,Unemployed,0,Senior,Husband,kankana-ey
+238,68,Lagalo,Mary Rose,Valdez,,Female,"Culiong, Salcedo Ilocos Sur",08/09/2005,Culiong Salcedo I.S,Amilyn Valdez,Rolante Lagalo Sr.,Single,Student,College,Student,0,4P's,Grandfather,kankana-ey
+239,68,Lagalo,Rolante,Valdez,Jr.,Male,"Culiong, Salcedo Ilocos Sur",30/10/2007,Culiong Salcedo I.S,Amilyn Valdez,Rolante Lagalo Sr.,Single,Student,High School,Student,0,4P's,Grandfather,kankana-ey
+240,68,Lagalo,Aldwin,Valdez,,Male,"Culiong, Salcedo Ilocos Sur",12/07/2009,Culiong Salcedo I.S,Amilyn Valdez,Rolante Lagalo Sr.,Single,Student,High School,Student,0,4P's,Grandfather,kankana-ey
+241,68,Javinar,Sandra Lee,Valdez,,Female,"Culiong, Salcedo Ilocos Sur",10/08/2012,Culiong Salcedo I.S,Amilyn Valdez,Rolante Lagalo Sr.,Single,Student,Elementary,Student,0,none,Grandfather,kankana-ey
+242,69,Valdez,Lorenzo,Habon,,Male,"Culiong, Salcedo Ilocos Sur",27/09/1957,Culiong Salcedo I.S,Unknown,Unknown,Married,Farmer,High School,Self-employed,3000,Senior,Head,kankana-ey
+243,69,Valdez,Lene,Peralta,,Female,"Culiong, Salcedo Ilocos Sur",26/09/1968,Cotabato City,Unknown,Unknown,Married,Housewife,High School Undergrad,Unemployed,0,None,Husband,kankana-ey
+244,69,Valdez,Joshua ,Peralta,,Male,"Culiong, Salcedo Ilocos Sur",10/02/1998,Cotabato City,Lene Peralta,Lorenzo Valdez,Single,Salon,College Undergrad,Employed,10000,None,Father,kankana-ey
+245,70,Baldrez,Filomana,Garabilez,,Female,"Culiong, Salcedo Ilocos Sur",22/06/1938,"Santiburcio, Salcedo I.S.",Unknown,Unknown,Widowed,None,Elementary,Unemployed,0,Senior,Head,kankana-ey
+246,70,Baldrez,Jonathan,Rivera,,Male,"Culiong, Salcedo Ilocos Sur",23/06/2003,Tagudin I.S,Cristeta Rivera,Johnny Baldrez,Single,Farmer,High School,Self-employed,5000,None,Grandmother,kankana-ey
+247,70,Baldrez,Christopher ,Rivera,,Male,"Culiong, Salcedo Ilocos Sur",23/10/2005,Salcedo I.S,Cristeta Rivera,Johnny Baldrez,Single,Farmer,High School,Self-employed,5000,None,Grandmother,kankana-ey
+248,72,Rivera,Crispina,Habon,,Female,"Culiong, Salcedo Ilocos Sur",07/01/1963,Vical Sta. Lucia I.S,Unknown,Unknown,Seperated,Housewife,Elementary Undergrad,Unemployed,0,Senior,Head,kankana-ey
+249,72,Guitba,Jessica,Rivera,,Female,"Culiong, Salcedo Ilocos Sur",17/09/1990,Vical Sta. Lucia I.S,Crispina Rivera,Wilfredo Dura,Widowed,Office Staff,College,Employed,15000,None,Mother,kankana-ey
+250,73,Vilog,Virgilio,Alaska,,Male,"Culiong, Salcedo Ilocos Sur",05/10/1952,"Santiburcio, Salcedo I.S.",Unknown,Unknown,Married,Farmer,Elementary Undergrad,Self-employed,0,Senior,Head,kankana-ey
+251,73,Vilog,Brigida,Suyat,,Female,"Culiong, Salcedo Ilocos Sur",11/11/1957,Culiong Salcedo I.S,Unknown,Unknown,Married,None,Elementary,Unemployed,0,Senior,Husband,kankana-ey
+252,73,Tobias,Jaybel,Vilog,,Female,"Culiong, Salcedo Ilocos Sur",21/06/2001,Sta. Lucia District Hospital,Maribel Vilog,Jason Tobias,Single,Medical Rep.,College,Employed,10000,None,Grandfather,kankana-ey
+253,73,Tobias,Jaymar,Vilog,,Male,"Culiong, Salcedo Ilocos Sur",16/02/2006,Vigan City,Maribel Vilog,Jason Tobias,Single,Student,High School,Student,0,None,Grandfather,kankana-ey
+254,74,Tobias,Jason,Sotelo,,Male,"Culiong, Salcedo Ilocos Sur",26/08/1980,Sto. Domingo I.S,Remedios Sotelo,Alejandro Tobias,Married,Poultry Boy,College,Employed,5000,None,Head,kankana-ey
+255,74,Tobias,Maribel,Vilog,,Female,"Culiong, Salcedo Ilocos Sur",20/04/1980,Salcedo I.S,Brigida Suyat,Virgilio Vilog,Married,BNS,College Undergrad,Employed,1000,None,Husband,kankana-ey
+256,74,Tobias,Jayruz Jirvil,Vilog,,Male,"Culiong, Salcedo Ilocos Sur",05/08/2018,Candon City I.S,Maribel Vilog,Jason Tobias,Single,Student,Elementary,Student,0,None,Father,kankana-ey
+257,77,Vilog,Daniel,Viloria,,Male,"Culiong, Salcedo Ilocos Sur",07/01/1962,Culiong Salcedo I.S,Unknown,Unknown,Married,Farmer,Elementary Undergrad,Self-employed,7000,Senior,Head,kankana-ey
+258,77,Vilog,Irene ,Cadaeg,,Female,"Culiong, Salcedo Ilocos Sur",26/12/1968,"Mabatano, Del Pilar",Imelda Dao-asen,Constante Cadaeg,Married,Housewife,Elementary,Unemployed,0,None,Husband,kankana-ey
+259,77,Vilog,Nomer,Cadaeg,,Male,"Culiong, Salcedo Ilocos Sur",02/11/1997,Culiong Salcedo I.S,Irene Cadaeg,Daniel Vilog,Single,Soldier,College,Employed,30000,None,Father,kankana-ey
+260,77,Vilog,Christian,Cadaeg,,Male,"Culiong, Salcedo Ilocos Sur",23/12/1989,Culiong Salcedo I.S,Irene Cadaeg,Daniel Vilog,Single,Baker,Elementary,Employed,10000,None,Father,kankana-ey
+261,79,Habon,Federico,Valdez,,Male,"Culiong, Salcedo Ilocos Sur",28/09/1961,"Cabaroan San Tiburcio, Salcedo",Marcelina Valdez,Luis Habon,Married,Farmer,High School,Self-employed,4000,Senior,Head,kankana-ey
+262,79,Habon,Luz Vilma,Guillen,,Female,"Culiong, Salcedo Ilocos Sur",27/06/1958,Sta.Cruz I.S,Purificacion Lara,Antonio Guillen,Married,Housewife,College,Unemployed,0,Senior,Husband,kankana-ey
+263,79,Habon,Raymart,Guillen,,Male,"Culiong, Salcedo Ilocos Sur",19/05/1996,"Cabaroan San Tiburcio, Salcedo", Luz Vilma Guillen,Federico Habon,Single,Office Staff,College,Employed,10000,None,Father,kankana-ey
+264,79,Habon,Rachelle,Guillen,,Female,"Culiong, Salcedo Ilocos Sur",16/09/1998,"Cabaroan San Tiburcio, Salcedo",Luz Vilma Guillen,Federico Habon,Single,Office Staff,College,Employed,10000,None,Father,kankana-ey
+265,46,Bernales, Reynaldo,Baguioen,,Male,"Culiong, Salcedo Ilocos Sur",30/10/1953,Sta.Lucia I.S,Maria Baguioen,Amante Bernales,Married,Farmer,Elementary,Self-employed,5000,Senior,Father,kankana-ey
+266,46,Bernales,Betty,Bosito,,Female,"Culiong, Salcedo Ilocos Sur",14/07/1958,Abra,Juanita Javier,Alfredo Bosito,Married,Housewife,Elementary,Unemployed,0,Senior,Husband,kankana-ey
+267,46,Bernales,Rebentor,Bosito,,Male,"Culiong, Salcedo Ilocos Sur",09/05/1996,"Culiong, Salcedo Ilocos Sur",Betty Bosito,Reynaldo Bernales,Single,Farmer,Elementary,Self-employed,3000,None,Father,kankana-ey
+268,46,Haduca,Elyson,Sabado,,Male,"Culiong, Salcedo Ilocos Sur",09/05/1987,"Moncada, Tarlac",Mely Sabado,Eliseo haduca,Married,Farmer,High School,Self-employed,3000,None,FatherInLaw,kankana-ey
+269,46,Haduca,Reenabee,Bernales,,Female,"Culiong, Salcedo Ilocos Sur",18/02/1987,Salcedo I.S,Betty Bosito,Reynaldo Bernales,Married,HouseKeeping,High School,Unemployed,0,None,Father,kankana-ey
+270,46,Haduca,Reynelle Elyce,Bernales,,Female,"Culiong, Salcedo Ilocos Sur",29/01/2017,BGH Baguio City,Reenabee Bernales,Elyson Haduca,Single,Student,Elementary,Student,0,None,Grandfather,kankana-ey
+271,46,Bernales,Rhubee Rose,Bosito,,Female,"Culiong, Salcedo Ilocos Sur",23/09/1990,Salcedo I.S,Betty Bosito,Reynaldo Bernales,Single,Private Employee,College,Employed,5000,None,Father,kankana-ey
+272,36,Aben,Gaudencio,Pascua,Sr.,Male,"Culiong, Salcedo Ilocos Sur",30/08/1975,Nagtablaan Sta. Lucia I.S,Unknown,Unknown,Married,Farm Laborer,Elementary Undergrad,Employed,3000,None,Father,kankana-ey
+273,36,Aben,Annabel,Nillo,,Female,"Culiong, Salcedo Ilocos Sur",26/01/1980,Nagtablaan Sta. Lucia I.S,Unknown,Unknown,Married,Housewife,Elementary Undergrad,Unemployed,0,None,Husband,kankana-ey
+274,36,Aben,Aris,Nillo,,Male,"Culiong, Salcedo Ilocos Sur",07/02/2000,Nagtablaan Sta. Lucia I.S,Annabel Nillo,Gaudencio Aben,Single,Farm Laborer,Elementary Undergrad,Employed,2000,None,Father,kankana-ey
+275,36,Aben,Jomar,Nillo,,Male,"Culiong, Salcedo Ilocos Sur",28/12/1997,Sta Lucia District Hospital,Annabel Nillo,Gaudencio Aben,Single,Hose Company,High School Undergrad,Employed,5000,None,Father,kankana-ey
+276,36,Aben,Gaudencio,Nillo,Jr.,Male,"Culiong, Salcedo Ilocos Sur",15/02/2005,Sta. Lucia District Hospital,Annabel Nillo,Gaudencio Aben,Single,Farm Laborer,High School Undergrad,Employed,2000,None,Father,kankana-ey
+277,36,Aben,Angelica ,Nillo,,Female,"Culiong, Salcedo Ilocos Sur",17/06/2009,Sta. Lucia District Hospital,Annabel Nillo,Gaudencio Aben,Single,None,OSY,Unemployed,0,4P's,Father,kankana-ey
+278,36,Aben,Dianne,Nillo,,Female,"Culiong, Salcedo Ilocos Sur",19/02/2011,Sta Lucia District Hospital,Annabel Nillo,Gaudencio Aben,Single,Student,High School,Student,0,4P's,Father,kankana-ey
+279,36,Aben,Princess,Nillo,,Female,"Culiong, Salcedo Ilocos Sur",09/03/2013,Tagudin I.S,Annabel Nillo,Gaudencio Aben,Single,Student,Elementary,Student,0,4P's,Father,kankana-ey
+280,36,Aben,Santy,nillo,,Female,"Culiong, Salcedo Ilocos Sur",24/10/2014,Sta Lucia District Hospital,Annabel Nillo,Gaudencio Aben,Single,Student,Elementary,Student,0,none,Father,kankana-ey
+281,36,Aben,Angel,Nillo,,Female,"Culiong, Salcedo Ilocos Sur",01/11/2020,Candon City I.S,Annabel Nillo,Gaudencio Aben,Single,None,None,Unemployed,0,None,Father,kankana-ey
+282,45,Mangay-ayam,Rolly,Bistoyong,,Male,"Culiong, Salcedo Ilocos Sur",25/09/1986,"Culiong, Salcedo Ilocos Sur",Estela Habon,Marcelino Mangay-ayam,Single,Farmer,Elementary,Self-employed,3000,None,Head,kankana-ey
+283,42,Guitba,Josephine ,Mangay-ayam,,Female,"Culiong, Salcedo Ilocos Sur",12/04/1965,"Culiong, Salcedo Ilocos Sur",Milagros Banno,Marcelino Mangay-ayam,Widowed,Farmer,Elementary,Self-employed,3000,None,Head,kankana-ey
+284,42,Guitba,Jollymar,Mangay-ayam,,Male,"Culiong, Salcedo Ilocos Sur",25/10/1993,"San Tiburcio, Salcedo I.S",Josephine Mangay-ayam,Unknown,Married,Farmer,High School,Employed,1000,None,Mother,kankana-ey
+285,42,Guitba,Erika Jane,Butaya,,Female,"Culiong, Salcedo Ilocos Sur",24/01/1996,Marihatag Surigao Del Sur,Rebecca Galleta,Enrico Butaya,Married,Housewife,College,Unemployed,0,None,Mother In Law,kankana-ey
+286,42,Guitba,Elisha Kelie,Butaya,,Female,"Culiong, Salcedo Ilocos Sur",11/04/2022,Ilocos Sur District Hospital Salcedo,Erika Jane Butaya,Jollymar Guitba,Single,None,None,Unemployed,0,None,Grandmother,kankana-ey
+287,42,Guitba,Kelvin,Mangay-ayam,,Male,"Culiong, Salcedo Ilocos Sur",07/11/2000,"Culiong, Salcedo Ilocos Sur",Josephine Mangay-ayam,Unknown,Single,Farmer,High School,Employed,1000,None,Mother,kankana-ey
+288,75,Bernales,Corazon,Espejo,,Female,"Culiong, Salcedo Ilocos Sur",29/12/1945, Nagtablaan Sta.Lucia I.S,Unknown,Unknown,Widowed,HousesWife,Elementary,Employed,5000,Senior,Head,kankana-ey
+289,60,Isidro,Judy,Banno,,Male,"Culiong, Salcedo Ilocos Sur",19/07/1973,"Culiong, Salcedo Ilocos Sur",Emma Mangudang,Unknown,Married,Government Employee,College,Self-employed,5510,None,Head,kankana-ey
+290,60,Isidro,May Ann Joy,Manzano,,Female,"Culiong, Salcedo Ilocos Sur",12/05/1976,Kaliwakiw Salcedo I.S,Soledad  Gomintong,Unknown,Married,"Government 
+Employee",College,Employed,25000,None,Husband,kankana-ey
+291,60,Isidro,John Mark,Manzano,,Male,"Culiong, Salcedo Ilocos Sur",20/02/2002,"Culiong, Salcedo Ilocos Sur",May Ann Joy Manzano,Judy Isidro,Single,Student,College,Student,0,None,Father,kankana-ey
+292,60,Isidro,Jamela Me ,Manzano,,Female,"Culiong, Salcedo Ilocos Sur",11/02/2007,"Culiong, Salcedo Ilocos Sur",May Ann Joy Manzano,Judy Isidro,Single,Student,High School,Student,0,None,Father,kankana-ey
