@@ -538,91 +538,137 @@ def display_stacked_bar_chart(data: pd.DataFrame) -> None:
         for sector, count in relevant_sectors.items():
             st.write(f"- {sector}: {count} residents")
 
-        
-# Streamlit App Layout
+# Set Streamlit page configuration
 st.set_page_config(page_title="eGovern", layout="wide")
+
+# App Title and Description
 st.title("Exploratory Data Visualization")
 st.markdown("""
 Welcome to the eGovern Residents Data Dashboard. Use the sidebar to filter the data based on various criteria and explore different aspects of the residents' demographics and socioeconomic status.
 """)
+
+# Sidebar for File Upload
 st.sidebar.header("Upload CSV File")
 uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
 
-data = None
+# Path to default CSV file
+DEFAULT_CSV = 'barangay-culiong30-11update.csv'
 
-if uploaded_file is not None:
-    @st.cache_data
-    def load_csv(file):
+@st.cache_data
+def load_csv(file_path=None):
+    if file_path:
         try:
-            csv = pd.read_csv(file, encoding="utf-8")  # Read using UTF-8 encoding
+            csv = pd.read_csv(file_path, encoding="utf-8")  # Read using UTF-8 encoding
         except UnicodeDecodeError:
-            csv = pd.read_csv(file, encoding="ISO-8859-1")  # Fallback encoding
-        return csv
+            csv = pd.read_csv(file_path, encoding="ISO-8859-1")  # Fallback encoding
+    else:
+        try:
+            csv = pd.read_csv(DEFAULT_CSV, encoding="utf-8")
+        except UnicodeDecodeError:
+            csv = pd.read_csv(DEFAULT_CSV, encoding="ISO-8859-1")
+    return csv
 
+# Determine whether to use uploaded file or default
+if uploaded_file is not None:
     data = load_csv(uploaded_file)
-    st.write("*Uploaded Data:*")
-    st.write(data)
+    st.write("### *Uploaded Data:*")
+    st.dataframe(data)
+    data_source = "Uploaded File"
+else:
+    try:
+        data = load_csv()
+        st.write("### *Default Data:*")
+        st.dataframe(data)
+        data_source = "Default CSV (barangay-culiong30-11update.csv)"
+    except FileNotFoundError:
+        st.error(f"Default CSV file '{DEFAULT_CSV}' not found. Please upload a CSV file.")
+        st.stop()
 
-    if not data.empty:
-        # Clean and validate data
-        data = clean_data(data)
-        # Sidebar Filters
-        st.sidebar.header("Filter Residents Data")
-        sex = st.sidebar.selectbox(
-            "Sex",
-            options=["All"] + sorted(data['Gender'].dropna().unique().tolist()),
-            help="Filter residents by gender."
-        )
-        civil_status = st.sidebar.selectbox(
-            "Civil Status",
-            options=["All"] + sorted(data['Civil_Status'].dropna().unique().tolist()),
-            help="Filter residents by civil status."
-        )
-        employment_status = st.sidebar.selectbox(
-            "Employment Status",
-            options=["All"] + sorted(data['Employment_Status'].dropna().unique().tolist()),
-            help="Filter residents by employment status."
-        )
-        education = st.sidebar.multiselect(
-            "Educational Attainment",
-            options=sorted(data['Educational_Attainment'].dropna().unique().tolist()),
-            default=sorted(data['Educational_Attainment'].dropna().unique().tolist()),
-            help="Filter residents by educational attainment."
-        )
+# Proceed only if data is loaded
+if not data.empty:
+    # Clean and validate data
+    data = clean_data(data)
+    
+    # Sidebar Filters
+    st.sidebar.header("Filter Residents Data")
+    
+    # Assuming the column names; adjust as per your CSV
+    # Replace 'Gender', 'Civil_Status', etc., with actual column names in your CSV
+    sex_options = ["All"] + sorted(data['Gender'].dropna().unique().tolist())
+    sex = st.sidebar.selectbox(
+        "Sex",
+        options=sex_options,
+        help="Filter residents by gender."
+    )
+    
+    civil_status_options = ["All"] + sorted(data['Civil_Status'].dropna().unique().tolist())
+    civil_status = st.sidebar.selectbox(
+        "Civil Status",
+        options=civil_status_options,
+        help="Filter residents by civil status."
+    )
+    
+    employment_status_options = ["All"] + sorted(data['Employment_Status'].dropna().unique().tolist())
+    employment_status = st.sidebar.selectbox(
+        "Employment Status",
+        options=employment_status_options,
+        help="Filter residents by employment status."
+    )
+    
+    education_options = sorted(data['Educational_Attainment'].dropna().unique().tolist())
+    education = st.sidebar.multiselect(
+        "Educational Attainment",
+        options=education_options,
+        default=education_options,
+        help="Filter residents by educational attainment."
+    )
+    
+    # Ensure 'age' column exists and is numeric
+    if 'age' in data.columns and pd.api.types.is_numeric_dtype(data['age']):
+        age_min = int(data['age'].min())
+        age_max = int(data['age'].max())
         age_range = st.sidebar.slider(
             "Age Range",
-            min_value=int(data['age'].min()),
-            max_value=int(data['age'].max()),
-            value=(int(data['age'].min()), int(data['age'].max())),
+            min_value=age_min,
+            max_value=age_max,
+            value=(age_min, age_max),
             help="Filter residents by age range."
         )
-
-        # Apply filters
-        if sex != "All":
-            data = data[data['Gender'] == sex]
-        if civil_status != "All":
-            data = data[data['Civil_Status'] == civil_status]
-        if employment_status != "All":
-            data = data[data['Employment_Status'] == employment_status]
-        if education:
-            data = data[data['Educational_Attainment'].isin(education)]
+    else:
+        st.sidebar.warning("Age column is missing or not numeric.")
+        age_range = (0, 100)  # Default range
+    
+    # Apply filters
+    if sex != "All":
+        data = data[data['Gender'] == sex]
+    if civil_status != "All":
+        data = data[data['Civil_Status'] == civil_status]
+    if employment_status != "All":
+        data = data[data['Employment_Status'] == employment_status]
+    if education:
+        data = data[data['Educational_Attainment'].isin(education)]
+    if 'age' in data.columns and pd.api.types.is_numeric_dtype(data['age']):
         data = data[(data['age'] >= age_range[0]) & (data['age'] <= age_range[1])]
+    
+    # Display Data Summary
+    st.markdown(f"**Data Source:** {data_source}")
+    st.markdown(f"**Total Records:** {len(data)}")
+    
+    # Display visualizations using tabs
+    tab1, tab2 = st.tabs([
+        "Demographics",
+        "Socioeconomic Status"
+    ])
 
-        # Display visualizations using tabs
-        tab1, tab2 = st.tabs([
-            "Demographics",
-            "Socioeconomic Status"
-        ])
-
-        with tab1:
-            display_treemap(data)
-            display_parallel_coordinates(data)
-            display_bubble_chart(data)
-            display_population_pyramid(data)
-        with tab2:
-            display_stacked_bar_chart(data)            
-            display_correlation_heatmap(data)
-            display_demographics(data)
+    with tab1:
+        display_treemap(data)
+        display_parallel_coordinates(data)
+        display_bubble_chart(data)
+        display_population_pyramid(data)
+    with tab2:
+        display_stacked_bar_chart(data)            
+        display_correlation_heatmap(data)
+        display_demographics(data)
 
 else:
-    st.info("Awaiting CSV file to be uploaded.")
+    st.warning("No data available after applying filters.")
