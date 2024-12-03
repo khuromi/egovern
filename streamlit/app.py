@@ -552,7 +552,7 @@ st.sidebar.header("Upload CSV File")
 uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
 
 # Path to default CSV file
-DEFAULT_CSV = 'barangay-culiong30-11update.csv'
+DEFAULT_CSV = 'https://raw.githubusercontent.com/bitress/egovern/refs/heads/main/streamlit/barangay-culiong30-11update.csv'
 
 @st.cache_data
 def load_csv(file_path=None):
