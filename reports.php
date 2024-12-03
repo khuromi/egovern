@@ -142,6 +142,7 @@ sort($ages);
                         </div>
                         <div class="container mt-3">
                             <button class="btn btn-primary btn-block" type="submit">Download PDF</button>
+                            <button id="downloadCSV" class="btn btn-success" style="margin-left: 10px;">Download CSV</button>
                         </div>
                     </div>
                     </form>
@@ -246,5 +247,26 @@ sort($ages);
             });
         });
     </script>
+
+<script>
+document.getElementById('downloadCSV').addEventListener('click', function() {
+    const table = document.querySelector('table'); // Assuming you have a table element with resident data
+    let csvContent = "data:text/csv;charset=utf-8,";
+    const rows = table.querySelectorAll('tr');
+
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('td, th');
+        const rowArray = Array.from(cells).map(cell => cell.textContent.trim());
+        csvContent += rowArray.join(',') + '\n';
+    });
+
+    // Create a link to download the CSV
+    const encodedUri = encodeURI(csvContent);
+    const downloadLink = document.createElement('a');
+    downloadLink.setAttribute('href', encodedUri);
+    downloadLink.setAttribute('download', 'residents_data.csv');
+    downloadLink.click();
+});
+</script>
 
 </html>
