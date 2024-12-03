@@ -49,7 +49,12 @@ if ($login->isRememberSet()) {
     <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
         
     <style>
- 
+         .jumbotron {
+            background-image: url("assets/img/y-so-serious-white.png");
+        }
+        .nah {
+            background-image: url("assets/img/bg.jpg");
+        }
 
 .container {
     display: flex;
@@ -171,7 +176,7 @@ input#show-password {
 
     </style>
 </head>
-<body>
+<body class=" jumbotron">
 
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
@@ -185,9 +190,9 @@ input#show-password {
 <div class="container">
 
     <div class="login-wrapper">
-        <div class="login-left">
+        <div class="login-left nah">
             <div class="brand">
-                <img src="assets/img/logo.jpg" alt="logo">
+                <img src="assets/img/logo.png" alt="logo">
             </div>
             <form method="POST" id="login_form">
                 <input type="hidden" name="token" id="token" value="<?= htmlentities(CSRF::generate("login_form")) ?>">
@@ -220,7 +225,7 @@ input#show-password {
         </div>
         <div class="login-right">
           <i><h2>WELCOME</h2></i>
-            <p class="text-justify">to Exploratory Data Visualization for Advancing Community Governance in Barangay Culliong, Salcedo, Ilocos Sur</p>
+            <p class="text-justify ">to Exploratory Data Visualization for Advancing Community Governance in Barangay Culliong, Salcedo, Ilocos Sur</p>
              <a class="btn btn-primary btn-block bg-primary" aria-current="page" href="about.php">About</a> 
         </div>
     </div>

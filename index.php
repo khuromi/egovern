@@ -29,6 +29,14 @@ if (!$login->isLoggedIn()) {
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     </head>
     <style>
+           .jumbotron {
+            background-image: url("assets/img/y-so-serious-white.png");
+        }
+    
+.nah {
+            background-image: url("assets/img/bg.jpg");
+        }
+
     #datasetDropdown {
         width: 150px; /* Reduce width */
         font-size: 12px; /* Smaller font size */
@@ -53,7 +61,7 @@ if (!$login->isLoggedIn()) {
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+                    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10 ">
                         <div class="container-xl px-4">
                             <div class="page-header-content pt-4">
                                 <div class="row align-items-center justify-content-between">
