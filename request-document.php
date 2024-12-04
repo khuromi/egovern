@@ -197,6 +197,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                 $badgeClass = 'text-bg-danger';
                                                                 break;
                                                             case 'accepted':
+                                                                $badgeClass = 'text-bg-primary';
+                                                                break;
+                                                            case 'for pick-up':
                                                                 $badgeClass = 'text-bg-success';
                                                                 break;
                                                             default:
