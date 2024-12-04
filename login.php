@@ -190,7 +190,7 @@ input#show-password {
 <div class="container">
 
     <div class="login-wrapper">
-        <div class="login-left jumbotron">
+        <div class="login-left jumbotron ">
             <div class="brand">
                 <img src="assets/img/logo2.png" alt="logo">
             </div>

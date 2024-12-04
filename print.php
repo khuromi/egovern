@@ -48,7 +48,7 @@ switch ($type) {
 
 
         // Set the source file and import the page
-        $pdf->setSourceFile("forms/CLEARANCE.pdf");
+        $pdf->setSourceFile("forms/CLEARANCE 1.pdf");
         $tplId = $pdf->importPage(1);
 
         // Get the size of the imported page
@@ -61,8 +61,8 @@ switch ($type) {
 
 
         $pdf->SetFont('Arial', '', 14);
-        $pdf->setXY(72, 89);
-        $pdf->SetFontSize('9');
+        $pdf->setXY(74, 89);
+        $pdf->SetFontSize('11');
         $pdf->Write(0, $resident_name);
 
         $pdf->SetFont('Arial', '', 14);
@@ -71,40 +71,40 @@ switch ($type) {
         $pdf->Write(0, $clearance_purpose);
 
         $pdf->SetFont('Arial', '', 14);
-        $pdf->setXY(41, 162);
+        $pdf->setXY(50, 163);
         $pdf->SetFontSize('9');
         $pdf->Write(0, $community_tax_cert_number);
    
         $pdf->SetFont('Arial', '', 14);
-        $pdf->setXY(98, 162);
+        $pdf->setXY(100, 163);
         $pdf->SetFontSize('9');
         $pdf->Write(0, $ctmonth);
 
         $pdf->SetFont('Arial', '', 14);
-        $pdf->setXY(115, 162);
+        $pdf->setXY(117, 163);
         $pdf->SetFontSize('9');
         $pdf->Write(0, $ctday);
 
         $pdf->SetFont('Arial', '', 14);
-        $pdf->setXY(135, 162);
+        $pdf->setXY(135, 163);
         $pdf->SetFontSize('9');
         $pdf->Write(0, $ctyear);
 
 
 
         $pdf->SetFont('Arial', '', 14);
-        $pdf->setXY(90, 147);
+        $pdf->setXY(93, 148);
         $pdf->SetFontSize('9');
         $pdf->Write(0, $day . $suffix);
 
         $pdf->SetFont('Arial', '', 14);
-        $pdf->setXY(118, 147);
+        $pdf->setXY(118, 148);
         $pdf->SetFontSize('9');
         $pdf->Write(0,  $month );
 
 
         $pdf->SetFont('Arial', '', 14);
-        $pdf->setXY(150, 147);
+        $pdf->setXY(150, 148);
         $pdf->SetFontSize('9');
         $pdf->Write(0, $year);
 
@@ -133,7 +133,7 @@ switch ($type) {
 
 
         // Set the source file and import the page
-        $pdf->setSourceFile("forms/INDIGENCY.pdf");
+        $pdf->setSourceFile("forms/INDIGENCY1.pdf");
         $tplId = $pdf->importPage(1);
 
         // Get the size of the imported page
@@ -195,7 +195,7 @@ switch ($type) {
 
 
         // Set the source file and import the page
-        $pdf->setSourceFile("forms/CERTIFICATION.pdf");
+        $pdf->setSourceFile("forms/CERTIFICATION1.pdf");
         $tplId = $pdf->importPage(1);
 
         // Get the size of the imported page
@@ -209,28 +209,28 @@ switch ($type) {
 
         $pdf->SetFont('Arial', '', 14);
         $pdf->setXY(65, 99);
-        $pdf->SetFontSize('11');
+        $pdf->SetFontSize('14');
         $pdf->Write(0, $resident_name);
 
 
         $pdf->SetFont('Arial', '', 14);
-        $pdf->setXY(111, 128);
-        $pdf->SetFontSize('9');
+        $pdf->setXY(50, 130);
+        $pdf->SetFontSize('14');
         $pdf->Write(0, $requester_name);
 
         $pdf->SetFont('Arial', '', 14);
-        $pdf->setXY(50, 144);
+        $pdf->setXY(51, 144);
         $pdf->SetFontSize('11');
         $pdf->Write(0, $day . $suffix);
 
         $pdf->SetFont('Arial', '', 14);
-        $pdf->setXY(75, 144);
+        $pdf->setXY(80, 144);
         $pdf->SetFontSize('11');
         $pdf->Write(0,  $month );
 
 
         $pdf->SetFont('Arial', '', 14);
-        $pdf->setXY(98, 144);
+        $pdf->setXY(106, 144);
         $pdf->SetFontSize('11');
         $pdf->Write(0, $year);
 
