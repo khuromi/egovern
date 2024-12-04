@@ -91,7 +91,7 @@ $document_requests = $rd->fetchRequests();
                                                             case 'rejected':
                                                                 $badgeClass = 'text-bg-danger';
                                                                 break;
-                                                            case 'accepted':
+                                                            case 'for pick-up':
                                                                 $badgeClass = 'text-bg-success';
                                                                 break;
                                                             default:
@@ -117,7 +117,7 @@ $document_requests = $rd->fetchRequests();
         <button data-id="<?= htmlspecialchars($request['id']) ?>" class="btn btn-outline-warning btn-sm reject">
             <i class="fas fa-square-xmark"></i> Reject
         </button>
-    <?php elseif ($request['status'] === 'accepted' && $request['active'] === 1): ?>
+    <?php elseif ($request['status'] === 'for pick-up' && $request['active'] === 1): ?>
 
         <!-- Show Print Button if Status is Accepted -->
         <button data-id="<?= htmlspecialchars($request['id']) ?>" 
