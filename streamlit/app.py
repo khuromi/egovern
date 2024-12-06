@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
-import seaborn as sns
 import scipy.stats as stats
 import plotly.express as px
 
@@ -16,7 +14,7 @@ def clean_data(data: pd.DataFrame) -> pd.DataFrame:
     data = data.dropna(subset=essential_fields)
 
     # Fill missing categorical data with 'Unknown'
-    categorical_fields = ['Occupation', 'Educational_Attainment', 'Relation_To_Head', 'Sector_Code', 'Ethnicity']
+    categorical_fields = ['Occupation', 'Educational_Attainment', 'Relation_To_Head', 'Sector_Code', 'Ethnicity', 'Mothers_Maiden_Name', 'Fathers_Name', 'Occupation', 'Qualifier', 'Sector_Code']
     for field in categorical_fields:
         data[field] = data[field].fillna('Unknown')
 
@@ -37,82 +35,71 @@ def clean_data(data: pd.DataFrame) -> pd.DataFrame:
 # Data Visualizations
 #tab1 Demographics
 def display_treemap(data: pd.DataFrame) -> None:
-    """
-    Displays a Treemap to represent hierarchical demographic categories.
-    """
     st.subheader("Treemap: Hierarchical Demographic Categories")
-
     col1, col2 = st.columns([20, 5])
 
     with col2:
-        # User input to select hierarchical variables for the treemap
         categorical_columns = data.select_dtypes(include='object').columns.tolist()
-
-        # Select hierarchical columns for the Treemap
         selected_parent = st.selectbox("Select Parent Category", categorical_columns, index=4)  # Parent category (e.g., Age Group)
         selected_child = st.selectbox("Select Child Category", categorical_columns, index=9)  # Child category (e.g., Education Level)
+    try:
+        group_data = data.groupby([selected_parent, selected_child]).size().reset_index(name="Population")
 
-    # Group data by parent and child category, count the number of individuals in each group
-    group_data = data.groupby([selected_parent, selected_child]).size().reset_index(name="Population")
+        if group_data.empty:
+            st.warning("No data available after applying the selected categories.")
+            return
 
-    # Check if the group_data is empty after filtering
-    if group_data.empty:
-        st.warning("No data available after applying the selected categories.")
-        return
+        with col1:
+            fig = px.treemap(
+                group_data,
+                path=[selected_parent, selected_child],  
+                values="Population",  
+                color="Population",  
+                hover_name=selected_child,
+                title="Treemap: Hierarchical Demographic Categories",
+                labels={selected_parent: selected_parent, selected_child: selected_child, "Population": "Population Size"},
+                color_continuous_scale=px.colors.sequential.RdBu,  
+            )
+            st.plotly_chart(fig)
 
-    # Create the Treemap using Plotly
-    with col1:
-        fig = px.treemap(
-            group_data,
-            path=[selected_parent, selected_child],  # Hierarchical categories
-            values="Population",  # Size of each rectangle based on population count
-            color="Population",  # Color by the population size
-            hover_name=selected_child,
-            title="Treemap: Hierarchical Demographic Categories",
-            labels={selected_parent: selected_parent, selected_child: selected_child, "Population": "Population Size"},
-            color_continuous_scale=px.colors.sequential.RdBu,  # Choose color scale
-        )
-        st.plotly_chart(fig)
+            with st.expander("See Evaluation"):
+                col1, col2 = st.columns([4, 4])
 
-    with st.expander("See Evaluation"):
-        col1, col2 = st.columns([4, 4])
-
-    with col1:    
-        st.write("### Evaluation")
-        # 1. *General Summary*
-        st.write(f"*Parent Category (selected):* {selected_parent}")
-        st.write(f"*Child Category (selected):* {selected_child}")
+            with col1:    
+                st.write("### Evaluation")
+                st.write(f"*Parent Category (selected):* {selected_parent}")
+                st.write(f"*Child Category (selected):* {selected_child}")
+            
+                total_population = group_data["Population"].sum()
+                st.write(f"*Total Population Represented:* {total_population:,}")
         
-        # 2. *Population Size Evaluation*
-        total_population = group_data["Population"].sum()
-        st.write(f"*Total Population Represented:* {total_population:,}")
-        
-        # 3. *Population Breakdown by Categories*
-        st.write("### Population Breakdown:")
-        st.write(group_data[[selected_parent, selected_child, "Population"]].sort_values(by="Population", ascending=False))
+                st.write("### Population Breakdown:")
+                st.write(group_data[[selected_parent, selected_child, "Population"]].sort_values(by="Population", ascending=False))
 
-        # 4. *Largest and Smallest Groups*
-        if not group_data.empty:
-            largest_group = group_data.loc[group_data["Population"].idxmax()]
-            smallest_group = group_data.loc[group_data["Population"].idxmin()]
-            st.write(f"*Largest Group:* {largest_group[selected_parent]} - {largest_group[selected_child]} | Population: {largest_group['Population']}")
-            st.write(f"*Smallest Group:* {smallest_group[selected_parent]} - {smallest_group[selected_child]} | Population: {smallest_group['Population']}")
+                if not group_data.empty:
+                    largest_group = group_data.loc[group_data["Population"].idxmax()]
+                    smallest_group = group_data.loc[group_data["Population"].idxmin()]
+                    st.write(f"*Largest Group:* {largest_group[selected_parent]} - {largest_group[selected_child]} | Population: {largest_group['Population']}")
+                    st.write(f"*Smallest Group:* {smallest_group[selected_parent]} - {smallest_group[selected_child]} | Population: {smallest_group['Population']}")
 
-    with col2:
-        # 5. *Category Distribution*
-        st.write("### Category Distribution:")
-        category_counts = group_data[selected_parent].value_counts()
-        st.write(f"*Number of Unique Parent Categories:* {len(category_counts)}")
-        st.write(category_counts)
+            with col2:
+                st.write("### Category Distribution:")
+                category_counts = group_data[selected_parent].value_counts()
+                st.write(f"*Number of Unique Parent Categories:* {len(category_counts)}")
+                st.write(category_counts)
 
-        # 6. *Key Insights*
-        st.write("### Key Insights from Treemap:")
-        for parent in category_counts.index:
-            parent_data = group_data[group_data[selected_parent] == parent]
-            st.write(f"- *Parent Category:* {parent}")
-            for child in parent_data[selected_child].unique():
-                child_data = parent_data[parent_data[selected_child] == child]
-                st.write(f"   - *Child Category:* {child} | Population: {child_data['Population'].sum()}")
+                st.write("### Key Insights from Treemap:")
+                for parent in category_counts.index:
+                    parent_data = group_data[group_data[selected_parent] == parent]
+                    st.write(f"- *Parent Category:* {parent}")
+                    for child in parent_data[selected_child].unique():
+                        child_data = parent_data[parent_data[selected_child] == child]
+                        st.write(f"   - *Child Category:* {child} | Population: {child_data['Population'].sum()}")
+    except ValueError as e:
+        if "cannot insert" in str(e):
+                st.warning(f"An issue occurred while generating the treemap: {str(e)}")
+        else:
+            raise
 
 def display_parallel_coordinates(data: pd.DataFrame) -> None:
     """
@@ -181,8 +168,6 @@ def display_parallel_coordinates(data: pd.DataFrame) -> None:
             color_continuous_scale=px.colors.diverging.RdBu,
             title="Parallel Coordinates Plot"
         )
-
-        # Display the plot
         st.plotly_chart(fig)
 
     # Evaluation Section
@@ -210,7 +195,6 @@ def display_parallel_coordinates(data: pd.DataFrame) -> None:
                 st.write(
                     f"- *{col}:* Mean = {col_mean:.2f}, Std. Dev. = {col_std:.2f}, Min = {min_values.get(col, 'N/A')}, Max = {max_values.get(col, 'N/A')}"
                 )
-
 
         with col2:
             # 4. Correlations (if more than 2 columns)
@@ -375,16 +359,20 @@ def display_population_pyramid(data: pd.DataFrame) -> None:
         st.write(f"*Largest Male Age Group:* {largest_male_group}")
         st.write(f"*Largest Female Age Group:* {largest_female_group}")
 
-
 def display_demographics(data: pd.DataFrame) -> None:
     """
     Displays scatter plot of Age vs. Average Monthly Income and evaluation.
     """
     st.subheader("Scatter Plot: Age vs. Income")
     
-    # Ensure clean_data is a valid DataFrame (if it needs filtering or preprocessing, it should be done here)
-    clean_data = data.copy()  # Ensure this is a DataFrame
-    
+    # Clean the data for scatter plot (drop rows with NaN values in relevant columns)
+    clean_data = data[['age', 'Avg_Monthly_Income']].dropna()
+
+    # Check if there are enough data points
+    if len(clean_data) < 2:
+        st.warning("Not enough data points after filtering. Please adjust your filter settings.")
+        return
+
     # Scatter plot
     fig, ax = plt.subplots(figsize=(10, 4))
     ax.scatter(clean_data['age'], clean_data['Avg_Monthly_Income'], alpha=0.5, color='blue', edgecolors='black')
@@ -393,37 +381,34 @@ def display_demographics(data: pd.DataFrame) -> None:
     ax.set_title("Age vs. Income")
     st.pyplot(fig)
 
-    if len(data) < 2:
-                st.warning("Not enough data points after filtering. Please adjust your filter settings.")
-    else:
-            # Clean the data for scatter plot (drop rows with NaN values in relevant columns)
-        clean_data = data[['age', 'Avg_Monthly_Income']].dropna()
-    with st.expander("See Evaluation"):
-        st.write("### Evaluation")
-        # Correlation evaluation
-        correlation, _ = stats.pearsonr(clean_data['age'], clean_data['Avg_Monthly_Income'])
-        st.write(f"*Pearson Correlation Coefficient:* {correlation:.2f}")
+    # Conditionally render the expander
+    if len(clean_data) >= 2:
+        with st.expander("See Evaluation"):
+            st.write("### Evaluation")
+            
+            # Correlation evaluation
+            correlation, _ = stats.pearsonr(clean_data['age'], clean_data['Avg_Monthly_Income'])
+            st.write(f"*Pearson Correlation Coefficient:* {correlation:.2f}")
 
-        # Check if 'age' has more than one unique value before performing linear regression
-        if clean_data['age'].nunique() > 1:
+            # Check if 'age' has more than one unique value before performing linear regression
+            if clean_data['age'].nunique() > 1:
                 # Perform regression if there is variability in 'age'
-            slope, intercept, r_value, p_value, std_err = stats.linregress(clean_data['age'], clean_data['Avg_Monthly_Income'])
-            st.write(f"*Regression Line:* y = {slope:.2f}x + {intercept:.2f}")
-            st.write(f"*R-squared Value:* {r_value**2:.2f}")
+                slope, intercept, r_value, p_value, std_err = stats.linregress(clean_data['age'], clean_data['Avg_Monthly_Income'])
+                st.write(f"*Regression Line:* y = {slope:.2f}x + {intercept:.2f}")
+                st.write(f"*R-squared Value:* {r_value**2:.2f}")
 
                 # Plot the regression line
-            st.write("### Regression Line")
-            fig2, ax2 = plt.subplots(figsize=(10, 4))
-            ax2.scatter(clean_data['age'], clean_data['Avg_Monthly_Income'], alpha=0.5, color='blue', edgecolors='black')
-            ax2.plot(clean_data['age'], slope * clean_data['age'] + intercept, color='red', linewidth=2, label='Regression Line')
-            ax2.set_xlabel("Age")
-            ax2.set_ylabel("Average Monthly Income")
-            ax2.set_title("Age vs. Income with Regression Line")
-            ax2.legend()
-            st.pyplot(fig2)
-
-        else:
-            st.warning("Cannot calculate linear regression. All 'age' values are identical.")
+                st.write("### Regression Line")
+                fig2, ax2 = plt.subplots(figsize=(10, 4))
+                ax2.scatter(clean_data['age'], clean_data['Avg_Monthly_Income'], alpha=0.5, color='blue', edgecolors='black')
+                ax2.plot(clean_data['age'], slope * clean_data['age'] + intercept, color='red', linewidth=2, label='Regression Line')
+                ax2.set_xlabel("Age")
+                ax2.set_ylabel("Average Monthly Income")
+                ax2.set_title("Age vs. Income with Regression Line")
+                ax2.legend()
+                st.pyplot(fig2)
+            else:
+                st.warning("Cannot calculate linear regression. All 'age' values are identical.")
 
 def display_correlation_heatmap(data: pd.DataFrame) -> None:
     st.subheader("Correlation Heatmap of SES Variables")
@@ -538,6 +523,7 @@ def display_stacked_bar_chart(data: pd.DataFrame) -> None:
         for sector, count in relevant_sectors.items():
             st.write(f"- {sector}: {count} residents")
 
+## Streamlit App Layout
 # Set Streamlit page configuration
 st.set_page_config(page_title="eGovern", layout="wide")
 
@@ -571,104 +557,79 @@ def load_csv(file_path=None):
 # Determine whether to use uploaded file or default
 if uploaded_file is not None:
     data = load_csv(uploaded_file)
-    st.write("### *Uploaded Data:*")
+    st.write("### Uploaded Data:")
     st.dataframe(data)
     data_source = "Uploaded File"
 else:
     try:
         data = load_csv()
-        st.write("### *Default Data:*")
+        st.write("### Default Data:")
         st.dataframe(data)
         data_source = "Default CSV (barangay-culiong30-11update.csv)"
     except FileNotFoundError:
         st.error(f"Default CSV file '{DEFAULT_CSV}' not found. Please upload a CSV file.")
         st.stop()
-
-# Proceed only if data is loaded
-if not data.empty:
-    # Clean and validate data
-    data = clean_data(data)
-    
-    # Sidebar Filters
-    st.sidebar.header("Filter Residents Data")
-    
-    # Assuming the column names; adjust as per your CSV
-    # Replace 'Gender', 'Civil_Status', etc., with actual column names in your CSV
-    sex_options = ["All"] + sorted(data['Gender'].dropna().unique().tolist())
-    sex = st.sidebar.selectbox(
-        "Sex",
-        options=sex_options,
-        help="Filter residents by gender."
-    )
-    
-    civil_status_options = ["All"] + sorted(data['Civil_Status'].dropna().unique().tolist())
-    civil_status = st.sidebar.selectbox(
-        "Civil Status",
-        options=civil_status_options,
-        help="Filter residents by civil status."
-    )
-    
-    employment_status_options = ["All"] + sorted(data['Employment_Status'].dropna().unique().tolist())
-    employment_status = st.sidebar.selectbox(
-        "Employment Status",
-        options=employment_status_options,
-        help="Filter residents by employment status."
-    )
-    
-    education_options = sorted(data['Educational_Attainment'].dropna().unique().tolist())
-    education = st.sidebar.multiselect(
-        "Educational Attainment",
-        options=education_options,
-        default=education_options,
-        help="Filter residents by educational attainment."
-    )
-    
-    # Ensure 'age' column exists and is numeric
-    if 'age' in data.columns and pd.api.types.is_numeric_dtype(data['age']):
-        age_min = int(data['age'].min())
-        age_max = int(data['age'].max())
+    if not data.empty:
+        # Clean and validate data
+        data = clean_data(data)
+        # Sidebar Filters
+        st.sidebar.header("Filter Residents Data")
+        sex = st.sidebar.selectbox(
+            "Gender",
+            options=["All"] + sorted(data['Gender'].dropna().unique().tolist()),
+            help="Filter residents by gender."
+        )
+        civil_status = st.sidebar.selectbox(
+            "Civil Status",
+            options=["All"] + sorted(data['Civil_Status'].dropna().unique().tolist()),
+            help="Filter residents by civil status."
+        )
+        employment_status = st.sidebar.selectbox(
+            "Employment Status",
+            options=["All"] + sorted(data['Employment_Status'].unique().tolist()),
+            help="Filter residents by employment status."
+        )
+        education = st.sidebar.multiselect(
+            "Educational Attainment",
+            options=sorted(data['Educational_Attainment'].dropna().unique().tolist()),
+            default=sorted(data['Educational_Attainment'].dropna().unique().tolist()),
+            help="Filter residents by educational attainment."
+        )
         age_range = st.sidebar.slider(
             "Age Range",
-            min_value=age_min,
-            max_value=age_max,
-            value=(age_min, age_max),
+            min_value=int(data['age'].min()),
+            max_value=int(data['age'].max()),
+            value=(int(data['age'].min()), int(data['age'].max())),
             help="Filter residents by age range."
         )
-    else:
-        st.sidebar.warning("Age column is missing or not numeric.")
-        age_range = (0, 100)  # Default range
-    
-    # Apply filters
-    if sex != "All":
-        data = data[data['Gender'] == sex]
-    if civil_status != "All":
-        data = data[data['Civil_Status'] == civil_status]
-    if employment_status != "All":
-        data = data[data['Employment_Status'] == employment_status]
-    if education:
-        data = data[data['Educational_Attainment'].isin(education)]
-    if 'age' in data.columns and pd.api.types.is_numeric_dtype(data['age']):
+
+        # Apply filters
+        if sex != "All":
+            data = data[data['Gender'] == sex]
+        if civil_status != "All":
+            data = data[data['Civil_Status'] == civil_status]
+        if employment_status != "All":
+            data = data[data['Employment_Status'] == employment_status]
+        if education:
+            data = data[data['Educational_Attainment'].isin(education)]
         data = data[(data['age'] >= age_range[0]) & (data['age'] <= age_range[1])]
-    
-    # Display Data Summary
-    st.markdown(f"**Data Source:** {data_source}")
-    st.markdown(f"**Total Records:** {len(data)}")
-    
-    # Display visualizations using tabs
-    tab1, tab2 = st.tabs([
-        "Demographics",
-        "Socioeconomic Status"
-    ])
 
-    with tab1:
-        display_treemap(data)
-        display_parallel_coordinates(data)
-        display_bubble_chart(data)
-        display_population_pyramid(data)
-    with tab2:
-        display_stacked_bar_chart(data)            
-        display_correlation_heatmap(data)
-        display_demographics(data)
+        st.write(f"**Total Records:** {len(data)}")
 
-else:
-    st.warning("No data available after applying filters.")
+        # Display visualizations using tabs
+        tab1, tab2 = st.tabs([
+            "Demographics",
+            "Socioeconomic Status"
+        ])
+
+        with tab1:
+            display_treemap(data)
+            display_parallel_coordinates(data)
+            display_bubble_chart(data)
+            display_population_pyramid(data)
+        with tab2:        
+            display_correlation_heatmap(data)
+            display_demographics(data)
+
+    else:
+        st.info("Awaiting CSV file to be uploaded.")
