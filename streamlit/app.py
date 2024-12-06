@@ -565,7 +565,7 @@ else:
         data = load_csv()
         st.write("### Default Data:")
         st.dataframe(data)
-        data_source = "Default CSV (barangay-culiong30-11update.csv)"
+        data_source = "Default CSV (residents_data(3).csv)"
     except FileNotFoundError:
         st.error(f"Default CSV file '{DEFAULT_CSV}' not found. Please upload a CSV file.")
         st.stop()
