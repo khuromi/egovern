@@ -67,7 +67,7 @@ include 'includes/topbar.php';
                                     <tr>
                                         <th>ID</th>
                                         <th>Resident Name</th>
-                                        <th>Sex</th>
+                                        <th>Gender</th>
                                         <th>Birth Date</th>
                                         <th>Actions</th>
                                     </tr>
@@ -83,17 +83,17 @@ include 'includes/topbar.php';
                                 ?>
                                     <tr>
 
-                                        <td><?= $row['resident_id'] ?></td>
-                                        <td><?= $row['firstname'] ?> <?= $row['middlename'] ?> <?= $row['lastname'] ?>
+                                        <td><?= $row['Resident_ID'] ?></td>
+                                        <td><?= $row['Firstname'] ?> <?= $row['Middlename'] ?> <?= $row['Lastname'] ?>
                                         </td>
-                                        <td><?= $row['sex'] ?></td>
-                                        <td><?= $row['birthdate'] ?></td>
+                                        <td><?= $row['Gender'] ?></td>
+                                        <td><?= $row['Birthdate'] ?></td>
                                         <td>
                                             <div class="flex align-center text-center">
                                                 <a class="btn btn-outline-primary btn-sm edit" href="#"
-                                                    data-id="<?= $row['resident_id'] ?>"><i data-feather="edit"></i></a>
+                                                    data-id="<?= $row['Resident_ID'] ?>"><i data-feather="edit"></i></a>
                                                 <a class="btn btn-outline-danger btn-sm delete" href="#"
-                                                    data-id="<?= $row['resident_id'] ?>"><i
+                                                    data-id="<?= $row['Resident_ID'] ?>"><i
                                                         data-feather="trash-2"></i></a>
                                             </div>
                                         </td>
@@ -416,7 +416,7 @@ include 'includes/topbar.php';
                                                 </div>
 
                                                 <div class="col-md-3 mt-2">
-                                                    <button type="submit" id="addResident" name="addResident" class="btn btn-primary">Add Resident</button>
+                                                    <button type="submit" id="add-resident" name="add-resident" class="btn btn-primary">Add Resident</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -463,9 +463,9 @@ include 'includes/topbar.php';
             qualifier: $("#add-resident-qualifier").val(),
             birthdate: $("#add-resident-birthdate").val(),
             birthplace: $("#add-resident-birthplace").val(),
-            sex: $("#add-resident-sex").val(),
+            gender: $("#add-resident-sex").val(),
             address: $("#add-resident-address").val(),
-            civil_status: $("#add-resident-civil-status").val(),
+            civil_tatus: $("#add-resident-civil-status").val(),
             ethnicity: $("#add-resident-ethnicity").val(),
             education: $("#add-resident-education").val(),
             mother_name: $("#add-resident-mother-name").val(),
@@ -482,7 +482,7 @@ include 'includes/topbar.php';
             url: 'sendData', 
             type: 'POST',
             data: {
-                action: 'addResident',
+                action: 'add-resident',
                 ...formData
             },
             success: function(response) {
@@ -549,7 +549,7 @@ include 'includes/topbar.php';
             url: 'sendData',
             type: 'POST',
             data: {
-                action: 'editResident',
+                action: 'edit-resident',
                 resident_id: resident_id,
                 firstname: firstname,
                 lastname: lastname,
