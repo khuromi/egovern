@@ -569,67 +569,68 @@ else:
     except FileNotFoundError:
         st.error(f"Default CSV file '{DEFAULT_CSV}' not found. Please upload a CSV file.")
         st.stop()
-    if not data.empty:
+    
+if not data.empty:
         # Clean and validate data
-        data = clean_data(data)
+    data = clean_data(data)
         # Sidebar Filters
-        st.sidebar.header("Filter Residents Data")
-        sex = st.sidebar.selectbox(
-            "Gender",
-            options=["All"] + sorted(data['Gender'].dropna().unique().tolist()),
-            help="Filter residents by gender."
-        )
-        civil_status = st.sidebar.selectbox(
-            "Civil Status",
-            options=["All"] + sorted(data['Civil_Status'].dropna().unique().tolist()),
-            help="Filter residents by civil status."
-        )
-        employment_status = st.sidebar.selectbox(
-            "Employment Status",
-            options=["All"] + sorted(data['Employment_Status'].unique().tolist()),
-            help="Filter residents by employment status."
-        )
-        education = st.sidebar.multiselect(
-            "Educational Attainment",
-            options=sorted(data['Educational_Attainment'].dropna().unique().tolist()),
-            default=sorted(data['Educational_Attainment'].dropna().unique().tolist()),
-            help="Filter residents by educational attainment."
-        )
-        age_range = st.sidebar.slider(
-            "Age Range",
-            min_value=int(data['age'].min()),
-            max_value=int(data['age'].max()),
-            value=(int(data['age'].min()), int(data['age'].max())),
-            help="Filter residents by age range."
-        )
+    st.sidebar.header("Filter Residents Data")
+    sex = st.sidebar.selectbox(
+        "Gender",
+        options=["All"] + sorted(data['Gender'].dropna().unique().tolist()),
+        help="Filter residents by gender."
+    )
+    civil_status = st.sidebar.selectbox(
+        "Civil Status",
+        options=["All"] + sorted(data['Civil_Status'].dropna().unique().tolist()),
+        help="Filter residents by civil status."
+    )
+    employment_status = st.sidebar.selectbox(
+        "Employment Status",
+        options=["All"] + sorted(data['Employment_Status'].unique().tolist()),
+        help="Filter residents by employment status."
+    )
+    education = st.sidebar.multiselect(
+        "Educational Attainment",
+        options=sorted(data['Educational_Attainment'].dropna().unique().tolist()),
+        default=sorted(data['Educational_Attainment'].dropna().unique().tolist()),
+        help="Filter residents by educational attainment."
+    )
+    age_range = st.sidebar.slider(
+        "Age Range",
+        min_value=int(data['age'].min()),
+        max_value=int(data['age'].max()),
+        value=(int(data['age'].min()), int(data['age'].max())),
+        help="Filter residents by age range."
+    )
 
         # Apply filters
-        if sex != "All":
+    if sex != "All":
             data = data[data['Gender'] == sex]
-        if civil_status != "All":
+    if civil_status != "All":
             data = data[data['Civil_Status'] == civil_status]
-        if employment_status != "All":
+    if employment_status != "All":
             data = data[data['Employment_Status'] == employment_status]
-        if education:
-            data = data[data['Educational_Attainment'].isin(education)]
-        data = data[(data['age'] >= age_range[0]) & (data['age'] <= age_range[1])]
+    if education:
+        data = data[data['Educational_Attainment'].isin(education)]
+    data = data[(data['age'] >= age_range[0]) & (data['age'] <= age_range[1])]
 
-        st.write(f"**Total Records:** {len(data)}")
+    st.write(f"**Total Records:** {len(data)}")
 
         # Display visualizations using tabs
-        tab1, tab2 = st.tabs([
+    tab1, tab2 = st.tabs([
             "Demographics",
             "Socioeconomic Status"
         ])
 
-        with tab1:
+    with tab1:
             display_treemap(data)
             display_parallel_coordinates(data)
             display_bubble_chart(data)
             display_population_pyramid(data)
-        with tab2:        
+    with tab2:        
             display_correlation_heatmap(data)
             display_demographics(data)
 
-    else:
-        st.info("Awaiting CSV file to be uploaded.")
+else:
+    st.info("Awaiting CSV file to be uploaded.")
