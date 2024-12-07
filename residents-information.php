@@ -58,7 +58,7 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Resident Name</th>
-                                            <th>Sex</th>
+                                            <th>Gender</th>
                                             <th>Birth Date</th>
                                             <th>Actions</th>
                                         </tr>
@@ -74,14 +74,14 @@
                                         ?>
                                         <tr>
 
-                                        <td><?= $row['resident_id'] ?></td>
-                                        <td><?= $row['firstname'] ?> <?= $row['middlename'] ?> <?= $row['lastname'] ?></td>
-                                        <td><?= $row['sex'] ?></td>
-                                        <td><?= $row['birthdate'] ?></td>
+                                        <td><?= $row['Resident_ID'] ?></td>
+                                        <td><?= $row['Firstname'] ?> <?= $row['Middlename'] ?> <?= $row['Lastname'] ?></td>
+                                        <td><?= $row['Gender'] ?></td>
+                                        <td><?= $row['Birthdate'] ?></td>
                                         <td>
                                             <div class="flex align-center text-center">
-                                            <a class="btn btn-outline-success btn-sm view" href="#" data-id="<?= $row['resident_id'] ?>"><i data-feather="eye"></i></a>
-                                            <a class="btn btn-outline-success btn-sm print" href="#" data-id="<?= $row['resident_id'] ?>"><i data-feather="printer"></i></a>
+                                            <a class="btn btn-outline-success btn-sm view" href="#" data-id="<?= $row['Resident_ID'] ?>"><i data-feather="eye"></i></a>
+                                            <a class="btn btn-outline-success btn-sm print" href="#" data-id="<?= $row['Resident_ID'] ?>"><i data-feather="printer"></i></a>
                                             </div>
                                         </td>
                                         </tr>
@@ -152,7 +152,7 @@
 
                             <div class="col-md-2 col-12 mb-3">
                               <div class="form-group">
-                                <label class="label" for="view-child-name">Sex</label>
+                                <label class="label" for="view-child-name">Gender</label>
                                 <input type="text" class="form-control form-control-sm" name="view-resident-sex" id="view-resident-sex" readonly>
                               </div>
                             </div>
@@ -197,7 +197,7 @@
 
                             <div class="col-md-3 col-4 mb-3">
                               <div class="form-group">
-                                <label class="label" for="view-child-name">Annual Income</label>
+                                <label class="label" for="view-child-name">Estimated Monthly Income</label>
                                 <input type="text" class="form-control form-control-sm" name="view-resident-annual-income" id="view-resident-annual-income" readonly>
                               </div>
                             </div>
@@ -323,7 +323,7 @@
                 success: function(data) {
                   var res = JSON.parse(data)
 
-                  $("#resident_name").val(res.firstname + ' ' + res.middlename + ' ' + res.lastname + ' ' + res.qualifier)
+                  $("#resident_name").val(res.Firstname + ' ' + res.Middlename + ' ' + res.Lastname + ' ' + res.Qualifier)
               
                   const printModal = new bootstrap.Modal(document.getElementById('printModal'))
                   printModal.show();
@@ -352,17 +352,17 @@
                 success: function(data) {
                   var res = JSON.parse(data)
 
-                  $("#view-resident-name").val(res.firstname + ' ' + res.middlename + ' ' + res.lastname + ' ' + res.qualifier)
-                  $("#view-resident-birthdate").val(res.birthdate)
-                  $("#view-resident-sex").val(res.sex)
-                  $("#view-resident-birthplace").val(res.birthplace)
-                  $("#view-resident-civil-status").val(res.civil_status)
-                  $("#view-resident-citizenship").val(res.citizenship)
-                  $("#view-resident-religion").val(res.religion)
-                  $("#view-resident-education").val(res.highest_educational_attainment)
-                  $("#view-resident-annual-income").val(res.annual_income)
-                  $("#view-resident-occupation").val(res.occupation)
-                  $("#view-resident-head-relationship").val(res.household_head_relationship)
+                  $("#view-resident-name").val(res.Firstname + ' ' + res.Middlename + ' ' + res.Lastname + ' ' + res.Qualifier)
+                  $("#view-resident-birthdate").val(res.Birthdate)
+                  $("#view-resident-sex").val(res.Gender)
+                  $("#view-resident-birthplace").val(res.Birthplace)
+                  $("#view-resident-civil-status").val(res.Civil_Status)
+                  $("#view-resident-citizenship").val(res.Citizenship)
+                  $("#view-resident-religion").val(res.Religion)
+                  $("#view-resident-education").val(res.Educational_Attainment)
+                  $("#view-resident-annual-income").val(res.Avg_Monthly_Income)
+                  $("#view-resident-occupation").val(res.Occupation)
+                  $("#view-resident-head-relationship").val(res.Relation_To_Head)
 
                   const myModal = new bootstrap.Modal(document.getElementById('viewModal'))
                   myModal.show();
