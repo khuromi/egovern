@@ -453,7 +453,7 @@ include 'includes/topbar.php';
 
     $(document).ready(function() {
     // Handle the form submission for adding a resident
-    $("#addResident").on('submit', function(e) {
+    $("#addResidentForm").on('submit', function(e) {
         e.preventDefault();
 
         var formData = {
@@ -482,7 +482,7 @@ include 'includes/topbar.php';
             url: 'sendData', 
             type: 'POST',
             data: {
-                action: 'add-resident',
+                action: 'addResident',
                 ...formData
             },
             success: function(response) {
@@ -523,8 +523,8 @@ include 'includes/topbar.php';
     $("#editResident").on('click', function(e) {
         e.preventDefault();
         
-        let Resident_ID = $("#edit-resident-id").val();
-        let Firstname = $("#edit-resident-firstname").val();
+        let resident_id = $("#edit-resident-id").val();
+        let firstname = $("#edit-resident-firstname").val();
         let lastname = $("#edit-resident-lastname").val();
         let middlename = $("#edit-resident-middlename").val();
         let qualifier = $("#edit-resident-qualifier").val();
@@ -549,7 +549,7 @@ include 'includes/topbar.php';
             url: 'sendData',
             type: 'POST',
             data: {
-                action: 'edit-resident',
+                action: 'editResident',
                 resident_id: resident_id,
                 firstname: firstname,
                 lastname: lastname,
@@ -572,8 +572,11 @@ include 'includes/topbar.php';
                 sector_code: sector_code,
                 household_number: household_number
             },
+            dataType: 'json',
             success: function(response) {
-                Swal.fire({
+                
+                if(response.status == 'success') {
+                    Swal.fire({
                     icon: 'success',
                     title: 'Success!',
                     text: 'Resident information updated successfully!',
@@ -584,6 +587,7 @@ include 'includes/topbar.php';
                         location.reload(); 
                     }, 500); 
                 });
+                }
 
             },
             error: function(xhr, status, error) {
@@ -611,7 +615,7 @@ include 'includes/topbar.php';
             success: function(data) {
                 var res = JSON.parse(data); 
 
-                $("#edit-resident-id").val(res.Resident_IDesident_id);
+                $("#edit-resident-id").val(res.Resident_ID);
                 $("#edit-resident-firstname").val(res.Firstname);
                 $("#edit-resident-lastname").val(res.Lastname);
                 $("#edit-resident-middlename").val(res.Middlename);

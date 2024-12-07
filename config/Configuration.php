@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(E_ALL);
 
 const DB_HOST = "localhost";
 const DB_USER = "root";

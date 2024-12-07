@@ -85,26 +85,26 @@
         {
         
             try {
-                $resident_id = intval($_POST['Resident_ID']);
-                $firstname = $_POST['Firstname'];
-                $lastname = $_POST['Lastname'];
-                $middlename = $_POST['Middlename'];
-                $qualifier = $_POST['Qualifier'];
-                $birthdate = $_POST['Birthdate'];
-                $sex = $_POST['Gender'];
-                $birthplace = $_POST['Birthplace'];
-                $civil_status = $_POST['Civil_Status'];
-                $ethnicity = $_POST['Ethnicity'];
-                $address = $_POST['Address'];
-                $education = $_POST['Education'];
-                $monthly_income = $_POST['Avg_Monthly_Income'];
-                $occupation = $_POST['Occupation'];
-                $employment_status = $_POST['Employment_Status'];
-                $head_relationship = $_POST['Relation_To_Head'];
-                $mother_name = $_POST['Mothers_Maiden_Name'];
-                $father_name = $_POST['Fathers_Name'];
-                $household_number = $_POST['Household_Number'];
-                $sector_code = $_POST['Sector_Code'];
+                $resident_id = intval($_POST['resident_id']);
+                $firstname = $_POST['firstname'];
+                $lastname = $_POST['lastname'];
+                $middlename = $_POST['middlename'];
+                $qualifier = $_POST['qualifier'];
+                $birthdate = $_POST['birthdate'];
+                $sex = $_POST['sex'];
+                $birthplace = $_POST['birthplace'];
+                $civil_status = $_POST['civil_status'];
+                $ethnicity = $_POST['ethnicity'];
+                $address = $_POST['address'];
+                $education = $_POST['education'];
+                $monthly_income = $_POST['monthly_income'];
+                $occupation = $_POST['occupation'];
+                $employment_status = $_POST['employment_status'];
+                $head_relationship = $_POST['head_relationship'];
+                $mother_name = $_POST['head_relationship'];
+                $father_name = $_POST['father_name'];
+                $household_number = $_POST['household_number'];
+                $sector_code = $_POST['sector_code'];
     
                 $sql = "
                     UPDATE residents 
@@ -135,26 +135,26 @@
                 $stmt = $this->db->prepare($sql);
     
                 // Bind parameters
-                $stmt->bindParam(':Resident_ID', $resident_id, PDO::PARAM_INT);
-                $stmt->bindParam(':Firstname', $firstname, PDO::PARAM_STR);
-                $stmt->bindParam(':Lastname', $lastname, PDO::PARAM_STR);
-                $stmt->bindParam(':Middlename', $middlename, PDO::PARAM_STR);
-                $stmt->bindParam(':Qualifier', $qualifier, PDO::PARAM_STR);
-                $stmt->bindParam(':Birthdate', $birthdate, PDO::PARAM_STR);
-                $stmt->bindParam(':Gender', $sex, PDO::PARAM_STR);
-                $stmt->bindParam(':Birthplace', $birthplace, PDO::PARAM_STR);
-                $stmt->bindParam(':Civil_Status', $civil_status, PDO::PARAM_STR);
-                $stmt->bindParam(':Ethnicity', $ethnicity, PDO::PARAM_STR);
-                $stmt->bindParam(':Educational_Attainment', $education, PDO::PARAM_STR);
-                $stmt->bindParam(':Avg_Monthly_Income', $monthly_income, PDO::PARAM_STR);
-                $stmt->bindParam(':Address', $address, PDO::PARAM_STR);
-                $stmt->bindParam(':Occupation', $occupation, PDO::PARAM_STR);
-                $stmt->bindParam(':Employment_Status', $employment_status, PDO::PARAM_STR);
-                $stmt->bindParam(':Relation_To_Head', $head_relationship, PDO::PARAM_STR);
-                $stmt->bindParam(':Mothers_Maiden_Name', $mother_name, PDO::PARAM_STR);
-                $stmt->bindParam(':Fathers_Name', $father_name, PDO::PARAM_STR);
-                $stmt->bindParam(':Sector_Code', $sector_code, PDO::PARAM_STR);
-                $stmt->bindParam(':Household_Number', $household_number, PDO::PARAM_STR);
+                $stmt->bindParam(':resident_id', $resident_id, PDO::PARAM_INT);
+                $stmt->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+                $stmt->bindParam(':lastname', $lastname, PDO::PARAM_STR);
+                $stmt->bindParam(':middlename', $middlename, PDO::PARAM_STR);
+                $stmt->bindParam(':qualifier', $qualifier, PDO::PARAM_STR);
+                $stmt->bindParam(':birthdate', $birthdate, PDO::PARAM_STR);
+                $stmt->bindParam(':sex', $sex, PDO::PARAM_STR);
+                $stmt->bindParam(':birthplace', $birthplace, PDO::PARAM_STR);
+                $stmt->bindParam(':civil_status', $civil_status, PDO::PARAM_STR);
+                $stmt->bindParam(':ethnicity', $ethnicity, PDO::PARAM_STR);  
+                $stmt->bindParam(':education', $education, PDO::PARAM_STR);  
+                $stmt->bindParam(':monthly_income', $monthly_income, PDO::PARAM_STR);
+                $stmt->bindParam(':address', $address, PDO::PARAM_STR);
+                $stmt->bindParam(':occupation', $occupation, PDO::PARAM_STR);
+                $stmt->bindParam(':employment_status', $employment_status, PDO::PARAM_STR);
+                $stmt->bindParam(':head_relationship', $head_relationship, PDO::PARAM_STR);
+                $stmt->bindParam(':mother_name', $mother_name, PDO::PARAM_STR);
+                $stmt->bindParam(':father_name', $father_name, PDO::PARAM_STR);
+                $stmt->bindParam(':sector_code', $sector_code, PDO::PARAM_STR);
+                $stmt->bindParam(':household_number', $household_number, PDO::PARAM_STR);
     
                 // Execute the query
                 if ($stmt->execute()) {
@@ -182,8 +182,8 @@
 
         }
 
-        function addResident($data) {
-
+        public function addResident($data) {
+            
             $firstname = isset($data['Firstname']) ? trim($data['Firstname']) : null;
             $lastname = isset($data['Lastname']) ? trim($data['Lastname']) : null;
             $middlename = isset($data['Middlename']) ? trim($data['Middlename']) : null;
@@ -204,12 +204,13 @@
             $household_number = isset($data['Household_Number']) ? trim($data['Household_Number']) : null;
             $sector_code = isset($data['Sector_Code']) ? trim($data['Sector_Code']) : null;
         
+
             if (!$firstname || !$lastname || !$birthdate) {
                 return ['status' => 'error', 'message' => 'First name, last name, and birthdate are required.'];
             }
         
             try {
-                // Prepare the SQL query to insert a new resident
+
                 $sql = "
                     INSERT INTO residents 
                     (Firstname, Lastname, Middlename, Qualifier, Birthdate, Birthplace, Gender, Address, Civil_Status, Ethnicity, 
@@ -221,33 +222,32 @@
                     :monthly_income, :head_relationship, :household_number, :sector_code)
                 ";
         
-                // Prepare the PDO statement
+
                 $stmt = $this->db->prepare($sql);
         
                 // Bind the parameters
-                $stmt->bindParam(':Firstname', $firstname);
-                $stmt->bindParam(':Lastname', $lastname);
-                $stmt->bindParam(':Middlename', $middlename);
-                $stmt->bindParam(':Qualifier', $qualifier);
-                $stmt->bindParam(':Birthdate', $birthdate);
-                $stmt->bindParam(':Birthplace', $birthplace);
-                $stmt->bindParam(':Gender', $sex);
-                $stmt->bindParam(':Address', $address);
-                $stmt->bindParam(':Civil_Status', $civil_status);
-                $stmt->bindParam(':Ethnicity', $ethnicity);
-                $stmt->bindParam(':Educational_Attainment', $education);
-                $stmt->bindParam(':Mothers_Maiden_Name', $mother_name);
-                $stmt->bindParam(':Fathers_Name', $father_name);
-                $stmt->bindParam(':Employment_Status', $employment_status);
-                $stmt->bindParam(':Occupation', $occupation);
-                $stmt->bindParam(':Avg_Monthly_Income', $monthly_income);
-                $stmt->bindParam(':Relation_To_Head', $head_relationship);
-                $stmt->bindParam(':Household_Number', $household_number);
-                $stmt->bindParam(':Sector_Code', $sector_code);
+                $stmt->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+                $stmt->bindParam(':lastname', $lastname, PDO::PARAM_STR);
+                $stmt->bindParam(':middlename', $middlename, PDO::PARAM_STR);
+                $stmt->bindParam(':qualifier', $qualifier, PDO::PARAM_STR);
+                $stmt->bindParam(':birthdate', $birthdate, PDO::PARAM_STR);
+                $stmt->bindParam(':birthplace', $birthplace, PDO::PARAM_STR);
+                $stmt->bindParam(':sex', $sex, PDO::PARAM_STR);
+                $stmt->bindParam(':address', $address, PDO::PARAM_STR);
+                $stmt->bindParam(':civil_status', $civil_status, PDO::PARAM_STR);
+                $stmt->bindParam(':ethnicity', $ethnicity, PDO::PARAM_STR);
+                $stmt->bindParam(':education', $education, PDO::PARAM_STR);
+                $stmt->bindParam(':mother_name', $mother_name, PDO::PARAM_STR);
+                $stmt->bindParam(':father_name', $father_name, PDO::PARAM_STR); // Fixed typo in parameter
+                $stmt->bindParam(':employment_status', $employment_status, PDO::PARAM_STR);
+                $stmt->bindParam(':occupation', $occupation, PDO::PARAM_STR);
+                $stmt->bindParam(':monthly_income', $monthly_income, PDO::PARAM_STR); // If it's numeric, change to PDO::PARAM_INT
+                $stmt->bindParam(':head_relationship', $head_relationship, PDO::PARAM_STR);
+                $stmt->bindParam(':household_number', $household_number, PDO::PARAM_STR);
+                $stmt->bindParam(':sector_code', $sector_code, PDO::PARAM_STR);
         
-                // Execute the query
                 if ($stmt->execute()) {
-                    echo json_encode(['status' => 'success', 'message' => 'Resident added successfully.']) ;
+                    echo json_encode(['status' => 'success', 'message' => 'Resident added successfully.']);
                 } else {
                     echo json_encode(['status' => 'error', 'message' => 'Failed to add resident.']);
                 }
