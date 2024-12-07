@@ -152,7 +152,7 @@
 
                             <div class="col-md-2 col-12 mb-3">
                               <div class="form-group">
-                                <label class="label" for="view-child-name">Sex</label>
+                                <label class="label" for="view-child-name">Gender</label>
                                 <input type="text" class="form-control form-control-sm" name="view-resident-sex" id="view-resident-sex" readonly>
                               </div>
                             </div>
@@ -197,7 +197,7 @@
 
                             <div class="col-md-3 col-4 mb-3">
                               <div class="form-group">
-                                <label class="label" for="view-child-name">Annual Income</label>
+                                <label class="label" for="view-child-name">Estimated Monthly Income</label>
                                 <input type="text" class="form-control form-control-sm" name="view-resident-annual-income" id="view-resident-annual-income" readonly>
                               </div>
                             </div>
@@ -323,7 +323,7 @@
                 success: function(data) {
                   var res = JSON.parse(data)
 
-                  $("#resident_name").val(res.Firstname + ' ' + res.Middlename + ' ' + res.astname + ' ' + res.qualifier)
+                  $("#resident_name").val(res.Firstname + ' ' + res.Middlename + ' ' + res.Lastname + ' ' + res.Qualifier)
               
                   const printModal = new bootstrap.Modal(document.getElementById('printModal'))
                   printModal.show();
@@ -359,10 +359,10 @@
                   $("#view-resident-civil-status").val(res.Civil_Status)
                   $("#view-resident-citizenship").val(res.Citizenship)
                   $("#view-resident-religion").val(res.Religion)
-                  $("#view-resident-education").val(res.highest_educational_attainment)
-                  $("#view-resident-annual-income").val(res.annual_income)
-                  $("#view-resident-occupation").val(res.occupation)
-                  $("#view-resident-head-relationship").val(res.household_head_relationship)
+                  $("#view-resident-education").val(res.Educational_Attainment)
+                  $("#view-resident-annual-income").val(res.Avg_Monthly_Income)
+                  $("#view-resident-occupation").val(res.Occupation)
+                  $("#view-resident-head-relationship").val(res.Relation_To_Head)
 
                   const myModal = new bootstrap.Modal(document.getElementById('viewModal'))
                   myModal.show();

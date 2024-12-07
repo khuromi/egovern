@@ -215,7 +215,7 @@ sort($ages);
         <script>
     $(document).ready(function() {
         // Initialize DataTable
-        var table = $('#residentsTable').DataTable({
+        var table = $('#ResidentsTable').DataTable({
             "ajax": {
                 "url": "fetch_data.php",
                 "type": "POST",

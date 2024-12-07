@@ -343,7 +343,7 @@ include 'includes/topbar.php';
 
                                                 <div class="row">
                                                     <div class="col-md-2">
-                                                        <label class="label" for="add-resident-sex">Sex</label>
+                                                        <label class="label" for="add-resident-sex">Gender</label>
                                                         <input type="text" class="form-control" name="add-resident-sex" id="add-resident-sex">
                                                     </div>
                                                     <div class="col-md-2">
@@ -416,7 +416,7 @@ include 'includes/topbar.php';
                                                 </div>
 
                                                 <div class="col-md-3 mt-2">
-                                                    <button type="submit" id="add-resident" name="add-resident" class="btn btn-primary">Add Resident</button>
+                                                    <button type="submit" id="addResident" name="add-resident" class="btn btn-primary">Add Resident</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -453,29 +453,29 @@ include 'includes/topbar.php';
 
     $(document).ready(function() {
     // Handle the form submission for adding a resident
-    $("#addResidentForm").on('submit', function(e) {
+    $("#addResident").on('submit', function(e) {
         e.preventDefault();
 
         var formData = {
-            firstname: $("#add-resident-firstname").val(),
-            lastname: $("#add-resident-lastname").val(),
-            middlename: $("#add-resident-middlename").val(),
-            qualifier: $("#add-resident-qualifier").val(),
-            birthdate: $("#add-resident-birthdate").val(),
-            birthplace: $("#add-resident-birthplace").val(),
-            gender: $("#add-resident-sex").val(),
-            address: $("#add-resident-address").val(),
-            civil_tatus: $("#add-resident-civil-status").val(),
-            ethnicity: $("#add-resident-ethnicity").val(),
-            education: $("#add-resident-education").val(),
-            mother_name: $("#add-resident-mother-name").val(),
-            father_name: $("#add-resident-father-name").val(),
-            employment_status: $("#add-resident-employment-status").val(),
-            occupation: $("#add-resident-occupation").val(),
-            monthly_income: $("#add-resident-monthly-income").val(),
-            head_relationship: $("#add-resident-head-relationship").val(),
-            household_number: $("#add-resident-household-number").val(),
-            sector_code: $("#add-resident-sector-code").val()
+            Firstname: $("#add-resident-firstname").val(),
+            Lastname: $("#add-resident-lastname").val(),
+            Middlename: $("#add-resident-middlename").val(),
+            Qualifier: $("#add-resident-qualifier").val(),
+            Birthdate: $("#add-resident-birthdate").val(),
+            Birthplace: $("#add-resident-birthplace").val(),
+            Gender: $("#add-resident-sex").val(),
+            Address: $("#add-resident-address").val(),
+            Civil_Status: $("#add-resident-civil-status").val(),
+            Ethnicity: $("#add-resident-ethnicity").val(),
+            Educational_Attainment: $("#add-resident-education").val(),
+            Mothers_Maiden_Name: $("#add-resident-mother-name").val(),
+            Father_Name: $("#add-resident-father-name").val(),
+            Employment_Status: $("#add-resident-employment-status").val(),
+            Occupation: $("#add-resident-occupation").val(),
+            Avg_Monthly_Income: $("#add-resident-monthly-income").val(),
+            Relation_To_Head: $("#add-resident-head-relationship").val(),
+            Household_Number: $("#add-resident-household-number").val(),
+            Sector_Code: $("#add-resident-sector-code").val()
         };
 
         $.ajax({
@@ -523,8 +523,8 @@ include 'includes/topbar.php';
     $("#editResident").on('click', function(e) {
         e.preventDefault();
         
-        let resident_id = $("#edit-resident-id").val();
-        let firstname = $("#edit-resident-firstname").val();
+        let Resident_ID = $("#edit-resident-id").val();
+        let Firstname = $("#edit-resident-firstname").val();
         let lastname = $("#edit-resident-lastname").val();
         let middlename = $("#edit-resident-middlename").val();
         let qualifier = $("#edit-resident-qualifier").val();
@@ -611,27 +611,27 @@ include 'includes/topbar.php';
             success: function(data) {
                 var res = JSON.parse(data); 
 
-                $("#edit-resident-id").val(res.resident_id);
-                $("#edit-resident-firstname").val(res.firstname);
-                $("#edit-resident-lastname").val(res.lastname);
-                $("#edit-resident-middlename").val(res.middlename);
-                $("#edit-resident-qualifier").val(res.qualifier);
-                $("#edit-resident-birthdate").val(res.birthdate);
-                $("#edit-resident-address").val(res.address);
-                $("#edit-resident-sex").val(res.sex);
-                $("#edit-resident-birthplace").val(res.birthplace);
-                $("#edit-resident-civil-status").val(res.civil_status);
-                $("#edit-resident-ethnicity").val(res.ethnicity);
+                $("#edit-resident-id").val(res.Resident_IDesident_id);
+                $("#edit-resident-firstname").val(res.Firstname);
+                $("#edit-resident-lastname").val(res.Lastname);
+                $("#edit-resident-middlename").val(res.Middlename);
+                $("#edit-resident-qualifier").val(res.Qualifier);
+                $("#edit-resident-birthdate").val(res.Birthdate);
+                $("#edit-resident-address").val(res.Address);
+                $("#edit-resident-sex").val(res.Gender);
+                $("#edit-resident-birthplace").val(res.Birthplace);
+                $("#edit-resident-civil-status").val(res.Civil_Status);
+                $("#edit-resident-ethnicity").val(res.Ethnicity);
                 $("#edit-resident-citizenship").val(res.citizenship);
-                $("#edit-resident-education").val(res.educational_attainment);
-                $("#edit-resident-monthly-income").val(res.avg_monthly_income);
-                $("#edit-resident-occupation").val(res.occupation);
-                $("#edit-resident-employment-status").val(res.employment_status);
-                $("#edit-resident-head-relationship").val(res.household_head_relationship);
-                $("#edit-resident-mother-name").val(res.mothers_maiden_name);
-                $("#edit-resident-father-name").val(res.fathers_name);
-                $("#edit-resident-sector-code").val(res.sector_code);
-                $("#edit-resident-household-number").val(res.household_number);
+                $("#edit-resident-education").val(res.Educational_Attainment);
+                $("#edit-resident-monthly-income").val(res.Avg_Monthly_Income);
+                $("#edit-resident-occupation").val(res.Occupation);
+                $("#edit-resident-employment-status").val(res.Employment_Status);
+                $("#edit-resident-head-relationship").val(res.Relation_To_Head);
+                $("#edit-resident-mother-name").val(res.Mothers_Maiden_Name);
+                $("#edit-resident-father-name").val(res.Fathers_Name);
+                $("#edit-resident-sector-code").val(res.Sector_Code);
+                $("#edit-resident-household-number").val(res.Household_Number);
 
                 // Show the modal for editing
                 const myModal = new bootstrap.Modal(document.getElementById('viewModal'));

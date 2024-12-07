@@ -538,7 +538,7 @@ st.sidebar.header("Upload CSV File")
 uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
 
 # Path to default CSV file
-DEFAULT_CSV = 'streamlit/residents_data (3).csv'
+DEFAULT_CSV = 'https://github.com/khuromi/egovern/blob/main/streamlit/residents_data%20(3).csv'
 
 @st.cache_data
 def load_csv(file_path=None):
