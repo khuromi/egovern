@@ -65,7 +65,7 @@ include 'includes/topbar.php';
                             <table id="datatablesSimple" class="table table-striped table-sm">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>Household Number</th>
                                         <th>Resident Name</th>
                                         <th>Gender</th>
                                         <th>Birth Date</th>
@@ -83,7 +83,7 @@ include 'includes/topbar.php';
                                 ?>
                                     <tr>
 
-                                        <td><?= $row['Resident_ID'] ?></td>
+                                        <td><?= $row['Household_Number'] ?></td>
                                         <td><?= $row['Firstname'] ?> <?= $row['Middlename'] ?> <?= $row['Lastname'] ?>
                                         </td>
                                         <td><?= $row['Gender'] ?></td>
