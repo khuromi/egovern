@@ -215,7 +215,7 @@ sort($ages);
         <script>
     $(document).ready(function() {
         // Initialize DataTable
-        var table = $('#ResidentsTable').DataTable({
+        var table = $('#residentsTable').DataTable({
             "ajax": {
                 "url": "fetch_data.php",
                 "type": "POST",
@@ -227,17 +227,17 @@ sort($ages);
                 }
             },
             "columns": [
-                { "data": "resident_id" },
-                { "data": "lastname" },
-                { "data": "firstname" },
-                { "data": "middlename" },
-                { "data": "sex" },
-                { "data": "address" },
-                { "data": "birthdate" },
-                { "data": "civil_status" },
-                { "data": "occupation" },
-                { "data": "employment_status" },
-                { "data": "sector_code" }
+                { "data": "Resident_ID" },
+                { "data": "Lastname" },
+                { "data": "Firstname" },
+                { "data": "Middlename" },
+                { "data": "Gender" },
+                { "data": "Address" },
+                { "data": "Birthdate" },
+                { "data": "Civil_Status" },
+                { "data": "Occupation" },
+                { "data": "Employment_Status" },
+                { "data": "Sector_Code" }
             ]
         });
 

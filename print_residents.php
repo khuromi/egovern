@@ -5,7 +5,7 @@ use setasign\Fpdi\Fpdi;
 require_once('vendor/autoload.php');
 include 'config/init.php';
 
-$query = "SELECT resident_id, lastname, firstname, middlename, qualifier, sex, address, birthdate, civil_status, occupation, employment_status, sector_code FROM residents WHERE 1=1";
+$query = "SELECT resident_id, lastname, firstname, middlename, qualifier, gender, address, birthdate, civil_status, occupation, employment_status, sector_code FROM residents WHERE 1=1";
 $filterDescription = '';
 
 if (!empty($_POST['sector'])) {
@@ -65,7 +65,7 @@ $pdf->Ln(20);
 $pdf->SetFont('Arial', 'B', 10);
 
 $headers = [
-    'ID', 'Full Name', 'Sex', 'Address', 'Birthdate', 
+    'ID', 'Full Name', 'gender', 'Address', 'Birthdate', 
     'Civil Status', 'Occupation', 'Employment Status', 'Sector Code'
 ];
 
@@ -83,7 +83,7 @@ foreach ($rows as $row) {
     $data = [
         $row['resident_id'],
         $fullName,
-        $row['sex'],
+        $row['gender'],
         $row['address'],
         $row['birthdate'],
         $row['civil_status'],
