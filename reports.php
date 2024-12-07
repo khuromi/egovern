@@ -162,7 +162,7 @@ sort($ages);
                         <table class="table table-hover table-striped" id="residentsTable">
                             <thead class="table">
                                 <tr>
-                                    <th>Resident ID</th>
+                                    <th>Household_Number</th>
                                     <th>Lastname</th>
                                     <th>Firstname</th>
                                     <th>Middlename</th>
@@ -227,7 +227,7 @@ sort($ages);
                 }
             },
             "columns": [
-                { "data": "Resident_ID" },
+                { "data": "Household_Number" },
                 { "data": "Lastname" },
                 { "data": "Firstname" },
                 { "data": "Middlename" },
