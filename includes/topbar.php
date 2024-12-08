@@ -3,10 +3,10 @@
 
 <style>
 
-.jumbotron {
+/*.jumbotron {
             background-image: url("assets/img/y-so-serious-white.png");
         }
-
+*/
 </style>
 
 

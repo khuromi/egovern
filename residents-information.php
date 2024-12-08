@@ -120,8 +120,8 @@
         <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <div class="modal-header bg-gradient-primary-to-secondary">
+                <h1 class="modal-title fs-5 text-white"  id="exampleModalLabel">View Information</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -132,9 +132,6 @@
                       <div class="card h-100 ">
                         <div class="card-body">
                           <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                              <h5 class="mb-2 text-danger">Resident Information</h5>
-                            </div>
 
                             <div class="col-md-8 col-12 mb-3">
                               <div class="form-group">

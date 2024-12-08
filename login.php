@@ -49,12 +49,6 @@ if ($login->isRememberSet()) {
     <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
         
     <style>
-         .jumbotron {
-            background-image: url("assets/img/y-so-serious-white.png");
-        }
-        .nah {
-            background-image: url("assets/img/bg.jpg");
-        }
 
 .container {
     display: flex;

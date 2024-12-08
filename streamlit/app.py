@@ -34,6 +34,98 @@ def clean_data(data: pd.DataFrame) -> pd.DataFrame:
 
 # Data Visualizations
 #tab1 Demographics
+def display_histogram(data: pd.DataFrame) -> None:
+    st.subheader("Histogram: Data Distribution")
+    col1, col2 = st.columns([20, 5])
+
+    with col2:
+        # Allow both string and numerical columns to be selected
+        available_columns = data.columns.tolist()
+        if not available_columns:
+            st.warning("No columns available in the dataset.")
+            return
+
+        selected_column = st.selectbox("Select Column", available_columns, index=0)
+        is_numeric = pd.api.types.is_numeric_dtype(data[selected_column])
+
+        # If the column is numerical, allow bin adjustment
+        if is_numeric:
+            num_bins = st.slider("Number of Bins", min_value=5, max_value=50, value=20, step=5)
+        else:
+            num_bins = None
+
+    try:
+        with col1:
+            if is_numeric:
+                # Create histogram for numerical data
+                fig = px.histogram(
+                    data,
+                    x=selected_column,
+                    nbins=num_bins,
+                    title=f"Histogram of {selected_column}",
+                    labels={selected_column: selected_column},
+                    color_discrete_sequence=["#636EFA"],
+                    hover_data=data.columns,
+                )
+                fig.update_layout(
+                    bargap=0.1,
+                    xaxis_title=f"{selected_column}",
+                    yaxis_title="Count",
+                )
+            else:
+                # Create histogram for categorical data (value counts)
+                value_counts = data[selected_column].value_counts().reset_index()
+                value_counts.columns = [selected_column, "Count"]
+                fig = px.bar(
+                    value_counts,
+                    x=selected_column,
+                    y="Count",
+                    title=f"Histogram of {selected_column}",
+                    labels={selected_column: selected_column, "Count": "Counts"},
+                    color_discrete_sequence=["#636EFA"],
+                )
+                fig.update_layout(
+                    bargap=0,  # Ensure bars are intact (no gaps)
+                    xaxis_title=f"{selected_column}",
+                    yaxis_title="Counts",
+                )
+
+            st.plotly_chart(fig)
+
+        with st.expander("See Evaluation"):
+            col1, col2 = st.columns([4, 4])
+
+        with col1:
+            st.write("### Evaluation")
+            st.write(f"*Selected Column:* {selected_column}")
+            if is_numeric:
+                st.write(f"*Number of Bins:* {num_bins}")
+
+            st.write("### Summary Statistics:")
+            if is_numeric:
+                stats = data[selected_column].describe()
+                for stat, value in stats.items():
+                        st.write(f"{stat.capitalize()}: {value:,.2f}")
+            else:
+                total = len(data[selected_column])
+                unique = data[selected_column].nunique()
+                st.write(f"Total Entries: {total}")
+                st.write(f"Unique Values: {unique}")
+
+        with col2:
+            st.write("### Insights")
+            if is_numeric:
+                st.write(f"- Minimum Value: {data[selected_column].min()}")
+                st.write(f"- Maximum Value: {data[selected_column].max()}")
+                st.write(f"- Range: {data[selected_column].max() - data[selected_column].min()}")
+            else:
+                st.write("### Top Categories:")
+                for i, row in value_counts.iterrows():
+                    st.write(f"- {row[selected_column]}: {row['Count']} occurrences")
+
+    except ValueError as e:
+        st.warning(f"An error occurred while generating the histogram: {str(e)}")
+
 def display_treemap(data: pd.DataFrame) -> None:
     st.subheader("Treemap: Hierarchical Demographic Categories")
     col1, col2 = st.columns([20, 5])
@@ -62,39 +154,39 @@ def display_treemap(data: pd.DataFrame) -> None:
             )
             st.plotly_chart(fig)
 
-            with st.expander("See Evaluation"):
-                col1, col2 = st.columns([4, 4])
+        with st.expander("See Evaluation"):
+            col1, col2 = st.columns([4, 4])
 
-            with col1:    
-                st.write("### Evaluation")
-                st.write(f"*Parent Category (selected):* {selected_parent}")
-                st.write(f"*Child Category (selected):* {selected_child}")
+        with col1:    
+            st.write("### Evaluation")
+            st.write(f"*Parent Category (selected):* {selected_parent}")
+            st.write(f"*Child Category (selected):* {selected_child}")
             
-                total_population = group_data["Population"].sum()
-                st.write(f"*Total Population Represented:* {total_population:,}")
+            total_population = group_data["Population"].sum()
+            st.write(f"*Total Population Represented:* {total_population:,}")
         
-                st.write("### Population Breakdown:")
-                st.write(group_data[[selected_parent, selected_child, "Population"]].sort_values(by="Population", ascending=False))
+            st.write("### Population Breakdown:")
+            st.write(group_data[[selected_parent, selected_child, "Population"]].sort_values(by="Population", ascending=False))
 
-                if not group_data.empty:
-                    largest_group = group_data.loc[group_data["Population"].idxmax()]
-                    smallest_group = group_data.loc[group_data["Population"].idxmin()]
-                    st.write(f"*Largest Group:* {largest_group[selected_parent]} - {largest_group[selected_child]} | Population: {largest_group['Population']}")
-                    st.write(f"*Smallest Group:* {smallest_group[selected_parent]} - {smallest_group[selected_child]} | Population: {smallest_group['Population']}")
+            if not group_data.empty:
+                largest_group = group_data.loc[group_data["Population"].idxmax()]
+                smallest_group = group_data.loc[group_data["Population"].idxmin()]
+                st.write(f"*Largest Group:* {largest_group[selected_parent]} - {largest_group[selected_child]} | Population: {largest_group['Population']}")
+                st.write(f"*Smallest Group:* {smallest_group[selected_parent]} - {smallest_group[selected_child]} | Population: {smallest_group['Population']}")
 
-            with col2:
-                st.write("### Category Distribution:")
-                category_counts = group_data[selected_parent].value_counts()
-                st.write(f"*Number of Unique Parent Categories:* {len(category_counts)}")
-                st.write(category_counts)
+        with col2:
+            st.write("### Category Distribution:")
+            category_counts = group_data[selected_parent].value_counts()
+            st.write(f"*Number of Unique Parent Categories:* {len(category_counts)}")
+            st.write(category_counts)
 
-                st.write("### Key Insights from Treemap:")
-                for parent in category_counts.index:
-                    parent_data = group_data[group_data[selected_parent] == parent]
-                    st.write(f"- *Parent Category:* {parent}")
-                    for child in parent_data[selected_child].unique():
-                        child_data = parent_data[parent_data[selected_child] == child]
-                        st.write(f"   - *Child Category:* {child} | Population: {child_data['Population'].sum()}")
+            st.write("### Key Insights from Treemap:")
+            for parent in category_counts.index:
+                parent_data = group_data[group_data[selected_parent] == parent]
+                st.write(f"- *Parent Category:* {parent}")
+                for child in parent_data[selected_child].unique():
+                    child_data = parent_data[parent_data[selected_child] == child]
+                    st.write(f"   - *Child Category:* {child} | Population: {child_data['Population'].sum()}")
     except ValueError as e:
         if "cannot insert" in str(e):
                 st.warning(f"An issue occurred while generating the treemap: {str(e)}")
@@ -528,7 +620,7 @@ def display_stacked_bar_chart(data: pd.DataFrame) -> None:
 st.set_page_config(page_title="eGovern", layout="wide")
 
 # App Title and Description
-st.title("Exploratory Data Visualization sdhbfkshfdbf")
+st.title("Exploratory Data Visualization ")
 st.markdown("""
 Welcome to the eGovern Residents Data Dashboard. Use the sidebar to filter the data based on various criteria and explore different aspects of the residents' demographics and socioeconomic status.
 """)
@@ -538,7 +630,7 @@ st.sidebar.header("Upload CSV File")
 uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
 
 # Path to default CSV file
-DEFAULT_CSV ='https://github.com/khuromi/egovern/blob/main/streamlit/residents_data%20(3).csv'
+DEFAULT_CSV ='residents_data.csv'
 
 @st.cache_data
 def load_csv(file_path=None):
@@ -562,10 +654,10 @@ if uploaded_file is not None:
     data_source = "Uploaded File"
 else:
     try:
-        data = load_csv()
+        data = pd.read_csv("residents_data (3).csv")
         st.write("### Default Data:")
         st.dataframe(data)
-        data_source = "Default CSV (residents_data(3).csv)"
+        data_source = "Default CSV (residents_data (3).csv)"
     except FileNotFoundError:
         st.error(f"Default CSV file '{DEFAULT_CSV}' not found. Please upload a CSV file.")
         st.stop()
@@ -624,10 +716,11 @@ if not data.empty:
         ])
 
     with tab1:
-            display_treemap(data)
-            display_parallel_coordinates(data)
-            display_bubble_chart(data)
+            display_histogram(data)
             display_population_pyramid(data)
+            display_treemap(data)
+            display_bubble_chart(data)
+            display_parallel_coordinates(data)
     with tab2:        
             display_correlation_heatmap(data)
             display_demographics(data)

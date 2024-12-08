@@ -29,14 +29,6 @@ if (!$login->isLoggedIn()) {
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     </head>
     <style>
-           .jumbotron {
-            background-image: url("assets/img/y-so-serious-white.png");
-        }
-    
-.nah {
-            background-image: url("assets/img/bg.jpg");
-        }
-
     #datasetDropdown {
         width: 150px; /* Reduce width */
         font-size: 12px; /* Smaller font size */
