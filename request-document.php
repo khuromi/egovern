@@ -163,21 +163,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                     <div class="card mt-4">
-                        <div class="card-body">
-                        <table class="table">
-                        <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Document</th>
-                                        <th>Date Requested</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
+                        <div class="card-content"></div>
+                            <div class="card-body">
+                                <div class="card-header bg-gradient-primary-to-secondary text-white">
+                                <h1 class=" text-white" >Requested Documents</h1>
+                                </div>
+                            <table class="table">
+                            <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Document</th>
+                                            <th>Date Requested</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
                                 </thead>
-                            </thead>
-                            <tbody>
-                            <?php if (!empty($document_requests)):  ?>
+                                <tbody>
+                                <?php if (!empty($document_requests)):  ?>
                                         <?php foreach ($document_requests as $request):  ?>
                                             <tr>
                                                 <td><?= htmlspecialchars($request['id']) ?></td>
@@ -225,10 +229,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <?php endif; ?>
                             </tbody>
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </main>
+            </div>
+        </main>
 
             <footer class="footer-admin mt-auto footer-light">
                 <div class="container-xl px-4">

@@ -312,11 +312,13 @@ def display_bubble_chart(data: pd.DataFrame) -> None:
         # User input to select a categorical variable for bubble size (e.g., Occupation or Employment Status)
         categorical_columns = data.select_dtypes(include='object').columns.tolist()
         selected_category = st.selectbox("Select Category for Bubble Size", categorical_columns, index=0)
-
+     # Check if the user has selected the same variable for X and Y axes
+    if selected_x == selected_y:
+        st.warning("You have selected the same variable for both the X-axis and Y-axis. Please select different variables.")
+        return  # Exit the function if the same variable is selected
     # Group the data by the selected category (e.g., Employment Status)
     # Count the number of individuals in each category to represent the bubble size
     group_data = data.groupby([selected_x, selected_y, selected_category]).size().reset_index(name="Population")
-
     # Create the Bubble Chart using Plotly
     with col1:
         fig = px.scatter(
@@ -377,7 +379,7 @@ def display_bubble_chart(data: pd.DataFrame) -> None:
             category_data = group_data[group_data[selected_category] == category]
             x_avg = category_data[selected_x].mean()
             y_avg = category_data[selected_y].mean()
-            st.write(f"- *Category:* {category} | Average {selected_x}: {x_avg:.2f} | Average {selected_y}: {y_avg:.2f}")
+            st.write(f"- *Category:* {category} | Average {selected_x}: {x_avg:.2f} | Average {selected_y}: {y_avg:.2f}")        
 
 def display_population_pyramid(data: pd.DataFrame) -> None:
     """
@@ -630,7 +632,7 @@ st.sidebar.header("Upload CSV File")
 uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
 
 # Path to default CSV file
-DEFAULT_CSV ='Residents_Data.csv'
+DEFAULT_CSV ='https://raw.githubusercontent.com/khuromi/egovern/refs/heads/main/streamlit/residents_data.csv'
 
 @st.cache_data
 def load_csv(file_path=None):
@@ -654,10 +656,10 @@ if uploaded_file is not None:
     data_source = "Uploaded File"
 else:
     try:
-        data = pd.read_csv("Residents_Data.csv")
+        data = pd.read_csv("https://raw.githubusercontent.com/khuromi/egovern/refs/heads/main/streamlit/residents_data.csv")
         st.write("### Default Data:")
         st.dataframe(data)
-        data_source = "Default CSV (Residents_Data.csv)"
+        data_source = "Default CSV (https://raw.githubusercontent.com/khuromi/egovern/refs/heads/main/streamlit/residents_data.csv)"
     except FileNotFoundError:
         st.error(f"Default CSV file '{DEFAULT_CSV}' not found. Please upload a CSV file.")
         st.stop()
