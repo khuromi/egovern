@@ -80,7 +80,7 @@ switch ($type) {
 
 
         // Set the source file and import the page
-        $pdf->setSourceFile("forms/CLEARANCE.pdf");
+        $pdf->setSourceFile("forms/CLEARANCE 1.pdf");
         $tplId = $pdf->importPage(1);
 
         // Get the size of the imported page
@@ -165,7 +165,7 @@ switch ($type) {
 
 
         // Set the source file and import the page
-        $pdf->setSourceFile("forms/INDIGENCY.pdf");
+        $pdf->setSourceFile("forms/INDIGENCY1.pdf");
         $tplId = $pdf->importPage(1);
 
         // Get the size of the imported page
@@ -227,7 +227,7 @@ switch ($type) {
 
 
         // Set the source file and import the page
-        $pdf->setSourceFile("forms/CERTIFICATION.pdf");
+        $pdf->setSourceFile("forms/CERTIFICATION1.pdf");
         $tplId = $pdf->importPage(1);
 
         // Get the size of the imported page
