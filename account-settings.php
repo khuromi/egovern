@@ -65,7 +65,7 @@
                     <div class="col-md-6">
 
                         <div class="card mb-3">
-                            <div class="card-header">
+                            <div class="card-header bg-gradient-primary-to-secondary text-white">
                         Change Profile
                             </div>
                             <div class="card-body">
@@ -95,7 +95,7 @@
                         <div class="col-md-6">
 
                         <div class="card mb-3">
-                            <div class="card-header">
+                            <div class="card-header bg-gradient-primary-to-secondary text-white">
                                 Change Password
                             </div>
                             <div class="card-body">

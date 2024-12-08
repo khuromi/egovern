@@ -82,8 +82,8 @@ sort($ages);
     <div class="row gutters">
         <div class="col-12 mb-4">
             <div class="card shadow-sm">
-                <div class="card-header  text-white">
-                    <h5 class="mb-0">Residents Data Filters</h5>
+                <div class="card-header bg-gradient-primary-to-secondary">
+                    <h5 class="mb-0 text-white">Residents Data Filters</h5>
                 </div>
                 <div class="card-body">
                 <form method="post" action="print_residents.php">
@@ -154,8 +154,8 @@ sort($ages);
         <!-- Data Table -->
         <div class="col-12">
             <div class="card shadow-sm">
-                <div class="card-header  text-white">
-                    <h5 class="mb-0">Residents Data</h5>
+                <div class="card-header bg-gradient-primary-to-secondary">
+                    <h5 class="mb-0 text-white">Residents Data</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

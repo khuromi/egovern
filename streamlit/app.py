@@ -630,7 +630,7 @@ st.sidebar.header("Upload CSV File")
 uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
 
 # Path to default CSV file
-DEFAULT_CSV ='residents_data.csv'
+DEFAULT_CSV ='Residents_Data.csv'
 
 @st.cache_data
 def load_csv(file_path=None):
@@ -654,10 +654,10 @@ if uploaded_file is not None:
     data_source = "Uploaded File"
 else:
     try:
-        data = pd.read_csv("residents_data (3).csv")
+        data = pd.read_csv("Residents_Data.csv")
         st.write("### Default Data:")
         st.dataframe(data)
-        data_source = "Default CSV (residents_data (3).csv)"
+        data_source = "Default CSV (Residents_Data.csv)"
     except FileNotFoundError:
         st.error(f"Default CSV file '{DEFAULT_CSV}' not found. Please upload a CSV file.")
         st.stop()
