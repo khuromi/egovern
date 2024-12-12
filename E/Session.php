@@ -1,79 +1,69 @@
 <?php
 
+declare(strict_types=1);
+
 class Session extends \SessionHandler
 {
-    private static  $_instance;
-    private string $sessionName = 'my_secure_session';
-    private int $sessionMaxLifetime = 1800; // 30 minutes
-    private bool $sessionSSL = true;
-    private bool $sessionHTTPOnly = true;
-    private string $sessionSameSite = 'Strict';
+    private static ?self $_instance = null;
 
+    public function __construct(
+        private readonly string $sessionName = 'my_secure_session',
+        private readonly int $sessionMaxLifetime = 1800, // 30 minutes
+        private readonly bool $sessionSSL = true,
+        private readonly bool $sessionHTTPOnly = true,
+        private readonly string $sessionSameSite = 'Strict'
+    ) {
+   
 
-    public function __construct()
-    {
-        // Set session name
-        session_name($this->sessionName);
-
-        // Set session cookie parameters
-        // session_set_cookie_params(
-        //     $this->sessionMaxLifetime,
-        //     '/',
-        //     '',
-        //     $this->sessionSSL,
-        //     $this->sessionHTTPOnly
-        // );
-
-        // // Set session cookie SameSite policy
-        // if (PHP_VERSION_ID >= 70300) {
-        //     session_set_cookie_params([
-        //         'samesite' => $this->sessionSameSite
-        //     ]);
-        // }
-
-        // // Set session handler to use encryption
-        // ini_set('session.use_cookies', 1);
-        // ini_set('session.use_only_cookies', 1);
-        // ini_set('session.cookie_secure', $this->sessionSSL);
-        // ini_set('session.cookie_httponly', $this->sessionHTTPOnly);
-
-        // Start session
-        session_start();
-
-
-
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
     }
 
-    public static function startSession()
+    public static function startSession(): void
     {
         if (self::$_instance === null) {
             self::$_instance = new self();
         }
     }
 
-    public static function setSession($index, $value) {
+    public static function setSession(string $index, mixed $value): void
+    {
         $_SESSION[$index] = $value;
     }
 
-    public static function getSession($index){
+    public static function getSession(string $index): mixed
+    {
         return $_SESSION[$index] ?? null;
     }
 
-    public static function checkSession($index) {
-        if(isset($_SESSION[$index])){
-            return true;
-        } else {
-            return false;
-        }
+    public static function checkSession(string $index): bool
+    {
+        return isset($_SESSION[$index]);
     }
 
-    public static function unsetSession($index) {
+    public static function unsetSession(string $index): void
+    {
         unset($_SESSION[$index]);
     }
 
-    public static function destroySession(){
-        session_destroy();
+    public static function destroySession(): bool
+    {
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_unset();
+            return session_destroy();
+        }
+        return false;
     }
 
+    // Prevent cloning of the instance
+    private function __clone()
+    {
+    }
 
+    // Prevent unserialization of the instance
+    public function __wakeup()
+    {
+        throw new \Exception("Cannot unserialize singleton");
+    }
 }

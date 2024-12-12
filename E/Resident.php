@@ -11,7 +11,20 @@
 
         public function fetchResidents(){
 
-            $sql = "SELECT * FROM residents";
+            $sql = "SELECT r.* FROM residents r LEFT JOIN deactivation_reasons dr ON r.Resident_ID = dr.resident_id WHERE dr.resident_id IS NULL;";
+
+            $stmt = $this->db->query($sql);
+            if($stmt->execute()){
+
+                return $stmt->fetchAll();
+
+            }
+
+        }
+
+        public function fetchDeactivatedResidents(){
+
+            $sql = "SELECT r.*, dr.* FROM residents r LEFT JOIN deactivation_reasons dr ON r.Resident_ID = dr.resident_id WHERE dr.resident_id IS NOT NULL;";
 
             $stmt = $this->db->query($sql);
             if($stmt->execute()){
@@ -169,14 +182,18 @@
            
         }
         
-        public function deleteResident($residentID )
+        public function deactivateResident($residentID, $reason)
         {
-            $stmt =$this->db->prepare("DELETE FROM `residents` WHERE Resident_ID=:rid ");
-
-                $stmt->bindParam(":rid",$residentID);
-            if ($stmt->execute()){
+            $date = date('Y-m-d');
+            $stmt =$this->db->prepare("INSERT INTO deactivation_reasons (resident_id, deactivation_reason, deactivation_date) VALUES (:rid, :dr, :dd)");
+            $stmt->bindParam(":dr", $reason);
+            $stmt->bindParam(":rid", $residentID);
+            $stmt->bindParam(":dd", $date);
+            if($stmt->execute()){
                 echo json_encode(
-                    ['status'=>"success"]
+                    [
+                        'success' => true
+                    ]
                 );
             }
 

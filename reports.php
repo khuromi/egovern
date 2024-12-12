@@ -90,6 +90,22 @@ sort($ages);
                     <div class="row g-3">
                         <!-- Sector Filter -->
                         <div class="col-md-3">
+                            <label for="householdFilter" class="form-label">Sort By Household Number:</label>
+                            <select id="householdFilter" name="household" class="form-select">
+                                <option value="">All</option>
+                                <?php
+                                    $stmt = $db->query("SELECT household_number FROM `residents` GROUP BY household_number ORDER BY household_number;");
+                                    $stmt->execute();
+                                    $res = $stmt->fetchAll();
+                                    foreach ($res as $row):
+                                ?>
+                                <option value="<?= $row['household_number']; ?>"><?= $row['household_number']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        
+                        <!-- Sector Filter -->
+                        <div class="col-md-2">
                             <label for="sectorFilter" class="form-label">Sort By Sector:</label>
                             <select id="sectorFilter" name="sector" class="form-select">
                                 <option value="">All</option>
@@ -113,7 +129,7 @@ sort($ages);
                         </div>
                         
                         <!-- Age Filter -->
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                              <label for="ageFilter" class="form-label">Sort by Age:</label>
                                <select id="ageFilter" name="age" class="form-select">
                                     <option value="">All</option>
@@ -129,7 +145,7 @@ sort($ages);
 
 
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="ethnicityFilter" class="form-label">Sort by Ethnicity:</label>
                             <select id="ethnicityFilter" name="ethnicity" class="form-select">
                                 <option value="">All</option>
@@ -222,6 +238,7 @@ sort($ages);
                 "data": function(d) {
                     d.sector = $('#sectorFilter').val();
                     d.employment_status = $('#employmentStatusFilter').val();
+                    d.household = $('#householdFilter').val();
                     d.age = $('#ageFilter').val();
                     d.ethnicity = $('#ethnicityFilter').val();
                 }
@@ -242,7 +259,7 @@ sort($ages);
         });
 
         // Reload table when filters change
-        $('#sectorFilter, #employmentStatusFilter, #ageFilter, #ethnicityFilter').on('change', function() {
+        $('#sectorFilter,#householdFilter, #employmentStatusFilter, #ageFilter, #ethnicityFilter').on('change', function() {
             table.ajax.reload();
         });
 
@@ -251,6 +268,7 @@ sort($ages);
             // Gather current filter values
             var sector = $('#sectorFilter').val();
             var employmentStatus = $('#employmentStatusFilter').val();
+            var household = $('#householdFilter').val();
             var age = $('#ageFilter').val();
             var ethnicity = $('#ethnicityFilter').val();
 
@@ -260,6 +278,7 @@ sort($ages);
                 type: 'POST',
                 data: {
                     sector: sector,
+                    household: household,
                     employment_status: employmentStatus,
                     age: age,
                     ethnicity: ethnicity,

@@ -19,7 +19,7 @@ if (!isset($data['id']) || !isset($data['status'])) {
 }
 
 $requestId = $data['id'];
-$status = $data['status'] == 'for pick-up' ? 'Accepted' : 'Rejected';
+$status = $data['status'] == 'accept' ? 'for pick-up' : 'rejected';
 
 try {
     // Prepare and execute the SQL update statement

@@ -75,7 +75,7 @@
             <div class="sidenav-menu-heading">System</div>
             <!-- Sidenav Link (Charts)-->
 
-            <a class="nav-link" href="Account-Settings.php">
+            <a class="nav-link" href="account-settings.php">
                 <div class="nav-link-icon"><i data-feather="user"></i></div>
                 Account Settings
             </a>
