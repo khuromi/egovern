@@ -126,9 +126,9 @@
 
                 break;
 
-            case 'deleteResident':
+            case 'deactivateResident':
                 $response = new Resident();
-                $response->deleteResident($_POST['resident_id']);
+                $response->deactivateResident($_POST['resident_id'], $_POST['reason']);
                 break;
             
             case 'deleteRequest':

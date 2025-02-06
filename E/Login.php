@@ -15,13 +15,10 @@ class Login {
      * @return bool
     */
     public function isLoggedIn() {
-        $loginString = Others::generateLoginString();
-        $currentString = Session::checkSession("login_fingerprint");
-        if (Session::checkSession("isLoggedIn") === true || $loginString === $currentString) {
+        if (Session::checkSession("isLoggedIn") === true) {
             return true;
         } else {
             Session::unsetSession('isLoggedIn');
-            Session::unsetSession('login_fingerprint');
             return false; // User is not logged in
 
         }

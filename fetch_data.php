@@ -16,6 +16,11 @@ if (!empty($_POST['ethnicity'])) {
     $query .= " AND Ethnicity = :ethnicity";
 }
 
+if (!empty($_POST['household'])) {
+    $household = $_POST['household'];
+    $query .= " AND Household_Number = :household";
+}
+
 if (!empty($_POST['employment_status'])) {
     $employment_status = $_POST['employment_status'];
     $query .= " AND Employment_Status = :employment_status";
@@ -56,9 +61,12 @@ if (!empty($sector)) {
 if (!empty($ethnicity)) {
     $stmt->bindParam(':ethnicity', $ethnicity, PDO::PARAM_STR);
 }
+if (!empty($ethnicity)) {
+    $stmt->bindParam(':ethnicity', $ethnicity, PDO::PARAM_STR);
+}
 
-if (!empty($employment_status)) {
-    $stmt->bindParam(':employment_status', $employment_status, PDO::PARAM_STR);
+if (!empty($household)) {
+    $stmt->bindParam(':household', $household, PDO::PARAM_STR);
 }
 
 if (!empty($age) && is_numeric($age)) {
