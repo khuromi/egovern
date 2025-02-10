@@ -158,7 +158,6 @@ sort($ages);
                         </div>
                         <div class="container mt-3">
                             <button class="btn btn-primary btn-block" type="submit">Download PDF</button>
-                            <button type="button" id="downloadCSV" class="btn btn-success" style="margin-left: 10px;">Download CSV</button>
                         </div>
                     </div>
                     </form>

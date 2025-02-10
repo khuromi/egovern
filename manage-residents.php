@@ -805,12 +805,16 @@ include 'includes/topbar.php';
 
                     if(response.success){
                         Swal.fire({
-                        icon: 'success',
-                        title: 'Resident deactivated successfully!',
-                        text: 'The resident has been deactivated.',
-                    });
-                    }
-                   
+                            icon: 'success',
+                            title: 'Resident deactivated successfully!',
+                            text: 'The resident has been deactivated.',
+                        });
+
+                        // Reload the page after 3 seconds
+                        setTimeout(function() {
+                            location.reload();
+                        }, 3000); // 3000ms = 3 seconds
+                    }   
                 },
                 error: function() {
                     Swal.fire({
