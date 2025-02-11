@@ -103,30 +103,25 @@ $document_requests = $rd->fetchRequests();
                                                 </td>
                                                 <td><?= htmlspecialchars($request['date_requested']) ?></td>
                                                 <td>
-                                                <td>
                                                 <div class="btn-group btn-sm">
-    <!-- Delete Button with Trash Icon -->
-    <button class="btn btn-danger btn-sm delete-request" data-id="<?= htmlspecialchars($request['id']) ?>"><i class="fa fa-trash"></i></button>
+                                                <!-- <button class="btn btn-danger btn-sm delete-request" data-id="<?= htmlspecialchars($request['id']) ?>"><i class="fa fa-trash"></i></button> -->
 
-    <?php if ($request['status'] === 'pending'): ?>
-        <!-- Show Accept and Reject Buttons if Status is Pending -->
-        <button data-id="<?= htmlspecialchars($request['id']) ?>" class="btn btn-outline-success btn-sm accept">
-            <i class="fas fa-square-check"></i> Accept
-        </button>
-        
-        <button data-id="<?= htmlspecialchars($request['id']) ?>" class="btn btn-outline-warning btn-sm reject">
-            <i class="fas fa-square-xmark"></i> Reject
-        </button>
-    <?php elseif ($request['status'] === 'for pick-up' && $request['active'] === 1): ?>
-
-        <!-- Show Print Button if Status is Accepted -->
-        <button data-id="<?= htmlspecialchars($request['id']) ?>" 
-                class="btn btn-outline-success btn-sm" 
-                onclick="window.open('request_print.php?id=<?= htmlspecialchars($request['id']) ?>', '_blank')">
-            <i class="fas fa-print"></i>
-        </button>
-    <?php endif; ?>
-</div>
+                                                <?php if ($request['status'] === 'pending'): ?>
+                                                    <button data-id="<?= htmlspecialchars($request['id']) ?>" class="btn btn-outline-success btn-sm accept">
+                                                        <i class="fas fa-square-check"></i> Accept
+                                                    </button>
+                                                    
+                                                    <button data-id="<?= htmlspecialchars($request['id']) ?>" class="btn btn-outline-warning btn-sm reject">
+                                                        <i class="fas fa-square-xmark"></i> Reject
+                                                    </button>
+                                                <?php elseif ($request['status'] === 'for pick-up' && $request['active'] === 1): ?>
+                                                    <button data-id="<?= htmlspecialchars($request['id']) ?>" 
+                                                            class="btn btn-outline-success btn-sm" 
+                                                            onclick="window.open('request_print.php?id=<?= htmlspecialchars($request['id']) ?>', '_blank')">
+                                                        <i class="fas fa-print"></i>
+                                                    </button>
+                                                <?php endif; ?>
+                                            </div>
 
                                                 </td>
 
