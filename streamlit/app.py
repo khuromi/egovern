@@ -117,10 +117,10 @@ def display_histogram(data: pd.DataFrame) -> None:
                 )
                 income_bin_counts = income_bins.value_counts().reset_index()
                 income_bin_counts.columns = ["Income_Range", "Count"]
-                
+
                 # Display the table
                 st.write("### Income Range Distribution Table", income_bin_counts)
-                
+
                 # Find largest and smallest group based on counts
                 largest_group = income_bin_counts.loc[income_bin_counts["Count"].idxmax()]
                 smallest_group = income_bin_counts.loc[income_bin_counts["Count"].idxmin()]
@@ -139,7 +139,7 @@ def display_histogram(data: pd.DataFrame) -> None:
                 # Generate integer-based bin ranges (e.g., 1-2, 3-4, etc.)
                 bin_edges = list(range(int(household_min), int(household_max) + 2, 2))  # Step of 2 for ranges like 1-2, 3-4
                 bin_labels = [f"{i}-{i+1}" for i in range(int(household_min), int(household_max), 2)]
-                
+
                 data["Household_Bin"] = pd.cut(
                     data[selected_column],
                     bins=bin_edges,
@@ -149,10 +149,10 @@ def display_histogram(data: pd.DataFrame) -> None:
                 )
                 bin_counts = data["Household_Bin"].value_counts().reset_index()
                 bin_counts.columns = [f"{selected_column}", "Count"]
-                
+
                 # Display the table
                 st.write(f"### {selected_column} Bin Distribution Table", bin_counts)
-                
+
                 # Find largest and smallest group based on counts
                 largest_group = bin_counts.loc[bin_counts["Count"].idxmax()]
                 smallest_group = bin_counts.loc[bin_counts["Count"].idxmin()]
@@ -187,27 +187,27 @@ def display_treemap(data: pd.DataFrame) -> None:
         with col1:
             fig = px.treemap(
                 group_data,
-                path=[selected_parent, selected_child],  
-                values="Population",  
-                color="Population",  
+                path=[selected_parent, selected_child],
+                values="Population",
+                color="Population",
                 hover_name=selected_child,
                 title="Treemap: Hierarchical Demographic Categories",
                 labels={selected_parent: selected_parent, selected_child: selected_child, "Population": "Population Size"},
-                color_continuous_scale=px.colors.sequential.RdBu,  
+                color_continuous_scale=px.colors.sequential.RdBu,
             )
             st.plotly_chart(fig)
 
         with st.expander("See Evaluation"):
             col1, col2 = st.columns([4, 4])
 
-        with col1:    
+        with col1:
             st.write("### Evaluation")
             st.write(f"*Parent Category (selected):* {selected_parent}")
             st.write(f"*Child Category (selected):* {selected_child}")
-            
+
             total_population = group_data["Population"].sum()
             st.write(f"*Total Population Represented:* {total_population:,}")
-        
+
             st.write("### Population Breakdown:")
             st.write(group_data[[selected_parent, selected_child, "Population"]].sort_values(by="Population", ascending=False))
 
@@ -351,7 +351,7 @@ def display_bubble_chart(data: pd.DataFrame) -> None:
         numerical_columns = data.select_dtypes(include='number').columns.tolist()
         selected_x = st.selectbox("Select X-axis Variable", numerical_columns, index=0)  # X-axis (e.g., Age)
         selected_y = st.selectbox("Select Y-axis Variable", numerical_columns, index=1)  # Y-axis (e.g., Income)
-        
+
         # User input to select a categorical variable for bubble size (e.g., Occupation or Employment Status)
         categorical_columns = data.select_dtypes(include='object').columns.tolist()
         selected_category = st.selectbox("Select Category for Bubble Size", categorical_columns, index=0)
@@ -384,18 +384,18 @@ def display_bubble_chart(data: pd.DataFrame) -> None:
     with st.expander("See Evaluation"):
         col1, col2 = st.columns([4, 4])
 
-    with col1:    
+    with col1:
         st.write("### Evaluation")
 
         # 1. *General Summary*
         st.write(f"*X-axis (selected):* {selected_x}")
         st.write(f"*Y-axis (selected):* {selected_y}")
         st.write(f"*Bubble Size (selected):* {selected_category}")
-        
+
         # 2. *Population Size Evaluation*
         total_population = group_data["Population"].sum()
         st.write(f"*Total Population Represented:* {total_population:,}")
-        
+
         # 3. *Bubble Size Distribution*
         st.write("### Bubble Size Distribution (Population Size):")
         st.write(f"*Minimum Population Size in Group:* {group_data['Population'].min()}")
@@ -422,7 +422,7 @@ def display_bubble_chart(data: pd.DataFrame) -> None:
             category_data = group_data[group_data[selected_category] == category]
             x_avg = category_data[selected_x].mean()
             y_avg = category_data[selected_y].mean()
-            st.write(f"- *Category:* {category} | Average {selected_x}: {x_avg:.2f} | Average {selected_y}: {y_avg:.2f}")        
+            st.write(f"- *Category:* {category} | Average {selected_x}: {x_avg:.2f} | Average {selected_y}: {y_avg:.2f}")
 
 def display_population_pyramid(data: pd.DataFrame) -> None:
     """
@@ -457,13 +457,13 @@ def display_population_pyramid(data: pd.DataFrame) -> None:
 
     # Pivot to format suitable for the pyramid
     pyramid_data = pyramid_data.pivot(index='age_group', columns='Gender', values='count').fillna(0)
-    
+
      # Ensure 'Male' and 'Female' columns exist
     if 'Male' not in pyramid_data.columns:
         pyramid_data['Male'] = 0
     if 'Female' not in pyramid_data.columns:
         pyramid_data['Female'] = 0
-    
+
     pyramid_data = pyramid_data[['Male', 'Female']].reset_index()  # Ensure consistent gender order
     pyramid_data['Male'] = -pyramid_data['Male']  # Negative values for the male side
 
@@ -479,16 +479,16 @@ def display_population_pyramid(data: pd.DataFrame) -> None:
 
     with st.expander("See Evaluation"):
         st.write("### Evaluation")
-        
+
         # Calculate male-to-female ratio
         total_male = abs(pyramid_data['Male'].sum())
         total_female = pyramid_data['Female'].sum()
         male_to_female_ratio = total_male / total_female if total_female > 0 else 0
-        
+
         st.write(f"*Total Male Population:* {total_male}")
         st.write(f"*Total Female Population:* {total_female}")
         st.write(f"*Male-to-Female Ratio:* {male_to_female_ratio:.2f}:1")
-        
+
         # Identify largest age group by gender
         largest_male_group = pyramid_data.loc[pyramid_data['Male'].idxmin(), 'age_group']
         largest_female_group = pyramid_data.loc[pyramid_data['Female'].idxmax(), 'age_group']
@@ -501,7 +501,7 @@ def display_demographics(data: pd.DataFrame) -> None:
     Displays scatter plot of Age vs. Average Monthly Income and evaluation.
     """
     st.subheader("Scatter Plot: Age vs. Income")
-    
+
     # Clean the data for scatter plot (drop rows with NaN values in relevant columns)
     clean_data = data[['Age', 'Avg_Monthly_Income']].dropna()
 
@@ -522,7 +522,7 @@ def display_demographics(data: pd.DataFrame) -> None:
     if len(clean_data) >= 2:
         with st.expander("See Evaluation"):
             st.write("### Evaluation")
-            
+
             # Correlation evaluation
             correlation, _ = stats.pearsonr(clean_data['Age'], clean_data['Avg_Monthly_Income'])
             st.write(f"*Pearson Correlation Coefficient:* {correlation:.2f}")
@@ -585,7 +585,7 @@ def display_correlation_heatmap(data: pd.DataFrame) -> None:
             )
             st.plotly_chart(fig)
         except Exception as e:
-            st.error(f"Error creating heatmap: {e}")    
+            st.error(f"Error creating heatmap: {e}")
 
     with st.expander("See Visualization"):
         # Evaluation of Correlation
@@ -616,7 +616,7 @@ def interpret_correlation(correlation_value: float) -> str:
         return "Moderate Negative Correlation"
     else:
         return "Strong Negative Correlation"
-    
+
 def display_stacked_bar_chart(data: pd.DataFrame) -> None:
     st.subheader("Stacked Bar Chart: Distribution of Residents per Sector")
 
@@ -664,12 +664,6 @@ def display_stacked_bar_chart(data: pd.DataFrame) -> None:
 # Set Streamlit page configuration
 st.set_page_config(page_title="eGovern", layout="wide")
 
-# App Title and Description
-st.title("Exploratory Data Visualization ")
-st.markdown("""
-Welcome to the eGovern Residents Data Dashboard. Use the sidebar to filter the data based on various criteria and explore different aspects of the residents' demographics and socioeconomic status.
-""")
-
 def load_json():
     try:
         # Fetch data from the API
@@ -688,13 +682,9 @@ def load_json():
 data = load_json()
 
 if not data.empty:
-    st.write("### Fetched Data:")
     st.dataframe(data)
-
-    # Clean and validate data (assuming a clean_data function exists)
     data = clean_data(data)
-
-    # Sidebar Filters
+        # Sidebar Filters
     st.sidebar.header("Filter Residents Data")
     sex = st.sidebar.selectbox(
         "Gender",
@@ -725,35 +715,34 @@ if not data.empty:
         help="Filter residents by age range."
     )
 
-    # Apply filters
+        # Apply filters
     if sex != "All":
-        data = data[data['Gender'] == sex]
+            data = data[data['Gender'] == sex]
     if civil_status != "All":
-        data = data[data['Civil_Status'] == civil_status]
+            data = data[data['Civil_Status'] == civil_status]
     if employment_status != "All":
-        data = data[data['Employment_Status'] == employment_status]
+            data = data[data['Employment_Status'] == employment_status]
     if education:
         data = data[data['Educational_Attainment'].isin(education)]
     data = data[(data['Age'] >= age_range[0]) & (data['Age'] <= age_range[1])]
 
     st.write(f"**Total Records:** {len(data)}")
 
-    # Display visualizations using tabs
+        # Display visualizations using tabs
     tab1, tab2 = st.tabs([
-        "Demographics",
-        "Socioeconomic Status"
-    ])
+            "Demographics",
+            "Socioeconomic Status"
+        ])
 
     with tab1:
-        display_histogram(data)
-        display_population_pyramid(data)
-        display_treemap(data)
-        display_bubble_chart(data)
-        display_parallel_coordinates(data)
-
+            display_histogram(data)
+            display_population_pyramid(data)
+            display_treemap(data)
+            display_bubble_chart(data)
+            display_parallel_coordinates(data)
     with tab2:
-        display_correlation_heatmap(data)
-        display_demographics(data)
+            display_correlation_heatmap(data)
+            display_demographics(data)
 
 else:
-    st.info("No data available.")
+    st.info("Awaiting CSV file to be uploaded.")
