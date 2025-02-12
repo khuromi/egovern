@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import scipy.stats as stats
 import plotly.express as px
+import requests
 
 # Data Cleaning and Validation
 def clean_data(data: pd.DataFrame) -> pd.DataFrame:
@@ -627,47 +628,34 @@ st.markdown("""
 Welcome to the eGovern Residents Data Dashboard. Use the sidebar to filter the data based on various criteria and explore different aspects of the residents' demographics and socioeconomic status.
 """)
 
-# Sidebar for File Upload
-st.sidebar.header("Upload CSV File")
-uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
+# Path to JSON API endpoint
+API_URL = 'http://localhost/egovern/api.php'
 
-# Path to default CSV file
-DEFAULT_CSV ='https://raw.githubusercontent.com/khuromi/egovern/refs/heads/main/streamlit/residents_data.csv'
-
-@st.cache_data
-def load_csv(file_path=None):
-    if file_path:
-        try:
-            csv = pd.read_csv(file_path, encoding="utf-8")  # Read using UTF-8 encoding
-        except UnicodeDecodeError:
-            csv = pd.read_csv(file_path, encoding="ISO-8859-1")  # Fallback encoding
-    else:
-        try:
-            csv = pd.read_csv(DEFAULT_CSV, encoding="utf-8")
-        except UnicodeDecodeError:
-            csv = pd.read_csv(DEFAULT_CSV, encoding="ISO-8859-1")
-    return csv
-
-# Determine whether to use uploaded file or default
-if uploaded_file is not None:
-    data = load_csv(uploaded_file)
-    st.write("### Uploaded Data:")
-    st.dataframe(data)
-    data_source = "Uploaded File"
-else:
+def load_json():
     try:
-        data = pd.read_csv("https://raw.githubusercontent.com/khuromi/egovern/refs/heads/main/streamlit/residents_data.csv")
-        st.write("### Default Data:")
-        st.dataframe(data)
-        data_source = "Default CSV (https://raw.githubusercontent.com/khuromi/egovern/refs/heads/main/streamlit/residents_data.csv)"
-    except FileNotFoundError:
-        st.error(f"Default CSV file '{DEFAULT_CSV}' not found. Please upload a CSV file.")
+        # Fetch data from the API
+        response = requests.get(API_URL)
+        response.raise_for_status()  # Raise an error if the request was unsuccessful
+        json_data = response.json()
+
+        # Convert JSON data into a pandas DataFrame
+        data = pd.DataFrame(json_data)
+        return data
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error fetching data from API: {e}")
         st.stop()
-    
+
+# Load data from the API
+data = load_json()
+
 if not data.empty:
-        # Clean and validate data
+    st.write("### Fetched Data:")
+    st.dataframe(data)
+
+    # Clean and validate data (assuming a clean_data function exists)
     data = clean_data(data)
-        # Sidebar Filters
+
+    # Sidebar Filters
     st.sidebar.header("Filter Residents Data")
     sex = st.sidebar.selectbox(
         "Gender",
@@ -698,34 +686,35 @@ if not data.empty:
         help="Filter residents by age range."
     )
 
-        # Apply filters
+    # Apply filters
     if sex != "All":
-            data = data[data['Gender'] == sex]
+        data = data[data['Gender'] == sex]
     if civil_status != "All":
-            data = data[data['Civil_Status'] == civil_status]
+        data = data[data['Civil_Status'] == civil_status]
     if employment_status != "All":
-            data = data[data['Employment_Status'] == employment_status]
+        data = data[data['Employment_Status'] == employment_status]
     if education:
         data = data[data['Educational_Attainment'].isin(education)]
     data = data[(data['age'] >= age_range[0]) & (data['age'] <= age_range[1])]
 
     st.write(f"**Total Records:** {len(data)}")
 
-        # Display visualizations using tabs
+    # Display visualizations using tabs
     tab1, tab2 = st.tabs([
-            "Demographics",
-            "Socioeconomic Status"
-        ])
+        "Demographics",
+        "Socioeconomic Status"
+    ])
 
     with tab1:
-            display_histogram(data)
-            display_population_pyramid(data)
-            display_treemap(data)
-            display_bubble_chart(data)
-            display_parallel_coordinates(data)
-    with tab2:        
-            display_correlation_heatmap(data)
-            display_demographics(data)
+        display_histogram(data)
+        display_population_pyramid(data)
+        display_treemap(data)
+        display_bubble_chart(data)
+        display_parallel_coordinates(data)
+
+    with tab2:
+        display_correlation_heatmap(data)
+        display_demographics(data)
 
 else:
-    st.info("Awaiting CSV file to be uploaded.")
+    st.info("No data available.")
