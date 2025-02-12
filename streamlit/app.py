@@ -28,106 +28,146 @@ def clean_data(data: pd.DataFrame) -> pd.DataFrame:
     # Parse birthdate and calculate age
     data['Birthdate'] = pd.to_datetime(data['Birthdate'], errors='coerce')
     current_year = pd.to_datetime('today').year
-    data['age'] = current_year - data['Birthdate'].dt.year
+    data['Age'] = current_year - data['Birthdate'].dt.year
 
     # Drop rows with invalid Birthdates
-    data = data.dropna(subset=['Birthdate', 'age'])
+    data = data.dropna(subset=['Birthdate', 'Age'])
 
     return data
 
 # Data Visualizations
 #tab1 Demographics
 def display_histogram(data: pd.DataFrame) -> None:
+    """
+    Displays a histogram for Age Distribution, Household Size, or Income Levels.
+    """
     st.subheader("Histogram: Data Distribution")
-    col1, col2 = st.columns([20, 5])
+
+    # Instruction Expander
+    with st.expander("How It Works?"):
+        st.write("### How to Use This Tool:")
+        st.write("1. **Select a Variable**: Choose Household Size or Income Levels.")
+        st.write("   - Household Size: Displays the distribution of household members.")
+        st.write("   - Income Levels: Displays income distribution in defined ranges.")
+        st.write("2. **View the Chart**: The tool will generate a histogram with the selected variable.")
+
+    col1, col2 = st.columns([3, 1])
 
     with col2:
-        # Allow both string and numerical columns to be selected
-        available_columns = data.columns.tolist()
-        if not available_columns:
-            st.warning("No columns available in the dataset.")
-            return
+        # Select variable to visualize
+        options = ["Household_Number", "Avg_Monthly_Income"]
+        selected_column = st.selectbox("Select Variable", options, index=0)
 
-        selected_column = st.selectbox("Select Column", available_columns, index=0)
-        is_numeric = pd.api.types.is_numeric_dtype(data[selected_column])
-
-        # If the column is numerical, allow bin adjustment
-        if is_numeric:
-            num_bins = st.slider("Number of Bins", min_value=5, max_value=50, value=20, step=5)
-        else:
-            num_bins = None
+        # Set bin size for numeric variables
+        num_bins = st.slider("Number of Bins", min_value=5, max_value=100, value=50, step=5)
 
     try:
         with col1:
-            if is_numeric:
-                # Create histogram for numerical data
+            # Create histogram for the selected variable
+            if selected_column == "Avg_Monthly_Income":
+                data["Income_Range"] = pd.cut(
+                    data["Avg_Monthly_Income"],
+                    bins=[0, 5000, 10000, 20000, 50000, 100000, float("inf")],
+                    labels=["0–5k", "5k–10k", "10k–20k", "20k–50k", "50k–100k", "100k+"],
+                    right=False,
+                )
+                value_counts = data["Income_Range"].value_counts().reset_index()
+                value_counts.columns = ["Income_Range", "Count"]
+                fig = px.bar(
+                    value_counts,
+                    x="Income_Range",
+                    y="Count",
+                    title="Income Levels Distribution",
+                    labels={"Income_Range": "Income Range (PHP)", "Count": "Frequency"},
+                    color_discrete_sequence=["#242862"],
+                )
+            else:
+                # Plot Household Size distribution
                 fig = px.histogram(
                     data,
                     x=selected_column,
                     nbins=num_bins,
-                    title=f"Histogram of {selected_column}",
-                    labels={selected_column: selected_column},
-                    color_discrete_sequence=["#636EFA"],
+                    title=f"{selected_column} Distribution",
+                    labels={selected_column: selected_column, "count": "Frequency"},
+                    color_discrete_sequence=["#242862"],
                     hover_data=data.columns,
                 )
                 fig.update_layout(
                     bargap=0.1,
                     xaxis_title=f"{selected_column}",
-                    yaxis_title="Count",
-                )
-            else:
-                # Create histogram for categorical data (value counts)
-                value_counts = data[selected_column].value_counts().reset_index()
-                value_counts.columns = [selected_column, "Count"]
-                fig = px.bar(
-                    value_counts,
-                    x=selected_column,
-                    y="Count",
-                    title=f"Histogram of {selected_column}",
-                    labels={selected_column: selected_column, "Count": "Counts"},
-                    color_discrete_sequence=["#636EFA"],
-                )
-                fig.update_layout(
-                    bargap=0,  # Ensure bars are intact (no gaps)
-                    xaxis_title=f"{selected_column}",
-                    yaxis_title="Counts",
+                    yaxis_title="Frequency",
                 )
 
+            # Display the plot
             st.plotly_chart(fig)
 
-        with st.expander("See Evaluation"):
-            col1, col2 = st.columns([4, 4])
+        # Evaluation and Bin Information
+        with st.expander("Evaluation"):
+            if selected_column == "Avg_Monthly_Income":
+                # Dynamically create bins for Avg_Monthly_Income based on the min and max of the data
+                min_income = data["Avg_Monthly_Income"].min()
+                max_income = data["Avg_Monthly_Income"].max()
+                income_bins = pd.cut(
+                    data["Avg_Monthly_Income"],
+                    bins=num_bins,
+                    labels=[f"Bin {i+1}" for i in range(num_bins)],
+                    include_lowest=True,
+                    right=False,
+                    precision=0
+                )
+                income_bin_counts = income_bins.value_counts().reset_index()
+                income_bin_counts.columns = ["Income_Range", "Count"]
+                
+                # Display the table
+                st.write("### Income Range Distribution Table", income_bin_counts)
+                
+                # Find largest and smallest group based on counts
+                largest_group = income_bin_counts.loc[income_bin_counts["Count"].idxmax()]
+                smallest_group = income_bin_counts.loc[income_bin_counts["Count"].idxmin()]
 
-        with col1:
-            st.write("### Evaluation")
-            st.write(f"*Selected Column:* {selected_column}")
-            if is_numeric:
-                st.write(f"*Number of Bins:* {num_bins}")
+                st.write("#### Largest Group:")
+                st.write(f"Income Range: {largest_group['Income_Range']} with {largest_group['Count']} members")
 
-            st.write("### Summary Statistics:")
-            if is_numeric:
-                stats = data[selected_column].describe()
-                for stat, value in stats.items():
-                        st.write(f"{stat.capitalize()}: {value:,.2f}")
+                st.write("#### Smallest Group:")
+                st.write(f"Income Range: {smallest_group['Income_Range']} with {smallest_group['Count']} members")
+
             else:
-                total = len(data[selected_column])
-                unique = data[selected_column].nunique()
-                st.write(f"Total Entries: {total}")
-                st.write(f"Unique Values: {unique}")
+                # Dynamically create bins for Household Size (integer bins)
+                household_min = data[selected_column].min()
+                household_max = data[selected_column].max()
 
-        with col2:
-            st.write("### Insights")
-            if is_numeric:
-                st.write(f"- Minimum Value: {data[selected_column].min()}")
-                st.write(f"- Maximum Value: {data[selected_column].max()}")
-                st.write(f"- Range: {data[selected_column].max() - data[selected_column].min()}")
-            else:
-                st.write("### Top Categories:")
-                for i, row in value_counts.iterrows():
-                    st.write(f"- {row[selected_column]}: {row['Count']} occurrences")
+                # Generate integer-based bin ranges (e.g., 1-2, 3-4, etc.)
+                bin_edges = list(range(int(household_min), int(household_max) + 2, 2))  # Step of 2 for ranges like 1-2, 3-4
+                bin_labels = [f"{i}-{i+1}" for i in range(int(household_min), int(household_max), 2)]
+                
+                data["Household_Bin"] = pd.cut(
+                    data[selected_column],
+                    bins=bin_edges,
+                    labels=bin_labels,
+                    include_lowest=True,
+                    right=False
+                )
+                bin_counts = data["Household_Bin"].value_counts().reset_index()
+                bin_counts.columns = [f"{selected_column}", "Count"]
+                
+                # Display the table
+                st.write(f"### {selected_column} Bin Distribution Table", bin_counts)
+                
+                # Find largest and smallest group based on counts
+                largest_group = bin_counts.loc[bin_counts["Count"].idxmax()]
+                smallest_group = bin_counts.loc[bin_counts["Count"].idxmin()]
+
+                st.write("#### Largest Group:")
+                st.write(f"{selected_column} Bin: {largest_group[selected_column]} with {largest_group['Count']} members")
+
+                st.write("#### Smallest Group:")
+                st.write(f"{selected_column} Bin: {smallest_group[selected_column]} with {smallest_group['Count']} members")
 
     except ValueError as e:
         st.warning(f"An error occurred while generating the histogram: {str(e)}")
+
+
+
 
 def display_treemap(data: pd.DataFrame) -> None:
     st.subheader("Treemap: Hierarchical Demographic Categories")
@@ -391,20 +431,20 @@ def display_population_pyramid(data: pd.DataFrame) -> None:
     """
     st.subheader("Population Pyramid (Age and Gender Distribution)")
 
-    if data.empty or data['age'].isna().all() or data['Gender'].isna().all():
+    if data.empty or data['Age'].isna().all() or data['Gender'].isna().all():
         st.warning("No sufficient data available to display the population pyramid for the selected filters.")
         return
 
         # Prepare data for the pyramid
-    pyramid_data = data[['age', 'Gender']].copy()
+    pyramid_data = data[['Age', 'Gender']].copy()
 
         # Handle age groups dynamically based on data range
-    age_min = int(data['age'].min())
-    age_max = int(data['age'].max())
+    age_min = int(data['Age'].min())
+    age_max = int(data['Age'].max())
     age_bins = list(range(age_min, age_max + 10, 10))  # 10-year bins
 
     pyramid_data['age_group'] = pd.cut(
-        pyramid_data['age'],
+        pyramid_data['Age'],
         bins=age_bins,
         right=False,
         labels=[f"{i}-{i + 9}" for i in range(age_min, age_max, 10)]
@@ -463,7 +503,7 @@ def display_demographics(data: pd.DataFrame) -> None:
     st.subheader("Scatter Plot: Age vs. Income")
     
     # Clean the data for scatter plot (drop rows with NaN values in relevant columns)
-    clean_data = data[['age', 'Avg_Monthly_Income']].dropna()
+    clean_data = data[['Age', 'Avg_Monthly_Income']].dropna()
 
     # Check if there are enough data points
     if len(clean_data) < 2:
@@ -472,7 +512,7 @@ def display_demographics(data: pd.DataFrame) -> None:
 
     # Scatter plot
     fig, ax = plt.subplots(figsize=(10, 4))
-    ax.scatter(clean_data['age'], clean_data['Avg_Monthly_Income'], alpha=0.5, color='blue', edgecolors='black')
+    ax.scatter(clean_data['Age'], clean_data['Avg_Monthly_Income'], alpha=0.5, color='blue', edgecolors='black')
     ax.set_xlabel("Age")
     ax.set_ylabel("Average Monthly Income")
     ax.set_title("Age vs. Income")
@@ -484,21 +524,21 @@ def display_demographics(data: pd.DataFrame) -> None:
             st.write("### Evaluation")
             
             # Correlation evaluation
-            correlation, _ = stats.pearsonr(clean_data['age'], clean_data['Avg_Monthly_Income'])
+            correlation, _ = stats.pearsonr(clean_data['Age'], clean_data['Avg_Monthly_Income'])
             st.write(f"*Pearson Correlation Coefficient:* {correlation:.2f}")
 
             # Check if 'age' has more than one unique value before performing linear regression
-            if clean_data['age'].nunique() > 1:
+            if clean_data['Age'].nunique() > 1:
                 # Perform regression if there is variability in 'age'
-                slope, intercept, r_value, p_value, std_err = stats.linregress(clean_data['age'], clean_data['Avg_Monthly_Income'])
+                slope, intercept, r_value, p_value, std_err = stats.linregress(clean_data['Age'], clean_data['Avg_Monthly_Income'])
                 st.write(f"*Regression Line:* y = {slope:.2f}x + {intercept:.2f}")
                 st.write(f"*R-squared Value:* {r_value**2:.2f}")
 
                 # Plot the regression line
                 st.write("### Regression Line")
                 fig2, ax2 = plt.subplots(figsize=(10, 4))
-                ax2.scatter(clean_data['age'], clean_data['Avg_Monthly_Income'], alpha=0.5, color='blue', edgecolors='black')
-                ax2.plot(clean_data['age'], slope * clean_data['age'] + intercept, color='red', linewidth=2, label='Regression Line')
+                ax2.scatter(clean_data['Age'], clean_data['Avg_Monthly_Income'], alpha=0.5, color='blue', edgecolors='black')
+                ax2.plot(clean_data['Age'], slope * clean_data['Age'] + intercept, color='red', linewidth=2, label='Regression Line')
                 ax2.set_xlabel("Age")
                 ax2.set_ylabel("Average Monthly Income")
                 ax2.set_title("Age vs. Income with Regression Line")
@@ -679,9 +719,9 @@ if not data.empty:
     )
     age_range = st.sidebar.slider(
         "Age Range",
-        min_value=int(data['age'].min()),
-        max_value=int(data['age'].max()),
-        value=(int(data['age'].min()), int(data['age'].max())),
+        min_value=int(data['Age'].min()),
+        max_value=int(data['Age'].max()),
+        value=(int(data['Age'].min()), int(data['Age'].max())),
         help="Filter residents by age range."
     )
 
@@ -694,7 +734,7 @@ if not data.empty:
         data = data[data['Employment_Status'] == employment_status]
     if education:
         data = data[data['Educational_Attainment'].isin(education)]
-    data = data[(data['age'] >= age_range[0]) & (data['age'] <= age_range[1])]
+    data = data[(data['Age'] >= age_range[0]) & (data['Age'] <= age_range[1])]
 
     st.write(f"**Total Records:** {len(data)}")
 
