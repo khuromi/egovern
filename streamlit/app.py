@@ -5,6 +5,8 @@ import scipy.stats as stats
 import plotly.express as px
 import requests
 
+API_URL = 'http://localhost/egovern/api.php'
+
 # Data Cleaning and Validation
 def clean_data(data: pd.DataFrame) -> pd.DataFrame:
     """
@@ -627,9 +629,6 @@ st.title("Exploratory Data Visualization ")
 st.markdown("""
 Welcome to the eGovern Residents Data Dashboard. Use the sidebar to filter the data based on various criteria and explore different aspects of the residents' demographics and socioeconomic status.
 """)
-
-# Path to JSON API endpoint
-API_URL = 'http://localhost/egovern/api.php'
 
 def load_json():
     try:
