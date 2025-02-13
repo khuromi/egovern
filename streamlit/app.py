@@ -5,7 +5,7 @@ import scipy.stats as stats
 import plotly.express as px
 import requests
 
-API_URL = 'http://localhost/egovern/api.php'
+API_URL = 'https://culiongsalcedo.net/api.php'
 
 # Data Cleaning and Validation
 def clean_data(data: pd.DataFrame) -> pd.DataFrame:

@@ -12,8 +12,13 @@ class Counter {
 
     public function countPopulations()
     {
-        $sql = "SELECT COUNT(*) as total FROM `residents`";
-    
+
+        $sql = "SELECT COUNT(*) as total
+                FROM residents r 
+                LEFT JOIN deactivation_reasons dr 
+                ON r.Resident_ID = dr.resident_id 
+                WHERE dr.resident_id IS NULL;
+                ";
         try {
             // Prepare the SQL statement
             $stmt = $this->db->prepare($sql);
