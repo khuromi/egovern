@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import scipy.stats as stats
 import plotly.express as px
 import requests
+import altair as alt
 
 API_URL = 'https://culiongsalcedo.net/api.php'
 
@@ -36,7 +37,7 @@ def clean_data(data: pd.DataFrame) -> pd.DataFrame:
     return data
 
 # Data Visualizations
-#tab1 Demographics
+
 def display_histogram(data: pd.DataFrame) -> None:
     """
     Displays a histogram for Age Distribution, Household Size, or Income Levels.
@@ -44,7 +45,8 @@ def display_histogram(data: pd.DataFrame) -> None:
     st.subheader("Histogram: Data Distribution")
 
     # Instruction Expander
-    with st.expander("How It Works?"):
+    with st.expander("Description"):
+        st.write("A Histogram visualises the distribution of data over a continuous interval. Each bar in a histogram represents the tabulated frequency at each interval/bin.")
         st.write("### How to Use This Tool:")
         st.write("1. **Select a Variable**: Choose Household Size or Income Levels.")
         st.write("   - Household Size: Displays the distribution of household members.")
@@ -167,10 +169,17 @@ def display_histogram(data: pd.DataFrame) -> None:
         st.warning(f"An error occurred while generating the histogram: {str(e)}")
 
 
-
-
 def display_treemap(data: pd.DataFrame) -> None:
     st.subheader("Treemap: Hierarchical Demographic Categories")
+
+    with st.expander("Description"):
+        st.write("Treemaps are an alternative way of visualising the hierarchical structure of a Tree Diagram while also displaying quantities for each category via area size. Each category is assigned a rectangle area with the subcategory rectangles nested inside.")
+        st.write("### How to Use This Tool:")
+        st.write("1. **Select a Parent and Child Category**: The Parent Category represents the higher-level grouping (e.g., Age Group or Employment Status), and each parent category is divided into subgroups called Child Categories (e.g., Education Level, Gender).")
+        st.write("   - Parent Category: In the dropdown menu, you can choose a Parent Category from the available categorical columns in your data (e.g., Age Group, Employment Status, etc.). This is the high-level category that will be used to group the data.")
+        st.write("   - Child Category: Similarly, choose a Child Category from the available categorical columns (e.g., Educational Level, Ethnicity, etc.). The Child Categories are the subgroups within each Parent Category.")
+        st.write("2. **View the Chart**: Once you select the Parent Category and Child Category, the treemap will automatically update and display the population distribution. Larger rectangles represent categories with a higher population, and the size of each rectangle corresponds to the population within that category. The color scale helps to distinguish different population sizes across categories. The color intensity increases with larger populations.")
+
     col1, col2 = st.columns([20, 5])
 
     with col2:
@@ -191,7 +200,6 @@ def display_treemap(data: pd.DataFrame) -> None:
                 values="Population",
                 color="Population",
                 hover_name=selected_child,
-                title="Treemap: Hierarchical Demographic Categories",
                 labels={selected_parent: selected_parent, selected_child: selected_child, "Population": "Population Size"},
                 color_continuous_scale=px.colors.sequential.RdBu,
             )
@@ -344,13 +352,20 @@ def display_bubble_chart(data: pd.DataFrame) -> None:
     """
     st.subheader("Bubble Chart: Population Groups by Size and Variable")
 
+    with st.expander("Description"):
+        st.write("Bubble Charts are used to compare and show the relationships between categorised circles, by the use of positioning and proportions. The overall picture of Bubble Charts can be used to analyse for patterns/correlations.")
+        st.write("### How to Use This Tool:")
+        st.write("1. **Select X and Y axis Variable**")
+        st.write(" **Note: Ensure that the X-axis and Y-axis variables are different. If you select the same variable for both axes, a warning message will appear.**")
+        st.write("2. In the right column, the Category Breakdown by Selected Variable will show how the population is distributed across the selected categories (i.e., how many individuals belong to each category based on the selected categorical variable).")
+        
     col1, col2 = st.columns([4, 1])
 
     with col2:
         # User input to select variables for the bubble chart
         numerical_columns = data.select_dtypes(include='number').columns.tolist()
-        selected_x = st.selectbox("Select X-axis Variable", numerical_columns, index=0)  # X-axis (e.g., Age)
-        selected_y = st.selectbox("Select Y-axis Variable", numerical_columns, index=1)  # Y-axis (e.g., Income)
+        selected_x = st.selectbox("Select X-axis Variable", numerical_columns, index=2)  # X-axis (e.g., Age)
+        selected_y = st.selectbox("Select Y-axis Variable", numerical_columns, index=3)  # Y-axis (e.g., Income)
 
         # User input to select a categorical variable for bubble size (e.g., Occupation or Employment Status)
         categorical_columns = data.select_dtypes(include='object').columns.tolist()
@@ -431,6 +446,14 @@ def display_population_pyramid(data: pd.DataFrame) -> None:
     """
     st.subheader("Population Pyramid (Age and Gender Distribution)")
 
+    with st.expander("Description"):
+        st.write("A Population Pyramid is a pair of back-to-back Histograms (for each gender) that displays the distribution of a population in all age groups and both genders. The x-axis is used to plot population numbers and the y-axis lists all age groups.")
+        st.write("### How to Use This Tool:")
+        st.write("1. The width of each bar represents the number of people in each gender for a specific age group.")
+        st.write("   - Left Side: The number of Male individuals in each age group.")
+        st.write("   - Right Side: The number of Female individuals in each age group.")
+        st.write("2. **View the Chart**: By looking at the pyramid, you can compare the age distribution between males and females. For example, you can see if certain age groups have a higher population of males or females.")
+
     if data.empty or data['Age'].isna().all() or data['Gender'].isna().all():
         st.warning("No sufficient data available to display the population pyramid for the selected filters.")
         return
@@ -496,11 +519,20 @@ def display_population_pyramid(data: pd.DataFrame) -> None:
         st.write(f"*Largest Male Age Group:* {largest_male_group}")
         st.write(f"*Largest Female Age Group:* {largest_female_group}")
 
-def display_demographics(data: pd.DataFrame) -> None:
+def display_scatter(data: pd.DataFrame) -> None:
     """
     Displays scatter plot of Age vs. Average Monthly Income and evaluation.
     """
     st.subheader("Scatter Plot: Age vs. Income")
+
+    with st.expander("Description"):
+        st.write("The Scatter Plot is a type of data visualization that shows the relationship between two continuous variables. In this case, we are visualizing the relationship between Age and Average Monthly Income of residents.")
+        st.write("### How to Use This Tool:")
+        st.write("1. **X-axis (Age):** The X-axis represents the Age of the residents. Each point on the X-axis corresponds to the age of a specific individual in the dataset.")
+        st.write("2. **Y-axis (Average Monthly Income):** The Y-axis represents the Average Monthly Income of the residents. Each point on the Y-axis corresponds to the average monthly income of a specific individual. By plotting these two variables together, we can observe patterns and trends in how income varies with age.")
+        st.write("3. **Plotting Points:**  Each point on the scatter plot represents a unique resident. The position of the point is determined by two values: Age (on the X-axis) and Average Monthly Income (on the Y-axis). For example, if a resident is 30 years old and earns an average of PHP 15,000 per month, a point will be plotted at the coordinates (30, 15000).")
+        st.write("4. **View the Chart:** Hover over any individual point to view additional details like the exact Age and Average Monthly Income for that individual. This can help you investigate specific data points more closely.")
+
 
     # Clean the data for scatter plot (drop rows with NaN values in relevant columns)
     clean_data = data[['Age', 'Avg_Monthly_Income']].dropna()
@@ -527,6 +559,9 @@ def display_demographics(data: pd.DataFrame) -> None:
             correlation, _ = stats.pearsonr(clean_data['Age'], clean_data['Avg_Monthly_Income'])
             st.write(f"*Pearson Correlation Coefficient:* {correlation:.2f}")
 
+            correlation_interpretation = interpret_correlation(correlation)
+            st.write(f"**Interpretation**: {correlation_interpretation}")
+
             # Check if 'age' has more than one unique value before performing linear regression
             if clean_data['Age'].nunique() > 1:
                 # Perform regression if there is variability in 'age'
@@ -546,6 +581,36 @@ def display_demographics(data: pd.DataFrame) -> None:
                 st.pyplot(fig2)
             else:
                 st.warning("Cannot calculate linear regression. All 'age' values are identical.")
+
+def display_stack(data: pd.DataFrame) -> None:
+    st.subheader("Stacked Bar Chart: Educational Attainment by Employment Status")
+
+    with st.expander("Description"):
+        st.write("Stacked Bar Graphs segment the bars on top of each other. They are used to show how a larger category is divided into smaller subcategories and what the relationship of each part has on the total amount.")
+        st.write("### How to Use This Tool:")
+        st.write("1. The X-axis represents the different levels of Educational Attainment within the population. For example, categories like High School, College Graduate, or Elementary Undergrad.")
+        st.write("2. The chart divides each bar into different colored segments based on Employment Status. Each color represents a specific employment status (e.g., Employed,Self-employed,Unemployed, etc.).")
+        st.write("3. The size of each colored segment within the bar shows the proportion of residents within each educational level that falls under a particular Employment Status.")
+        st.write("4. Hover over each bar segment to view the exact count and percentage of individuals for each Employment Status within the Educational Attainment group.")
+    
+    st.bar_chart(data, x="Educational_Attainment", y="Resident_ID", color="Employment_Status",  horizontal=True)
+
+    with st.expander("See Evaluation"):
+        st.write("### Evaluation")
+
+        count_data = data.groupby(['Educational_Attainment', 'Employment_Status']).size().reset_index(name="Count")
+        
+        st.write("### Count Distribution Table:")
+        st.write(count_data[['Educational_Attainment', 'Employment_Status', 'Count']].sort_values(by='Count', ascending=False))
+        
+        largest_group = count_data.loc[count_data['Count'].idxmax()]
+        smallest_group = count_data.loc[count_data['Count'].idxmin()]
+        
+        st.write(f"#### Largest Group:")
+        st.write(f"Educational Attainment: {largest_group['Educational_Attainment']} | Employment Status: {largest_group['Employment_Status']} | Count: {largest_group['Count']}")
+
+        st.write(f"#### Smallest Group:")
+        st.write(f"Educational Attainment: {smallest_group['Educational_Attainment']} | Employment Status: {smallest_group['Employment_Status']} | Count: {smallest_group['Count']}")
 
 def display_correlation_heatmap(data: pd.DataFrame) -> None:
     st.subheader("Correlation Heatmap of SES Variables")
@@ -620,31 +685,24 @@ def interpret_correlation(correlation_value: float) -> str:
 def display_stacked_bar_chart(data: pd.DataFrame) -> None:
     st.subheader("Stacked Bar Chart: Distribution of Residents per Sector")
 
-    # Filter and prepare relevant sectors
     sector_counts = data['Sector_Code'].value_counts()
 
-    # List of relevant sectors
     target_sectors = ["Senior", "4P's", "PWD", "Solo Parent", "Farmers"]
 
-    # Ensure only available sectors are included
     available_sectors = [sector for sector in target_sectors if sector in sector_counts.index]
     relevant_sectors = sector_counts.loc[available_sectors]
 
-    # Check if there are numeric values to plot
     if relevant_sectors.empty:
         st.warning("No data available for the selected sectors.")
         return
 
-    # Create a DataFrame for the stacked bar chart
     stacked_data = pd.DataFrame({
         "Residents": relevant_sectors.values
-    }, index=relevant_sectors.index).T  # Transpose for horizontal stacking
+    }, index=relevant_sectors.index).T
 
-    # Horizontal stacked bar chart
     fig, ax = plt.subplots(figsize=(10, 6))
-    stacked_data.plot(kind='barh', stacked=True, ax=ax, color=['skyblue', 'orange', 'green', 'purple', 'brown'][:len(available_sectors)])
+    stacked_data.plot(kind='bar', stacked=True, ax=ax, color=['skyblue', 'orange', 'green', 'purple', 'brown'][:len(available_sectors)])
 
-    # Add labels and titles
     ax.set_xlabel("Number of Residents")
     ax.set_ylabel("Sector")
     ax.set_title("Distribution of Residents per Sector (Horizontal Stacked)")
@@ -660,9 +718,15 @@ def display_stacked_bar_chart(data: pd.DataFrame) -> None:
         for sector, count in relevant_sectors.items():
             st.write(f"- {sector}: {count} residents")
 
-## Streamlit App Layout
-# Set Streamlit page configuration
+## Streamlit Layout
 st.set_page_config(page_title="eGovern", layout="wide")
+st.title("eGovern:Residents Data Dashboard")
+st.markdown("""
+Welcome to the eGovern Residents Data Dashboard. Use the sidebar to filter the data based on various criteria and explore different aspects of the residents' demographics and socioeconomic status.
+""")
+
+st.sidebar.header("Upload CSV File")
+uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
 
 def load_json():
     try:
@@ -678,13 +742,25 @@ def load_json():
         st.error(f"Error fetching data from API: {e}")
         st.stop()
 
-# Load data from the API
-data = load_json()
+def load_csv(uploaded_file):
+    try:
+        data = pd.read_csv(uploaded_file)
+        return data
+    except Exception as e:
+        st.error(f"Error loading CSV file: {e}")
+        st.stop()
+
+# Load data based on uploaded file or fetch from API
+if uploaded_file is not None:
+    data = load_csv(uploaded_file)
+else:
+    data = load_json()
 
 if not data.empty:
     st.dataframe(data)
-    data = clean_data(data)
-        # Sidebar Filters
+    data = clean_data(data)  # Assuming you have a `clean_data` function
+    
+    # Sidebar Filters
     st.sidebar.header("Filter Residents Data")
     sex = st.sidebar.selectbox(
         "Gender",
@@ -715,34 +791,30 @@ if not data.empty:
         help="Filter residents by age range."
     )
 
-        # Apply filters
+    # Apply filters
     if sex != "All":
-            data = data[data['Gender'] == sex]
+        data = data[data['Gender'] == sex]
     if civil_status != "All":
-            data = data[data['Civil_Status'] == civil_status]
+        data = data[data['Civil_Status'] == civil_status]
     if employment_status != "All":
-            data = data[data['Employment_Status'] == employment_status]
+        data = data[data['Employment_Status'] == employment_status]
     if education:
         data = data[data['Educational_Attainment'].isin(education)]
     data = data[(data['Age'] >= age_range[0]) & (data['Age'] <= age_range[1])]
 
     st.write(f"**Total Records:** {len(data)}")
 
-        # Display visualizations using tabs
-    tab1, tab2 = st.tabs([
-            "Demographics",
-            "Socioeconomic Status"
-        ])
+    # Display visualizations using tabs
+    tab1, = st.tabs(["Demographics"])
 
     with tab1:
-            display_histogram(data)
-            display_population_pyramid(data)
-            display_treemap(data)
-            display_bubble_chart(data)
-            display_parallel_coordinates(data)
-    with tab2:
-            display_correlation_heatmap(data)
-            display_demographics(data)
+        display_histogram(data)
+        display_population_pyramid(data)
+        display_stack(data)
+        display_treemap(data)
+        display_bubble_chart(data)
+        display_scatter(data)
+
 
 else:
-    st.info("Awaiting CSV file to be uploaded.")
+    st.info("Awaiting CSV file to be uploaded or loading data from the API.")
